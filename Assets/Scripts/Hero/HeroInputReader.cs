@@ -9,7 +9,13 @@ public class HeroInputReader : MonoBehaviour
 
     public void OnMovement(InputAction.CallbackContext context)
     {
-            var vector = context.ReadValue<Vector2>();
-            _hero.SetDirection(vector);
+        var vector = context.ReadValue<Vector2>();
+        _hero.SetDirection(vector);
+    }
+
+    public void OnVector2Movement(InputValue context)
+    {
+        var vector = context.Get<Vector2>();
+        _hero.SetDirection(vector);
     }
 }

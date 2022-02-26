@@ -12,8 +12,59 @@ public class Hero : MonoBehaviour
     /// <summary>
     /// Скорость передвижения
     /// </summary>
-    [SerializeField] private float _speed = 4;
+    [SerializeField] private float _speed;
 
+    /// <summary>
+    /// Скорость (импульс) прыжка
+    /// </summary>
+    [SerializeField] private float _jumpSpeed;
+
+    [SerializeField] private GroundCheck _groundCheck;
+
+    /// <summary>
+    /// Слой, считающийся землей
+    /// </summary>
+    [SerializeField] private LayerMask _groundLayer;
+
+    private Rigidbody2D _rigidbody;
+
+    private void Awake()
+    {
+        _rigidbody = GetComponent<Rigidbody2D>();
+    }
+
+    private void FixedUpdate()
+    {
+        _rigidbody.velocity = new Vector2(_direction.x * _speed, _rigidbody.velocity.y);
+
+        // признак прыжка
+        var isJumping = _direction.y > 0;
+
+        // если прыгнули - придаем импульс направленный вверх
+        if(isJumping)
+        {
+            if (IsGrounded())
+            {
+                // придаем вектор силы вверх
+                _rigidbody.AddForce(Vector2.up * _jumpSpeed, ForceMode2D.Impulse);
+            } 
+            else if(_rigidbody.velocity.y > 0) // если движемся вверх (находимся в прыжке)
+            {
+                // уменьшаем импульс в 2 раза
+                _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _rigidbody.velocity.y * 0.5f);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Проверка на нахождение персонажа "на земле"
+    /// </summary>
+    /// <returns></returns>
+    private bool IsGrounded()
+    {
+        return _groundCheck.IsTouchingLayer;
+    }
+    
     /// <summary>
     /// Задание вектора движения героя
     /// </summary>
@@ -23,15 +74,11 @@ public class Hero : MonoBehaviour
         _direction = direction;
     }
 
-    private void Update()
-    {
-        if (_direction.x != 0 || _direction.y != 0)
-        {
-            var delta = _direction * _speed * Time.deltaTime;
-            var newXpos = transform.position.x + delta.x;
-            var newYpos = transform.position.y + delta.y;
 
-            transform.position = new Vector3(newXpos, newYpos, transform.position.z);
-        }
+    private void OnDrawGizmos()
+    {
+        //Debug.DrawRay(transform.position, Vector2.down, IsGrounded() ? Color.green : Color.red);
+        Gizmos.color = IsGrounded() ? Color.green : Color.red;
+        Gizmos.DrawSphere(transform.position, 0.3f);
     }
 }
