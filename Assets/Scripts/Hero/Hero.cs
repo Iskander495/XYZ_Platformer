@@ -21,11 +21,6 @@ public class Hero : MonoBehaviour
 
     [SerializeField] private GroundCheck _groundCheck;
 
-    /// <summary>
-    /// Слой, считающийся землей
-    /// </summary>
-    [SerializeField] private LayerMask _groundLayer;
-
     private Rigidbody2D _rigidbody;
 
     private void Awake()
@@ -47,12 +42,12 @@ public class Hero : MonoBehaviour
             {
                 // придаем вектор силы вверх
                 _rigidbody.AddForce(Vector2.up * _jumpSpeed, ForceMode2D.Impulse);
-            } 
-            else if(_rigidbody.velocity.y > 0) // если движемся вверх (находимся в прыжке)
-            {
-                // уменьшаем импульс в 2 раза
-                _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _rigidbody.velocity.y * 0.5f);
             }
+        }
+        else if (_rigidbody.velocity.y > 0) // если движемся вверх (находимся в прыжке)
+        {
+            // уменьшаем импульс в 2 раза
+            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _rigidbody.velocity.y * 0.5f);
         }
     }
 
