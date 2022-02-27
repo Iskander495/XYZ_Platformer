@@ -9,8 +9,11 @@ public class FollowToPlayer : MonoBehaviour
     /// </summary>
     [SerializeField] private GameObject _targetObject;
 
+    [SerializeField] private float _damping;
+
     private void LateUpdate()
     {
-        transform.position = new Vector3(_targetObject.transform.position.x, transform.position.y, transform.position.z);
+        var target = new Vector3(_targetObject.transform.position.x, _targetObject.transform.position.y, transform.position.z);
+        transform.position = Vector3.Lerp(transform.position, target, Time.deltaTime * _damping);
     }    
 }

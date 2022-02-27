@@ -47,3 +47,15 @@ TagManager:
   - name: Ground
     uniqueID: 1182299453
     locked: 0
+  - name: Level
+    uniqueID: 3438831173
+    locked: 0
+  - name: Player
+    uniqueID: 2806728685
+    locked: 0
+  - name: Grass
+    uniqueID: 3254222111
+    locked: 0
+  - name: Coins
+    uniqueID: 2372307033
+    locked: 0

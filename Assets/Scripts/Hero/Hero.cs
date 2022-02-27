@@ -19,6 +19,9 @@ public class Hero : MonoBehaviour
     /// </summary>
     [SerializeField] private float _jumpSpeed;
 
+    /// <summary>
+    /// Компонент проверки соприкосновения с землей
+    /// </summary>
     [SerializeField] private GroundCheck _groundCheck;
 
     private Rigidbody2D _rigidbody;
