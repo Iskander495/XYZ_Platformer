@@ -68,8 +68,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 270643461
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -6024505487453159095, guid: 2dda43165003e6141b912723e4eb023e,
     type: 3}
@@ -95,13 +95,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff7fa97d407f83b44865c911fd0453ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _loop: 1
-  _frameRate: 3
-  _sprites:
-  - {fileID: -6024505487453159095, guid: 2dda43165003e6141b912723e4eb023e, type: 3}
-  - {fileID: 3531074664856275464, guid: 2dda43165003e6141b912723e4eb023e, type: 3}
-  - {fileID: 802857254159732353, guid: 2dda43165003e6141b912723e4eb023e, type: 3}
-  - {fileID: 1278475588773109743, guid: 2dda43165003e6141b912723e4eb023e, type: 3}
-  _onComlpeteEvent:
-    m_PersistentCalls:
-      m_Calls: []
+  _animations:
+  - _name: idle
+    _allowNext: 0
+    _loop: 1
+    _frameRate: 5
+    _sprites:
+    - {fileID: -6024505487453159095, guid: 2dda43165003e6141b912723e4eb023e, type: 3}
+    - {fileID: 3531074664856275464, guid: 2dda43165003e6141b912723e4eb023e, type: 3}
+    - {fileID: 802857254159732353, guid: 2dda43165003e6141b912723e4eb023e, type: 3}
+    - {fileID: 1278475588773109743, guid: 2dda43165003e6141b912723e4eb023e, type: 3}
+    _onComlpeteEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  _currentSpriteItem:
+    _name: 
+    _allowNext: 0
+    _loop: 0
+    _frameRate: 0
+    _sprites: []
+    _onComlpeteEvent:
+      m_PersistentCalls:
+        m_Calls: []

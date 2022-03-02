@@ -1854,16 +1854,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PalmRight
       objectReference: {fileID: 0}
-    - target: {fileID: 5535434023621779594, guid: 77074ac706e2e6947ab00eb3d19ad156,
-        type: 3}
-      propertyPath: m_SortingLayer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5535434023621779594, guid: 77074ac706e2e6947ab00eb3d19ad156,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: 270643461
-      objectReference: {fileID: 0}
     - target: {fileID: 5535434023621779595, guid: 77074ac706e2e6947ab00eb3d19ad156,
         type: 3}
       propertyPath: m_RootOrder
@@ -2007,16 +1997,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 252794086}
     m_Modifications:
-    - target: {fileID: 5188451067163118625, guid: c1d640f15be255941bd1676c5951b200,
-        type: 3}
-      propertyPath: m_SortingLayer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5188451067163118625, guid: c1d640f15be255941bd1676c5951b200,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: 270643461
-      objectReference: {fileID: 0}
     - target: {fileID: 5188451067163118626, guid: c1d640f15be255941bd1676c5951b200,
         type: 3}
       propertyPath: m_RootOrder
@@ -2183,16 +2163,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PalmUp
-      objectReference: {fileID: 0}
-    - target: {fileID: 8917763981875943886, guid: 33555a37023764840ad135c23d6cc084,
-        type: 3}
-      propertyPath: m_SortingLayer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8917763981875943886, guid: 33555a37023764840ad135c23d6cc084,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: 270643461
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33555a37023764840ad135c23d6cc084, type: 3}
