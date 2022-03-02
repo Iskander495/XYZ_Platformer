@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8542535105970717804}
   - component: {fileID: 8542535105970717807}
   - component: {fileID: 5216211926293569012}
+  - component: {fileID: 822322355052707145}
   m_Layer: 0
   m_Name: GoldCoin
   m_TagString: Untagged
@@ -168,5 +169,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _score: 10
-  _scoreController: {fileID: 9066346956407274766, guid: 0de8ab1b841ec0649a2c4315821cbf62,
-    type: 3}
+  _scoreController: {fileID: 0}
+--- !u!114 &822322355052707145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8542535105970717809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7fa97d407f83b44865c911fd0453ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Default
+  _allowNext: 0
+  _loop: 1
+  _frameRate: 10
+  _sprites:
+  - {fileID: 6582046967323461550, guid: 2083dc11cc005904aba32ff934f75904, type: 3}
+  - {fileID: 1942777921290549423, guid: 2083dc11cc005904aba32ff934f75904, type: 3}
+  - {fileID: 8793606821965667882, guid: 2083dc11cc005904aba32ff934f75904, type: 3}
+  - {fileID: 3444832735345940322, guid: 2083dc11cc005904aba32ff934f75904, type: 3}
+  _onComlpeteEvent:
+    m_PersistentCalls:
+      m_Calls: []

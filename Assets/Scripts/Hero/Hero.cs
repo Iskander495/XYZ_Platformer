@@ -24,11 +24,21 @@ public class Hero : MonoBehaviour
     /// </summary>
     [SerializeField] private GroundCheck _groundCheck;
 
+    ////// COMPONENTS ///////
     private Rigidbody2D _rigidbody;
+    private Animator _animator;
+    private SpriteRenderer _sprite;
+
+    ////// ANIMATION ///////
+    private static readonly int _isGround = Animator.StringToHash("isGround");
+    private static readonly int _isRunning = Animator.StringToHash("isRunning");
+    private static readonly int _verticalVelocity = Animator.StringToHash("verticalVelocity");
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
+        _sprite = GetComponent<SpriteRenderer>();
     }
 
     private void FixedUpdate()
@@ -37,11 +47,13 @@ public class Hero : MonoBehaviour
 
         // признак прыжка
         var isJumping = _direction.y > 0;
+        // признак, что мы стоим на земле
+        var isGrounded = IsGrounded();
 
         // если прыгнули - придаем импульс направленный вверх
-        if(isJumping)
+        if (isJumping)
         {
-            if (IsGrounded())
+            if (isGrounded)
             {
                 // придаем вектор силы вверх
                 _rigidbody.AddForce(Vector2.up * _jumpSpeed, ForceMode2D.Impulse);
@@ -51,6 +63,30 @@ public class Hero : MonoBehaviour
         {
             // уменьшаем импульс в 2 раза
             _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _rigidbody.velocity.y * 0.5f);
+        }
+
+        ////// ANIMATION ///////
+        _animator.SetFloat(_verticalVelocity, _rigidbody.velocity.y);
+        _animator.SetBool(_isRunning, _direction.x != 0);
+        _animator.SetBool(_isGround, isGrounded);
+
+
+        UpdateSpriteDirection(_direction);
+    }
+
+    /// <summary>
+    /// "Поворот" героя в сторону движения
+    /// </summary>
+    /// <param name="_direction"></param>
+    private void UpdateSpriteDirection(Vector2 _direction)
+    {
+        if (_direction.x > 0)
+        {
+            _sprite.flipX = false;
+        }
+        else if (_direction.x < 0)
+        {
+            _sprite.flipX = true;
         }
     }
 
@@ -76,7 +112,7 @@ public class Hero : MonoBehaviour
     private void OnDrawGizmos()
     {
         //Debug.DrawRay(transform.position, Vector2.down, IsGrounded() ? Color.green : Color.red);
-        Gizmos.color = IsGrounded() ? Color.green : Color.red;
-        Gizmos.DrawSphere(transform.position, 0.3f);
+        //Gizmos.color = IsGrounded() ? Color.green : Color.red;
+        //Gizmos.DrawSphere(transform.position, 0.3f);
     }
 }

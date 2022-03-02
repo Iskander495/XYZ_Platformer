@@ -44,6 +44,9 @@ TagManager:
   - name: Clouds
     uniqueID: 1109875755
     locked: 0
+  - name: Palms
+    uniqueID: 270643461
+    locked: 0
   - name: Ground
     uniqueID: 1182299453
     locked: 0
