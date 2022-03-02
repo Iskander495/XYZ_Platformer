@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace Components
@@ -6,25 +7,11 @@ namespace Components
     [RequireComponent(typeof(SpriteRenderer))]
     public class SpriteAnimaion : MonoBehaviour
     {
-        /// <summary>
-        /// Признак зацикленности анимации
-        /// </summary>
-        [SerializeField] private bool _loop;
+        [SerializeField] private SpriteAnimationItem[] _animations;
 
-        /// <summary>
-        /// Кадров в секунду
-        /// </summary>
-        [SerializeField] private int _frameRate;
+        [SerializeField] private SpriteAnimationItem _currentSpriteItem;
 
-        /// <summary>
-        /// Массив спрайтов
-        /// </summary>
-        [SerializeField] private Sprite[] _sprites;
 
-        /// <summary>
-        /// Event, вызывающийся после окончания анимации
-        /// </summary>
-        [SerializeField] private UnityEvent _onComlpeteEvent;
 
         /// <summary>
         /// Текущий спрайт
@@ -51,8 +38,9 @@ namespace Components
         private void Start()
         {
             _renderer = GetComponent<SpriteRenderer>();
-            _secondsPerFrame = 1f / _frameRate;
-            _nextFrameTime = Time.time + _secondsPerFrame;
+
+            if (_animations.Length > 0)
+                SetClip(_animations[0]._name);
         }
 
         private void Update()
@@ -60,24 +48,65 @@ namespace Components
             // пропускаем кадр
             if (!_onFrame || !_isPlaying || _nextFrameTime > Time.time) return;
 
-            if (_currentSpriteIndex >= _sprites.Length)
+            if (_currentSpriteIndex >= _currentSpriteItem._sprites.Length)
             {
-                if (_loop)
+                if (_currentSpriteItem._loop)
                 {
                     _currentSpriteIndex = 0;
                 }
                 else
                 {
                     _isPlaying = false;
-                    _onComlpeteEvent?.Invoke();
+                    _currentSpriteItem._onComlpeteEvent?.Invoke();
+
+                    if (_currentSpriteItem._allowNext) {
+                        var newIdx = GetAnimationIndexByName(_currentSpriteItem._name) + 1;
+
+                        if (newIdx >= 0)
+                            _currentSpriteItem = _animations[newIdx];
+                    }
+
                     return;
                 }
             }
 
             // сменяем кадр
-            _renderer.sprite = _sprites[_currentSpriteIndex];
+            _renderer.sprite = _currentSpriteItem._sprites[_currentSpriteIndex];
             _nextFrameTime += _secondsPerFrame;
             _currentSpriteIndex++;
+        }
+
+        public void SetClip(string name)
+        {
+            foreach(SpriteAnimationItem item in _animations)
+            {
+                if(item._name.Equals(name))
+                {
+                    _currentSpriteItem = item;
+
+                    _secondsPerFrame = 1f / _currentSpriteItem._frameRate;
+                    _nextFrameTime = Time.time + _secondsPerFrame;
+                    _currentSpriteIndex = 0;
+
+                    return;
+                }
+            }
+
+            throw new System.Exception($"SpriteAnimationItem {name} not found");
+        }
+
+        private int GetAnimationIndexByName(string name)
+        {
+            int idx = -1;
+            foreach (SpriteAnimationItem item in _animations)
+            {
+                idx++;
+                if (item._name.Equals(name))
+                    return idx;
+                    
+            }
+
+            return -1;
         }
 
         /// <summary>
@@ -95,5 +124,39 @@ namespace Components
         {
             _onFrame = false;
         }
+    }
+
+    [Serializable]
+    public class SpriteAnimationItem
+    {
+        /// <summary>
+        /// имя стэйта
+        /// </summary>
+        [SerializeField] public string _name;
+
+        /// <summary>
+        /// может ли стэйт переключиться на следующий по окончанию спрайтов
+        /// </summary>
+        [SerializeField] public bool _allowNext;
+
+        /// <summary>
+        /// Признак зацикленности анимации
+        /// </summary>
+        [SerializeField] public bool _loop;
+
+        /// <summary>
+        /// Кадров в секунду
+        /// </summary>
+        [SerializeField] public int _frameRate;
+
+        /// <summary>
+        /// Массив спрайтов
+        /// </summary>
+        [SerializeField] public Sprite[] _sprites;
+
+        /// <summary>
+        /// Event, вызывающийся после окончания анимации
+        /// </summary>
+        [SerializeField] public UnityEvent _onComlpeteEvent;
     }
 }

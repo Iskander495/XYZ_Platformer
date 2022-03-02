@@ -24,6 +24,16 @@ public class Hero : MonoBehaviour
     /// </summary>
     [SerializeField] private GroundCheck _groundCheck;
 
+    /// <summary>
+    /// признак, что мы стоим на земле
+    /// </summary>
+    private bool _isGrounded;
+
+    /// <summary>
+    /// Можно ли делать дабл-джамп
+    /// </summary>
+    private bool _allowDoubleJump;
+
     ////// COMPONENTS ///////
     private Rigidbody2D _rigidbody;
     private Animator _animator;
@@ -41,37 +51,79 @@ public class Hero : MonoBehaviour
         _sprite = GetComponent<SpriteRenderer>();
     }
 
+    private void Update()
+    {
+        _isGrounded = IsGrounded();
+    }
+
     private void FixedUpdate()
     {
-        _rigidbody.velocity = new Vector2(_direction.x * _speed, _rigidbody.velocity.y);
+        var xVelocity = _direction.x * _speed;
+        var yVelocity = CelculateYVelocity();
 
-        // признак прыжка
-        var isJumping = _direction.y > 0;
-        // признак, что мы стоим на земле
-        var isGrounded = IsGrounded();
-
-        // если прыгнули - придаем импульс направленный вверх
-        if (isJumping)
-        {
-            if (isGrounded)
-            {
-                // придаем вектор силы вверх
-                _rigidbody.AddForce(Vector2.up * _jumpSpeed, ForceMode2D.Impulse);
-            }
-        }
-        else if (_rigidbody.velocity.y > 0) // если движемся вверх (находимся в прыжке)
-        {
-            // уменьшаем импульс в 2 раза
-            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _rigidbody.velocity.y * 0.5f);
-        }
+        _rigidbody.velocity = new Vector2(xVelocity, yVelocity);
 
         ////// ANIMATION ///////
         _animator.SetFloat(_verticalVelocity, _rigidbody.velocity.y);
         _animator.SetBool(_isRunning, _direction.x != 0);
-        _animator.SetBool(_isGround, isGrounded);
-
+        _animator.SetBool(_isGround, _isGrounded);
+        
 
         UpdateSpriteDirection(_direction);
+    }
+
+    private float CelculateYVelocity()
+    {
+        var retYVelocity = _rigidbody.velocity.y;
+
+        // сброс двойного прыжка когда приземлились
+        if (_isGrounded) _allowDoubleJump = true;
+
+        // признак прыжка
+        var isJumping = _direction.y > 0;
+
+        // если прыгнули - придаем импульс направленный вверх
+        if (isJumping)
+        {
+            retYVelocity = CalculateJumpVelocity(retYVelocity);
+        }
+        else if (_rigidbody.velocity.y > 0) // если движемся вверх (находимся в прыжке)
+        {
+            // уменьшаем импульс в 2 раза
+            retYVelocity *= 0.5f;
+        }
+
+        return retYVelocity;
+    }
+
+    /// <summary>
+    /// Расчет импульса прыжка
+    /// </summary>
+    /// <param name="yVelocity"></param>
+    /// <returns></returns>
+    private float CalculateJumpVelocity(float yVelocity)
+    {
+        // признак того, что летим вниз
+        var isFalling = _rigidbody.velocity.y <= 0.001f;
+
+        // если не падаем - ничего не делаем
+        if (!isFalling) return yVelocity;
+
+        // если стоим на земле
+        if (_isGrounded)
+        {
+            // то просто прыгаем
+            yVelocity += _jumpSpeed;
+        } 
+        else if(_allowDoubleJump) // иначе, если доситупен двойной прыжок
+        {
+            // "совершаем" двойной прыжок
+            yVelocity = _jumpSpeed; 
+            // сбрасываем флаг, чтоб не было тройных и пр. прыжков
+            _allowDoubleJump = false;
+        }
+
+        return yVelocity;
     }
 
     /// <summary>

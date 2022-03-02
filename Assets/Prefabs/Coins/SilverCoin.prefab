@@ -73,7 +73,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1922660263
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: -2322180950842035098, guid: 2083dc11cc005904aba32ff934f75904,
     type: 3}
@@ -119,8 +119,8 @@ MonoBehaviour:
   _events:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 889273611455556875}
-        m_MethodName: DestroyObject
+      - m_Target: {fileID: 3655179983686333584}
+        m_MethodName: AddScore
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -132,15 +132,15 @@ MonoBehaviour:
         m_CallState: 2
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3655179983686333584}
-        m_MethodName: AddScore
-        m_Mode: 1
+      - m_Target: {fileID: 624923728}
+        m_MethodName: SetClip
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: taken
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &889273611455556875
@@ -182,13 +182,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff7fa97d407f83b44865c911fd0453ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _loop: 1
-  _frameRate: 10
-  _sprites:
-  - {fileID: -2322180950842035098, guid: 2083dc11cc005904aba32ff934f75904, type: 3}
-  - {fileID: -4893972260818282012, guid: 2083dc11cc005904aba32ff934f75904, type: 3}
-  - {fileID: -6323751108524238166, guid: 2083dc11cc005904aba32ff934f75904, type: 3}
-  - {fileID: 2722280177590742205, guid: 2083dc11cc005904aba32ff934f75904, type: 3}
-  _onComlpeteEvent:
-    m_PersistentCalls:
-      m_Calls: []
+  _animations:
+  - _name: idle
+    _allowNext: 0
+    _loop: 1
+    _frameRate: 10
+    _sprites:
+    - {fileID: -2322180950842035098, guid: 2083dc11cc005904aba32ff934f75904, type: 3}
+    - {fileID: -4893972260818282012, guid: 2083dc11cc005904aba32ff934f75904, type: 3}
+    - {fileID: -6323751108524238166, guid: 2083dc11cc005904aba32ff934f75904, type: 3}
+    - {fileID: 2722280177590742205, guid: 2083dc11cc005904aba32ff934f75904, type: 3}
+    _onComlpeteEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - _name: taken
+    _allowNext: 0
+    _loop: 0
+    _frameRate: 10
+    _sprites:
+    - {fileID: -4986890610287934012, guid: 2083dc11cc005904aba32ff934f75904, type: 3}
+    - {fileID: 6143208460787649835, guid: 2083dc11cc005904aba32ff934f75904, type: 3}
+    - {fileID: 7609282858266732271, guid: 2083dc11cc005904aba32ff934f75904, type: 3}
+    - {fileID: -6288512792030432889, guid: 2083dc11cc005904aba32ff934f75904, type: 3}
+    _onComlpeteEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 889273611455556875}
+          m_MethodName: DestroyObject
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  _currentSpriteItem:
+    _name: 
+    _allowNext: 0
+    _loop: 0
+    _frameRate: 0
+    _sprites: []
+    _onComlpeteEvent:
+      m_PersistentCalls:
+        m_Calls: []
