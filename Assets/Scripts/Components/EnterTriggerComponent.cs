@@ -3,22 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class EnterTriggerComponent : MonoBehaviour
+namespace Components
 {
-    /// <summary>
-    /// С каким тегом проверяем пересечение
-    /// </summary>
-    [SerializeField] private string _tag;
-
-    [SerializeField] private UnityEvent[] _events;
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    public class EnterTriggerComponent : MonoBehaviour
     {
-        if(collision.gameObject.CompareTag(_tag))
+        /// <summary>
+        /// С каким тегом проверяем пересечение
+        /// </summary>
+        [SerializeField] private string _tag;
+
+        [SerializeField] private UnityEvent[] _events;
+
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            foreach (UnityEvent _event in _events)
+            if (collision.gameObject.CompareTag(_tag))
             {
-                _event.Invoke();
+                foreach (UnityEvent _event in _events)
+                {
+                    _event.Invoke();
+                }
             }
         }
     }

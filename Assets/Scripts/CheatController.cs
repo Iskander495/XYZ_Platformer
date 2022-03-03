@@ -31,7 +31,7 @@ public class CheatController : MonoBehaviour
         _currentInput += inputChar;
         _inputTime = _timeToLiveInput;
 
-        FindAnyVCheats();
+        FindAnyCheats();
     }
 
     private void Update()
@@ -46,7 +46,7 @@ public class CheatController : MonoBehaviour
         }
     }
 
-    private void FindAnyVCheats()
+    private void FindAnyCheats()
     {
         foreach(CheatItem item in _cheats)
         {

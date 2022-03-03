@@ -20,6 +20,11 @@ public class Hero : MonoBehaviour
     [SerializeField] private float _jumpSpeed;
 
     /// <summary>
+    /// Импульс вверх при получении урона
+    /// </summary>
+    [SerializeField] private float _damageJumpSpeed;
+
+    /// <summary>
     /// Компонент проверки соприкосновения с землей
     /// </summary>
     [SerializeField] private GroundCheck _groundCheck;
@@ -43,6 +48,7 @@ public class Hero : MonoBehaviour
     private static readonly int _isGround = Animator.StringToHash("isGround");
     private static readonly int _isRunning = Animator.StringToHash("isRunning");
     private static readonly int _verticalVelocity = Animator.StringToHash("verticalVelocity");
+    private static readonly int _hitTrigger = Animator.StringToHash("hitTrigger");
 
     private void Awake()
     {
@@ -67,11 +73,14 @@ public class Hero : MonoBehaviour
         _animator.SetFloat(_verticalVelocity, _rigidbody.velocity.y);
         _animator.SetBool(_isRunning, _direction.x != 0);
         _animator.SetBool(_isGround, _isGrounded);
-        
 
         UpdateSpriteDirection(_direction);
     }
 
+    /// <summary>
+    /// Подсчет ускорения по оси Y
+    /// </summary>
+    /// <returns></returns>
     private float CelculateYVelocity()
     {
         var retYVelocity = _rigidbody.velocity.y;
@@ -160,6 +169,20 @@ public class Hero : MonoBehaviour
         _direction = direction;
     }
 
+    /// <summary>
+    /// получение урона (анимация и "прыжок")
+    /// </summary>
+    public void TakeDamage()
+    {
+        _animator.SetTrigger(_hitTrigger);
+
+        _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _damageJumpSpeed);
+    }
+
+    public void Interact()
+    {
+
+    }
 
     private void OnDrawGizmos()
     {

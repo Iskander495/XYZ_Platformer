@@ -18,4 +18,12 @@ public class HeroInputReader : MonoBehaviour
         var vector = context.Get<Vector2>();
         _hero.SetDirection(vector);
     }
+
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        if(context.canceled)
+        {
+            _hero.Interact();
+        }
+    }
 }
