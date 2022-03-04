@@ -26,4 +26,12 @@ public class HeroInputReader : MonoBehaviour
             _hero.Interact();
         }
     }
+
+    public void OnInteract(InputValue contex)
+    {
+        if (contex.isPressed)
+        {
+            _hero.Interact();
+        }
+    }
 }

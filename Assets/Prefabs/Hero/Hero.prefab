@@ -95,7 +95,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5481692013239965718}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.54, y: -0.6312053, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -182,6 +182,10 @@ MonoBehaviour:
   _jumpSpeed: 12
   _damageJumpSpeed: 60
   _groundCheck: {fileID: 5481692012323784030}
+  _interactionRadius: 1
+  _interactionLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!114 &5481692013239965721
 MonoBehaviour:
   m_ObjectHideFlags: 0

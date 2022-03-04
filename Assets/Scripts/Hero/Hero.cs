@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Components;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -38,6 +39,20 @@ public class Hero : MonoBehaviour
     /// Можно ли делать дабл-джамп
     /// </summary>
     private bool _allowDoubleJump;
+
+    /// <summary>
+    /// Радиус проверки пересечения с интерактивными объектами
+    /// </summary>
+    [SerializeField] private float _interactionRadius;
+    /// <summary>
+    /// Массив объектов, с которыми пересеклись
+    /// </summary>
+    private Collider2D[] _interactionObjects = new Collider2D[1];
+    /// <summary>
+    /// На пересечение с каким слоем будет производиться проверка
+    /// </summary>
+    [SerializeField] private LayerMask _interactionLayerMask;
+
 
     ////// COMPONENTS ///////
     private Rigidbody2D _rigidbody;
@@ -179,9 +194,20 @@ public class Hero : MonoBehaviour
         _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _damageJumpSpeed);
     }
 
-    public void Interact()
+    public void TakeHealth()
     {
 
+    }
+
+    public void Interact()
+    {
+        // нам нужно получить количество пересечений
+        var size = Physics2D.OverlapCircleNonAlloc(transform.position, _interactionRadius, _interactionObjects, _interactionLayerMask);
+
+        for(var i = 0; i < size; i++)
+        {
+            _interactionObjects[i].GetComponent<InteractibleComponent>()?.Interact();
+        }
     }
 
     private void OnDrawGizmos()

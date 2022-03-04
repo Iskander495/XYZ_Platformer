@@ -24,5 +24,15 @@ namespace Components
                 healthComponent.ApplyDamage(_damage);
             }
         }
+
+        public void ApplyHealth(GameObject target)
+        {
+            var healthComponent = target.GetComponent<HealthComponent>();
+
+            if (healthComponent != null)
+            {
+                healthComponent.ApplyHealth(_damage);
+            }
+        }
     }
 }

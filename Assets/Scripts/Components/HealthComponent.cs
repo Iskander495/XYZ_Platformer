@@ -10,6 +10,7 @@ namespace Components
         [SerializeField] public int _health;
 
         [SerializeField] private UnityEvent _onDamage;
+        [SerializeField] private UnityEvent _onHealth;
         [SerializeField] private UnityEvent _onDie;
 
         public void ApplyDamage(int damageValue)
@@ -22,6 +23,13 @@ namespace Components
             {
                 _onDie?.Invoke();
             }
+        }
+
+        public void ApplyHealth(int damageValue)
+        {
+            _health += damageValue;
+
+            _onHealth?.Invoke();
         }
     }
 }
