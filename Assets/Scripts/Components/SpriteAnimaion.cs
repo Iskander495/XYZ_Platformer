@@ -95,6 +95,13 @@ namespace Components
             throw new System.Exception($"SpriteAnimationItem {name} not found");
         }
 
+        public void SetClip(int index)
+        {
+            if (_animations.Length > index) {
+                SetClip(_animations[index]._name);
+            }
+        }
+
         private int GetAnimationIndexByName(string name)
         {
             int idx = -1;

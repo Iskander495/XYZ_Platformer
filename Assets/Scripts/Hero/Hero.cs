@@ -52,7 +52,10 @@ public class Hero : MonoBehaviour
     /// На пересечение с каким слоем будет производиться проверка
     /// </summary>
     [SerializeField] private LayerMask _interactionLayerMask;
-
+    /// <summary>
+    /// Партиклы эффекта пыли из под ног
+    /// </summary>
+    [SerializeField] private SpawnComponent _footStepParticles;
 
     ////// COMPONENTS ///////
     private Rigidbody2D _rigidbody;
@@ -158,11 +161,13 @@ public class Hero : MonoBehaviour
     {
         if (_direction.x > 0)
         {
-            _sprite.flipX = false;
+            transform.localScale = Vector3.one;
+            //_sprite.flipX = false;
         }
         else if (_direction.x < 0)
         {
-            _sprite.flipX = true;
+            transform.localScale = new Vector3(-1, 1, 1);
+            //_sprite.flipX = true;
         }
     }
 
@@ -194,11 +199,9 @@ public class Hero : MonoBehaviour
         _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _damageJumpSpeed);
     }
 
-    public void TakeHealth()
-    {
-
-    }
-
+    /// <summary>
+    /// Взаимодействие с объектами (например штурвал открытия дверей)
+    /// </summary>
     public void Interact()
     {
         // нам нужно получить количество пересечений
@@ -208,6 +211,14 @@ public class Hero : MonoBehaviour
         {
             _interactionObjects[i].GetComponent<InteractibleComponent>()?.Interact();
         }
+    }
+
+    /// <summary>
+    /// Эффект пыли из под ног при начале движения
+    /// </summary>
+    public void SpawnFootDust()
+    {
+        _footStepParticles.Spawn();
     }
 
     private void OnDrawGizmos()
