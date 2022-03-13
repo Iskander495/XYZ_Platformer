@@ -41,6 +41,11 @@ public class Hero : MonoBehaviour
     private bool _allowDoubleJump;
 
     /// <summary>
+    /// Признак долгого падения или дабл джампа
+    /// </summary>
+    [SerializeField] private bool _longFall;
+
+    /// <summary>
     /// Радиус проверки пересечения с интерактивными объектами
     /// </summary>
     [SerializeField] private float _interactionRadius;
@@ -56,11 +61,18 @@ public class Hero : MonoBehaviour
     /// Партиклы эффекта пыли из под ног
     /// </summary>
     [SerializeField] private SpawnComponent _footStepParticles;
+    /// <summary>
+    /// Партиклы прыжка
+    /// </summary>
+    [SerializeField] private SpawnComponent _jumpParticles;
+    /// <summary>
+    /// Партиклы приземления
+    /// </summary>
+    [SerializeField] private SpawnComponent _fallParticles;
 
     ////// COMPONENTS ///////
     private Rigidbody2D _rigidbody;
     private Animator _animator;
-    private SpriteRenderer _sprite;
 
     ////// ANIMATION ///////
     private static readonly int _isGround = Animator.StringToHash("isGround");
@@ -72,7 +84,6 @@ public class Hero : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
-        _sprite = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
@@ -93,6 +104,8 @@ public class Hero : MonoBehaviour
         _animator.SetBool(_isGround, _isGrounded);
 
         UpdateSpriteDirection(_direction);
+
+        FallParticles();
     }
 
     /// <summary>
@@ -104,7 +117,10 @@ public class Hero : MonoBehaviour
         var retYVelocity = _rigidbody.velocity.y;
 
         // сброс двойного прыжка когда приземлились
-        if (_isGrounded) _allowDoubleJump = true;
+        if (_isGrounded)
+        {
+            _allowDoubleJump = true;
+        }
 
         // признак прыжка
         var isJumping = _direction.y > 0;
@@ -118,6 +134,11 @@ public class Hero : MonoBehaviour
         {
             // уменьшаем импульс в 2 раза
             retYVelocity *= 0.5f;
+        }
+        
+        if (!_isGrounded && !_longFall && _rigidbody.velocity.y <= -12.0f)
+        {
+            _longFall = true;
         }
 
         return retYVelocity;
@@ -134,18 +155,24 @@ public class Hero : MonoBehaviour
         var isFalling = _rigidbody.velocity.y <= 0.001f;
 
         // если не падаем - ничего не делаем
-        if (!isFalling) return yVelocity;
+        if (!isFalling)
+        {
+            return yVelocity;
+        }
 
         // если стоим на земле
         if (_isGrounded)
         {
             // то просто прыгаем
             yVelocity += _jumpSpeed;
+            JumpParticles();
         } 
-        else if(_allowDoubleJump) // иначе, если доситупен двойной прыжок
+        else if(_allowDoubleJump) // иначе, если доступен двойной прыжок
         {
             // "совершаем" двойной прыжок
-            yVelocity = _jumpSpeed; 
+            _longFall = true;
+            yVelocity = _jumpSpeed;
+            JumpParticles();
             // сбрасываем флаг, чтоб не было тройных и пр. прыжков
             _allowDoubleJump = false;
         }
@@ -162,12 +189,10 @@ public class Hero : MonoBehaviour
         if (_direction.x > 0)
         {
             transform.localScale = Vector3.one;
-            //_sprite.flipX = false;
         }
         else if (_direction.x < 0)
         {
             transform.localScale = new Vector3(-1, 1, 1);
-            //_sprite.flipX = true;
         }
     }
 
@@ -219,6 +244,28 @@ public class Hero : MonoBehaviour
     public void SpawnFootDust()
     {
         _footStepParticles.Spawn();
+    }
+
+    /// <summary>
+    /// Анимация партиклов прыжка
+    /// </summary>
+    public void JumpParticles()
+    {
+        if (_isGrounded || _allowDoubleJump) //оттолкнулись от земли
+            _jumpParticles.Jump();
+    }
+
+    /// <summary>
+    /// Анимация партиклов приземления
+    /// </summary>
+    public void FallParticles()
+    {
+        // если падали и приземлились
+        if (_isGrounded && _longFall)
+        {
+            _fallParticles.Process();
+            _longFall = false;
+        }
     }
 
     private void OnDrawGizmos()
