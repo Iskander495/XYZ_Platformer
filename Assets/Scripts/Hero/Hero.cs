@@ -31,14 +31,24 @@ public class Hero : MonoBehaviour
     [SerializeField] private GroundCheck _groundCheck;
 
     /// <summary>
+    /// Компонент проверки соприкосновения со стенами
+    /// </summary>
+    [SerializeField] private GroundCheck _wallCheck;
+
+    /// <summary>
     /// признак, что мы стоим на земле
     /// </summary>
-    private bool _isGrounded;
+    [SerializeField] private bool _isGrounded;
+
+    /// <summary>
+    /// признак, что мы соприкасаемся со стенами
+    /// </summary>
+    [SerializeField] private bool _isWalled;
 
     /// <summary>
     /// Можно ли делать дабл-джамп
     /// </summary>
-    private bool _allowDoubleJump;
+    [SerializeField] private bool _allowDoubleJump;
 
     /// <summary>
     /// Признак долгого падения или дабл джампа
@@ -73,6 +83,7 @@ public class Hero : MonoBehaviour
     ////// COMPONENTS ///////
     private Rigidbody2D _rigidbody;
     private Animator _animator;
+    private PerkStore _perkStore;
 
     ////// ANIMATION ///////
     private static readonly int _isGround = Animator.StringToHash("isGround");
@@ -84,11 +95,13 @@ public class Hero : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        _perkStore = GetComponent<PerkStore>();
     }
 
     private void Update()
     {
         _isGrounded = IsGrounded();
+        _isWalled = IsWalled();
     }
 
     private void FixedUpdate()
@@ -116,8 +129,8 @@ public class Hero : MonoBehaviour
     {
         var retYVelocity = _rigidbody.velocity.y;
 
-        // сброс двойного прыжка когда приземлились
-        if (_isGrounded)
+        // сброс двойного прыжка когда приземлились либо при соприкосновении со стеной (при имеющемся перке)
+        if (_isGrounded || _isWalled)
         {
             _allowDoubleJump = true;
         }
@@ -204,7 +217,19 @@ public class Hero : MonoBehaviour
     {
         return _groundCheck.IsTouchingLayer;
     }
-    
+
+    /// <summary>
+    /// Проверка на соприкосновение со стенами
+    /// </summary>
+    /// <returns></returns>
+    private bool IsWalled()
+    {
+        // если способности нет - отключаем
+        if (!_perkStore.PresentPerk(Perk.RockClimber)) return false;
+
+        return _wallCheck.IsTouchingLayer;
+    }
+
     /// <summary>
     /// Задание вектора движения героя
     /// </summary>

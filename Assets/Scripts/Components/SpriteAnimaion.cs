@@ -165,5 +165,6 @@ namespace Components
         /// Event, вызывающийся после окончания анимации
         /// </summary>
         [SerializeField] public UnityEvent _onComlpeteEvent;
+
     }
 }
