@@ -13,23 +13,24 @@ namespace Components
         [SerializeField] private UnityEvent _onHealth;
         [SerializeField] private UnityEvent _onDie;
 
-        public void ApplyDamage(int damageValue)
+        public void ModifyHealth(int healthDelta)
         {
-            _health -= damageValue;
+            _health += healthDelta;
 
-            _onDamage?.Invoke();
+            if(healthDelta < 0)
+            {
+                _onDamage?.Invoke();
+            }
+
+            if(healthDelta > 0)
+            {
+                _onHealth?.Invoke();
+            }
 
             if(_health <= 0)
             {
                 _onDie?.Invoke();
             }
-        }
-
-        public void ApplyHealth(int damageValue)
-        {
-            _health += damageValue;
-
-            _onHealth?.Invoke();
         }
     }
 }

@@ -19,6 +19,7 @@ namespace Components
 
     public enum Perk {
         RockClimber,
-        Immortality
+        Immortality,
+        Sword
     }
 }

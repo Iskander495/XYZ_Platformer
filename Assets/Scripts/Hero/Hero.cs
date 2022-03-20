@@ -1,14 +1,21 @@
 ﻿using Components;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class Hero : MonoBehaviour
 {
+    [Header("Properties")]
     /// <summary>
     /// Вектор движения
     /// </summary>
     private Vector2 _direction;
+
+    /// <summary>
+    /// Наносимый урон
+    /// </summary>
+    [SerializeField] private int _damage;
 
     /// <summary>
     /// Скорость передвижения
@@ -26,47 +33,42 @@ public class Hero : MonoBehaviour
     [SerializeField] private float _damageJumpSpeed;
 
     /// <summary>
-    /// Компонент проверки соприкосновения с землей
+    /// На пересечение с каким слоем будет производиться проверка
     /// </summary>
-    [SerializeField] private GroundCheck _groundCheck;
+    [SerializeField] private LayerMask _interactionLayerMask;
 
     /// <summary>
-    /// Компонент проверки соприкосновения со стенами
+    /// Какой слой означает землю
     /// </summary>
-    [SerializeField] private GroundCheck _wallCheck;
+    [SerializeField] private LayerMask _groundLayer;
 
     /// <summary>
     /// признак, что мы стоим на земле
     /// </summary>
-    [SerializeField] private bool _isGrounded;
+    private bool _isGrounded;
 
     /// <summary>
     /// признак, что мы соприкасаемся со стенами
     /// </summary>
-    [SerializeField] private bool _isWalled;
+    private bool _isWalled;
 
     /// <summary>
     /// Можно ли делать дабл-джамп
     /// </summary>
-    [SerializeField] private bool _allowDoubleJump;
-
-    /// <summary>
-    /// Признак долгого падения или дабл джампа
-    /// </summary>
-    [SerializeField] private bool _longFall;
+    private bool _allowDoubleJump;
 
     /// <summary>
     /// Радиус проверки пересечения с интерактивными объектами
     /// </summary>
-    [SerializeField] private float _interactionRadius;
+    private float _interactionRadius;
+
     /// <summary>
     /// Массив объектов, с которыми пересеклись
     /// </summary>
     private Collider2D[] _interactionObjects = new Collider2D[1];
-    /// <summary>
-    /// На пересечение с каким слоем будет производиться проверка
-    /// </summary>
-    [SerializeField] private LayerMask _interactionLayerMask;
+
+    [Space] 
+    [Header("Components")]
     /// <summary>
     /// Партиклы эффекта пыли из под ног
     /// </summary>
@@ -79,17 +81,38 @@ public class Hero : MonoBehaviour
     /// Партиклы приземления
     /// </summary>
     [SerializeField] private SpawnComponent _fallParticles;
+    /// <summary>
+    /// Партиклы меча
+    /// </summary>
+    [SerializeField] private SpawnComponent _swordParticles;
+    /// <summary>
+    /// Компонент проверки соприкосновения с землей
+    /// </summary>
+    [SerializeField] private GroundCheck _groundCheck;
+    /// <summary>
+    /// Компонент проверки соприкосновения со стенами
+    /// </summary>
+    [SerializeField] private GroundCheck _wallCheck;
+
+    [SerializeField] private CheckCicrcleOverlap _attackRange;
+
 
     ////// COMPONENTS ///////
     private Rigidbody2D _rigidbody;
     private Animator _animator;
     private PerkStore _perkStore;
 
-    ////// ANIMATION ///////
+    [Space]
+    [Header("Animation")]
+    [SerializeField] private AnimatorController _armed;
+    [SerializeField] private AnimatorController _unarmed;
+
     private static readonly int _isGround = Animator.StringToHash("isGround");
     private static readonly int _isRunning = Animator.StringToHash("isRunning");
     private static readonly int _verticalVelocity = Animator.StringToHash("verticalVelocity");
     private static readonly int _hitTrigger = Animator.StringToHash("hitTrigger");
+    private static readonly int _attackTrigger = Animator.StringToHash("attack");
+
 
     private void Awake()
     {
@@ -117,8 +140,6 @@ public class Hero : MonoBehaviour
         _animator.SetBool(_isGround, _isGrounded);
 
         UpdateSpriteDirection(_direction);
-
-        FallParticles();
     }
 
     /// <summary>
@@ -147,11 +168,6 @@ public class Hero : MonoBehaviour
         {
             // уменьшаем импульс в 2 раза
             retYVelocity *= 0.5f;
-        }
-        
-        if (!_isGrounded && !_longFall && _rigidbody.velocity.y <= -12.0f)
-        {
-            _longFall = true;
         }
 
         return retYVelocity;
@@ -183,7 +199,6 @@ public class Hero : MonoBehaviour
         else if(_allowDoubleJump) // иначе, если доступен двойной прыжок
         {
             // "совершаем" двойной прыжок
-            _longFall = true;
             yVelocity = _jumpSpeed;
             JumpParticles();
             // сбрасываем флаг, чтоб не было тройных и пр. прыжков
@@ -250,6 +265,13 @@ public class Hero : MonoBehaviour
     }
 
     /// <summary>
+    /// Заглушка на лечение
+    /// </summary>
+    public void TakeHealth()
+    {
+    }
+
+    /// <summary>
     /// Взаимодействие с объектами (например штурвал открытия дверей)
     /// </summary>
     public void Interact()
@@ -280,16 +302,52 @@ public class Hero : MonoBehaviour
             _jumpParticles.Jump();
     }
 
-    /// <summary>
-    /// Анимация партиклов приземления
-    /// </summary>
-    public void FallParticles()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        // если падали и приземлились
-        if (_isGrounded && _longFall)
+        // проверяем пересечение с землей
+        if(collision.gameObject.IsInLayer(_groundLayer))
         {
-            _fallParticles.Process();
-            _longFall = false;
+            var contact = collision.contacts[0];
+            // при большой скорости вертикального столкновения
+            if(contact.relativeVelocity.y >= 12f)
+            {
+                // проигрываем анимацию приземления
+                _fallParticles.Process();
+            }
+        }
+    }
+
+    public void Attack()
+    {
+        if (_perkStore.PresentPerk(Perk.Sword))
+        {
+            _animator.SetTrigger(_attackTrigger);
+
+            _swordParticles.Process();
+        }
+    }
+
+    public void OnHeroAttack()
+    {
+        var objects = _attackRange.GetObjectsInRange(new string[] { "Enemy" });
+        foreach (var obj in objects)
+        {
+            var healthComp = obj.GetComponent<HealthComponent>();
+            healthComp?.ModifyHealth(-_damage);
+        }
+    }
+
+    public void ArmHero(bool isArmed)
+    {
+        if (isArmed)
+        {
+            _perkStore.AddPerk(Perk.Sword);
+            _animator.runtimeAnimatorController = _armed;
+        }
+        else
+        {
+            _animator.runtimeAnimatorController = _unarmed;
+            _perkStore.RemovePerk(Perk.Sword);
         }
     }
 

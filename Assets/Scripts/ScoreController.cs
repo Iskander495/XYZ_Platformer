@@ -6,6 +6,11 @@ public class ScoreController : MonoBehaviour
 {
     [SerializeField] private int _score = 0;
 
+    public void Start()
+    {
+        ResetScore();
+    }
+
     public int Score
     {
         get
@@ -27,6 +32,6 @@ public class ScoreController : MonoBehaviour
 
     public void ResetScore()
     {
-        //Score = 0;
+        Score = 0;
     }
 }

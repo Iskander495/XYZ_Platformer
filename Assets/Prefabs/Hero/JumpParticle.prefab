@@ -95,19 +95,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff7fa97d407f83b44865c911fd0453ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _frameRate: 10
   _animations:
-  - _name: jump
-    _allowNext: 0
-    _loop: 0
-    _frameRate: 10
-    _sprites:
+  - name: jump
+    allowNextClip: 0
+    loop: 0
+    sprites:
     - {fileID: 21300000, guid: 8d52e2cc8612d3a4aabbc9439d19deac, type: 3}
     - {fileID: 21300000, guid: 792f63833d761df4f8914d93aaeddad5, type: 3}
     - {fileID: 21300000, guid: 6b7abd19eb2703543b8e17ba69e5ee29, type: 3}
     - {fileID: 21300000, guid: 2ea1e76635bb82b4ebaefef28daf186f, type: 3}
     - {fileID: 21300000, guid: 940e03a8acb874c449b9e39327e87eea, type: 3}
     - {fileID: 21300000, guid: 5f2faf63b65b4134d99388ae01bd36c5, type: 3}
-    _onComlpeteEvent:
+    onComlpeteEvent:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 9057808741675757949}
@@ -121,13 +121,12 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  _currentSpriteItem:
-    _name: 
-    _allowNext: 0
-    _loop: 0
-    _frameRate: 0
-    _sprites: []
-    _onComlpeteEvent:
+  _currentClip:
+    name: 
+    allowNextClip: 0
+    loop: 0
+    sprites: []
+    onComlpeteEvent:
       m_PersistentCalls:
         m_Calls: []
 --- !u!114 &9057808741675757949

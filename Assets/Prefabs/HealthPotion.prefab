@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 8530726146600731336}
   - component: {fileID: 1050640690}
   - component: {fileID: 1050640689}
-  - component: {fileID: 1050640691}
   - component: {fileID: 1050640692}
   m_Layer: 0
   m_Name: HealthPotion
@@ -73,8 +72,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -856136123
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 1185527514606905908, guid: 1d26b4cede560484bb2599dd0d8fd3b3,
     type: 3}
@@ -100,12 +99,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff7fa97d407f83b44865c911fd0453ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _frameRate: 10
   _animations:
-  - _name: idle
-    _allowNext: 0
-    _loop: 1
-    _frameRate: 10
-    _sprites:
+  - name: idle
+    allowNextClip: 0
+    loop: 1
+    sprites:
     - {fileID: 1185527514606905908, guid: 1d26b4cede560484bb2599dd0d8fd3b3, type: 3}
     - {fileID: -1061600653231999548, guid: 1d26b4cede560484bb2599dd0d8fd3b3, type: 3}
     - {fileID: -3065595510956808684, guid: 1d26b4cede560484bb2599dd0d8fd3b3, type: 3}
@@ -113,19 +112,18 @@ MonoBehaviour:
     - {fileID: 8618505411793156745, guid: 1d26b4cede560484bb2599dd0d8fd3b3, type: 3}
     - {fileID: -1972361127685065434, guid: 1d26b4cede560484bb2599dd0d8fd3b3, type: 3}
     - {fileID: -5226445311955339714, guid: 1d26b4cede560484bb2599dd0d8fd3b3, type: 3}
-    _onComlpeteEvent:
+    onComlpeteEvent:
       m_PersistentCalls:
         m_Calls: []
-  - _name: taked
-    _allowNext: 0
-    _loop: 0
-    _frameRate: 10
-    _sprites:
+  - name: taked
+    allowNextClip: 0
+    loop: 0
+    sprites:
     - {fileID: 6040734443530017722, guid: 1d26b4cede560484bb2599dd0d8fd3b3, type: 3}
     - {fileID: 8167133005111728920, guid: 1d26b4cede560484bb2599dd0d8fd3b3, type: 3}
     - {fileID: 2014349484240403859, guid: 1d26b4cede560484bb2599dd0d8fd3b3, type: 3}
     - {fileID: 6326803469982491369, guid: 1d26b4cede560484bb2599dd0d8fd3b3, type: 3}
-    _onComlpeteEvent:
+    onComlpeteEvent:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 8530726146600731336}
@@ -139,15 +137,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  _currentSpriteItem:
-    _name: 
-    _allowNext: 0
-    _loop: 0
-    _frameRate: 0
-    _sprites: []
-    _onComlpeteEvent:
-      m_PersistentCalls:
-        m_Calls: []
 --- !u!114 &8530726146600731336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,45 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67499a5116053bf4986584e58717ecbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 5
---- !u!114 &1050640691
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7954136328852243404}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebbfd87f41b19b34c9b0f0ebbed0de78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _tag: Player
-  _events:
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7954136328852243405}
-        m_MethodName: SetClip
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: taked
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1050640689}
-        m_MethodName: ApplyHealth
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _hpDelta: 1
 --- !u!114 &1050640692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,11 +217,11 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1050640689}
-        m_MethodName: ApplyHealth
-        m_Mode: 2
+        m_MethodName: ApplyHealthDelta
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

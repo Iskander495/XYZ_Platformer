@@ -34,4 +34,12 @@ public class HeroInputReader : MonoBehaviour
             _hero.Interact();
         }
     }
+
+    public void OnAttack(InputValue contex)
+    {
+        if (contex.isPressed)
+        {
+            _hero.Attack();
+        }
+    }
 }

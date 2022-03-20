@@ -97,22 +97,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff7fa97d407f83b44865c911fd0453ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _frameRate: 10
   _animations:
-  - _name: idle
-    _allowNext: 1
-    _loop: 0
-    _frameRate: 0
-    _sprites:
+  - name: idle
+    allowNextClip: 0
+    loop: 0
+    sprites:
     - {fileID: 21300000, guid: 94e4b866fcdbab24d94284a1b13ad8f1, type: 3}
-    _onComlpeteEvent:
+    onComlpeteEvent:
       m_PersistentCalls:
         m_Calls: []
-  - _name: open
-    _allowNext: 0
-    _loop: 0
-    _frameRate: 10
-    _sprites:
-    - {fileID: 21300000, guid: 94e4b866fcdbab24d94284a1b13ad8f1, type: 3}
+  - name: open
+    allowNextClip: 0
+    loop: 0
+    sprites:
     - {fileID: 21300000, guid: 73a60b2bea0ebf04297007ed20ae67de, type: 3}
     - {fileID: 21300000, guid: 7ca2b9116fa87244fba630517eb9c173, type: 3}
     - {fileID: 21300000, guid: 604585e80c7e2b1418f5416ce0498662, type: 3}
@@ -120,16 +118,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: d7b85941f21b318409f5c163df1cd54a, type: 3}
     - {fileID: 21300000, guid: 47bcaa504c9a8b74b94b217ff769603d, type: 3}
     - {fileID: 21300000, guid: 33531c369512e9d4ab9e6584dec21b7a, type: 3}
-    _onComlpeteEvent:
-      m_PersistentCalls:
-        m_Calls: []
-  _currentSpriteItem:
-    _name: 
-    _allowNext: 0
-    _loop: 0
-    _frameRate: 0
-    _sprites: []
-    _onComlpeteEvent:
+    onComlpeteEvent:
       m_PersistentCalls:
         m_Calls: []
 --- !u!114 &2630926975347480615

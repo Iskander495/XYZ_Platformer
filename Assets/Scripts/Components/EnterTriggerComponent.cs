@@ -12,15 +12,15 @@ namespace Components
         /// </summary>
         [SerializeField] private string _tag;
 
-        [SerializeField] private UnityEvent[] _events;
+        [SerializeField] private EnterEvent[] _events;
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.gameObject.CompareTag(_tag))
             {
-                foreach (UnityEvent _event in _events)
+                foreach (EnterEvent _event in _events)
                 {
-                    _event.Invoke();
+                    _event.Invoke(collision.gameObject);
                 }
             }
         }

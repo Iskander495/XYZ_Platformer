@@ -127,7 +127,7 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7928972624878410356}
-        m_MethodName: ApplyDamage
+        m_MethodName: ApplyHealthDelta
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -149,4 +149,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67499a5116053bf4986584e58717ecbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 1
+  _hpDelta: -1

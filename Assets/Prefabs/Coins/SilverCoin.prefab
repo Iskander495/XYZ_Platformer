@@ -140,7 +140,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: taken
+          m_StringArgument: destroy
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &889273611455556875
@@ -169,7 +169,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _score: 1
-  _scoreController: {fileID: 0}
+  _scoreController: {fileID: 2739624985240776483, guid: d76c07619ffcbb740bfe94a35c5a7903,
+    type: 3}
 --- !u!114 &624923728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,29 +183,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff7fa97d407f83b44865c911fd0453ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _frameRate: 10
   _animations:
-  - _name: idle
-    _allowNext: 0
-    _loop: 1
-    _frameRate: 10
-    _sprites:
+  - name: idle
+    allowNextClip: 0
+    loop: 1
+    sprites:
     - {fileID: -2322180950842035098, guid: 2083dc11cc005904aba32ff934f75904, type: 3}
     - {fileID: -4893972260818282012, guid: 2083dc11cc005904aba32ff934f75904, type: 3}
     - {fileID: -6323751108524238166, guid: 2083dc11cc005904aba32ff934f75904, type: 3}
     - {fileID: 2722280177590742205, guid: 2083dc11cc005904aba32ff934f75904, type: 3}
-    _onComlpeteEvent:
+    onComlpeteEvent:
       m_PersistentCalls:
         m_Calls: []
-  - _name: taken
-    _allowNext: 0
-    _loop: 0
-    _frameRate: 10
-    _sprites:
+  - name: destroy
+    allowNextClip: 0
+    loop: 0
+    sprites:
     - {fileID: -4986890610287934012, guid: 2083dc11cc005904aba32ff934f75904, type: 3}
     - {fileID: 6143208460787649835, guid: 2083dc11cc005904aba32ff934f75904, type: 3}
     - {fileID: 7609282858266732271, guid: 2083dc11cc005904aba32ff934f75904, type: 3}
-    - {fileID: -6288512792030432889, guid: 2083dc11cc005904aba32ff934f75904, type: 3}
-    _onComlpeteEvent:
+    onComlpeteEvent:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 889273611455556875}
@@ -218,12 +217,3 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  _currentSpriteItem:
-    _name: 
-    _allowNext: 0
-    _loop: 0
-    _frameRate: 0
-    _sprites: []
-    _onComlpeteEvent:
-      m_PersistentCalls:
-        m_Calls: []

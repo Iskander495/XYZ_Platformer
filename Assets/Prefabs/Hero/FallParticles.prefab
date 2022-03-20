@@ -95,18 +95,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff7fa97d407f83b44865c911fd0453ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _frameRate: 10
   _animations:
-  - _name: fall
-    _allowNext: 0
-    _loop: 0
-    _frameRate: 10
-    _sprites:
+  - name: fall
+    allowNextClip: 0
+    loop: 0
+    sprites:
     - {fileID: 21300000, guid: 4840956df40cb104190550886eb8b4dc, type: 3}
     - {fileID: 21300000, guid: d0b101b2db1faa74a931c03c825e6315, type: 3}
     - {fileID: 21300000, guid: 9ac818c9bfdcdcc43930eee83b8ab249, type: 3}
     - {fileID: 21300000, guid: 3ddd87c6e713e8942809254c526a7e5e, type: 3}
     - {fileID: 21300000, guid: a739d27cff3306a4dae80dc30899d7ea, type: 3}
-    _onComlpeteEvent:
+    onComlpeteEvent:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 2460435021801762326}
@@ -120,15 +120,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  _currentSpriteItem:
-    _name: 
-    _allowNext: 0
-    _loop: 0
-    _frameRate: 0
-    _sprites: []
-    _onComlpeteEvent:
-      m_PersistentCalls:
-        m_Calls: []
 --- !u!114 &2460435021801762326
 MonoBehaviour:
   m_ObjectHideFlags: 0
