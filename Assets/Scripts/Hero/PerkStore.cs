@@ -29,6 +29,8 @@ public class PerkStore : MonoBehaviour
 
     public bool PresentPerk(Perk perk)
     {
-        return _perks.Contains(perk);
+        return (_session != null && _perks != null) 
+            ? _perks.Contains(perk) 
+            : false;
     }
 }
