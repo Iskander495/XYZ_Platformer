@@ -120,7 +120,7 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3655179983686333584}
-        m_MethodName: AddScore
+        m_MethodName: AddCoins
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -169,8 +169,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _score: 1
-  _scoreController: {fileID: 2739624985240776483, guid: d76c07619ffcbb740bfe94a35c5a7903,
-    type: 3}
 --- !u!114 &624923728
 MonoBehaviour:
   m_ObjectHideFlags: 0

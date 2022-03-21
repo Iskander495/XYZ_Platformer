@@ -1,15 +1,25 @@
-﻿using System.Collections;
+﻿using Model;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AddCoinsComponent : MonoBehaviour
+namespace Components
 {
-    [SerializeField] private int _score;
-
-    [SerializeField] private ScoreController _scoreController;
-
-    public void AddScore()
+    public class AddCoinsComponent : MonoBehaviour
     {
-        _scoreController.IncrementScore(_score);
+        [SerializeField] private int _score;
+
+        private GameSession _session;
+
+        private void Start()
+        {
+            _session = FindObjectOfType<GameSession>();
+        }
+
+        public void AddCoins()
+        {
+            _session.Data.Coins += _score;
+        }
     }
+
 }

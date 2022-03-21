@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Model;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,6 +10,9 @@ public class ExitLevelComponent : MonoBehaviour
 
     public void Exit()
     {
+        var session = FindObjectOfType<GameSession>();
+        session.Save(SceneManager.GetActiveScene().buildIndex + 1);
+
         SceneManager.LoadScene(_sceneName);
     }
 }

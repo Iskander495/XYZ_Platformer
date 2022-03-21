@@ -1,11 +1,19 @@
 ﻿using Components;
+using Model;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PerkStore : MonoBehaviour
 {
-    [SerializeField] private List<Perk> _perks;
+    private List<Perk> _perks => _session.Data.Perks;
+
+    private GameSession _session;
+
+    private void Start()
+    {
+        _session = FindObjectOfType<GameSession>();
+    }
 
     public void AddPerk(Perk perk)
     {

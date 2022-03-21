@@ -1,18 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Model;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class RestartLevel : MonoBehaviour
 {
-    [SerializeField] private ScoreController _scoreController;
-
     public void Restart()
     {
+        var session = FindObjectOfType<GameSession>();
+        //DestroyImmediate(session);
+        Destroy(session);
+
         var scene = SceneManager.GetActiveScene();
-
-        _scoreController.ResetScore();
-
         SceneManager.LoadScene(scene.name);
     }
 }

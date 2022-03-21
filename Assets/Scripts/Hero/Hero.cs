@@ -1,8 +1,10 @@
 ﻿using Components;
+using Model;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Animations;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Hero : MonoBehaviour
 {
@@ -113,12 +115,26 @@ public class Hero : MonoBehaviour
     private static readonly int _hitTrigger = Animator.StringToHash("hitTrigger");
     private static readonly int _attackTrigger = Animator.StringToHash("attack");
 
+    private GameSession _sessionOnStartLevel;
+    private GameSession _session;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _perkStore = GetComponent<PerkStore>();
+    }
+
+    private void Start()
+    {
+        _session = FindObjectOfType<GameSession>();
+        _session.Load(SceneManager.GetActiveScene().buildIndex);
+
+        var health = GetComponent<HealthComponent>();
+        if(_session.Data.Hp > 0)
+            health.SetHealth(_session.Data.Hp);
+
+        UpdateHeroWeapon();
     }
 
     private void Update()
@@ -342,13 +358,23 @@ public class Hero : MonoBehaviour
         if (isArmed)
         {
             _perkStore.AddPerk(Perk.Sword);
-            _animator.runtimeAnimatorController = _armed;
         }
         else
         {
-            _animator.runtimeAnimatorController = _unarmed;
             _perkStore.RemovePerk(Perk.Sword);
         }
+
+        UpdateHeroWeapon();
+    }
+
+    private void UpdateHeroWeapon()
+    {
+        _animator.runtimeAnimatorController = _perkStore.PresentPerk(Perk.Sword) ? _armed : _unarmed;
+    }
+
+    public void OnHealthChanged(int currentHealth)
+    {
+        _session.Data.Hp = currentHealth;
     }
 
     private void OnDrawGizmos()
