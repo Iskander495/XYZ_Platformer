@@ -14,14 +14,24 @@ namespace Components
 
         [SerializeField] private EnterEvent[] _events;
 
-        private void OnTriggerEnter2D(Collider2D collision)
+        [SerializeField] private EnterEvent[] _onOutEvents;
+
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            if (collision.gameObject.CompareTag(_tag))
+            if (other.gameObject.CompareTag(_tag))
             {
                 foreach (EnterEvent _event in _events)
                 {
-                    _event.Invoke(collision.gameObject);
+                    _event.Invoke(other.gameObject);
                 }
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            foreach (EnterEvent _event in _onOutEvents)
+            {
+                _event.Invoke(other.gameObject);
             }
         }
     }

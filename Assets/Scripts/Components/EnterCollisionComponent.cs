@@ -15,6 +15,8 @@ namespace Components
 
         [SerializeField] private EnterEvent[] _events;
 
+        [SerializeField] private EnterEvent[] _onOutEvents;
+
         private void OnCollisionEnter2D(Collision2D collision)
         {
             if (collision.gameObject.CompareTag(_tag))
@@ -23,6 +25,14 @@ namespace Components
                 {
                     _event.Invoke(collision.gameObject);
                 }
+            }
+        }
+
+        private void OnCollisionExit2D(Collision2D collision)
+        {
+            foreach (EnterEvent _event in _onOutEvents)
+            {
+                _event.Invoke(collision.gameObject);
             }
         }
     }

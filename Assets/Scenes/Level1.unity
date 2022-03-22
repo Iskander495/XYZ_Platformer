@@ -5278,6 +5278,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _data:
+    _coins: 0
+    _hp: 0
     Perks: 
 --- !u!4 &568707971
 Transform:
@@ -7840,6 +7842,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _onOutEvents: []
 --- !u!61 &2047400146
 BoxCollider2D:
   m_ObjectHideFlags: 0
