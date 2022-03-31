@@ -54,6 +54,8 @@ public class Hero : MonoBehaviour
     /// </summary>
     private bool _isWalled;
 
+    private bool _isJumping;
+
     /// <summary>
     /// Можно ли делать дабл-джамп
     /// </summary>
@@ -170,17 +172,19 @@ public class Hero : MonoBehaviour
         if (_isGrounded || _isWalled)
         {
             _allowDoubleJump = true;
+            _isJumping = false;
         }
 
         // признак прыжка
-        var isJumping = _direction.y > 0;
+        var isJumpPressing = _direction.y > 0;
 
         // если прыгнули - придаем импульс направленный вверх
-        if (isJumping)
+        if (isJumpPressing)
         {
+            _isJumping = true;
             retYVelocity = CalculateJumpVelocity(retYVelocity);
         }
-        else if (_rigidbody.velocity.y > 0) // если движемся вверх (находимся в прыжке)
+        else if (_rigidbody.velocity.y > 0 && _isJumping) // если движемся вверх (находимся в прыжке)
         {
             // уменьшаем импульс в 2 раза
             retYVelocity *= 0.5f;
@@ -275,6 +279,9 @@ public class Hero : MonoBehaviour
     /// </summary>
     public void TakeDamage()
     {
+        _isJumping = false;
+        _allowDoubleJump = true;
+
         _animator.SetTrigger(_hitTrigger);
 
         _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _damageJumpSpeed);

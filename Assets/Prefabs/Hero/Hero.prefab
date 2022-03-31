@@ -480,7 +480,7 @@ MonoBehaviour:
   _damage: 1
   _speed: 4
   _jumpSpeed: 12
-  _damageJumpSpeed: 60
+  _damageJumpSpeed: 7
   _interactionLayerMask:
     serializedVersion: 2
     m_Bits: 512
