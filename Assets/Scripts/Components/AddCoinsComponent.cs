@@ -20,6 +20,18 @@ namespace Components
         {
             _session.Data.Coins += _score;
         }
-    }
 
+        public int Count()
+        {
+            return _session.Data.Coins;
+        }
+
+        public void DecreaseCoins(int count)
+        {
+            if (_session.Data.Coins < count)
+                _session.Data.Coins = 0;
+            else
+                _session.Data.Coins -= count;
+        }
+    }
 }
