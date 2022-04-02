@@ -1,38 +1,38 @@
 ﻿using Components;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CheckCicrcleOverlap : MonoBehaviour
 {
     [SerializeField] private float _radius = 1f;
 
-    public GameObject[] GetObjectsInRange(string[] _tags)
+    [SerializeField] private LayerMask _mask;
+
+    [SerializeField] private string[] _tags;
+
+    [SerializeField] private OnOverlapEvent _onOverlap;
+
+    private Collider2D[] _interactionObjects = new Collider2D[10];
+
+    public void Check()
     {
-        Collider2D[] _interactionObjects = new Collider2D[5];
         // получаем количество пересечений
-        var size = Physics2D.OverlapCircleNonAlloc(transform.position, _radius, _interactionObjects);
+        var size = Physics2D.OverlapCircleNonAlloc(transform.position, _radius, _interactionObjects, _mask);
 
         var overlaps = new List<GameObject>();
-        for(var i = 0; i < size; i++)
+        for (var i = 0; i < size; i++)
         {
-            if(_tags != null)
+            var result = _tags.Any(tag => _interactionObjects[i].CompareTag(tag));
+            if (result)
             {
-                var go = _interactionObjects[i].gameObject;
-                foreach (var tag in _tags) {
-                    if (go.tag.Equals(tag))
-                    {
-                        overlaps.Add(go);
-                    }
-                }
-            } else
-            {
-                overlaps.Add(_interactionObjects[i].gameObject);
+                _onOverlap?.Invoke(_interactionObjects[i].gameObject);
             }
         }
-
-        return overlaps.ToArray();
     }
 
 #if UNITY_EDITOR
@@ -43,4 +43,9 @@ public class CheckCicrcleOverlap : MonoBehaviour
         Handles.DrawSolidDisc(transform.position, Vector3.forward, _radius);
     }
 #endif
+
+    [Serializable]
+    public class OnOverlapEvent : UnityEvent<GameObject>
+    {
+    }
 }

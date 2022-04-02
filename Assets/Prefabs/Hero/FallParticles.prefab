@@ -97,7 +97,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _frameRate: 10
   _animations:
-  - name: fall
+  - name: SlamDown
     allowNextClip: 0
     loop: 0
     sprites:

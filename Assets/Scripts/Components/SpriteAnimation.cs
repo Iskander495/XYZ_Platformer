@@ -5,7 +5,7 @@ using UnityEngine.Events;
 namespace Components
 {
     [RequireComponent(typeof(SpriteRenderer))]
-    public class SpriteAnimaion : MonoBehaviour
+    public class SpriteAnimation : MonoBehaviour
     {
         /// <summary>
         /// Кадров в секунду

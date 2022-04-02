@@ -97,7 +97,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _frameRate: 10
   _animations:
-  - name: jump
+  - name: Jump
     allowNextClip: 0
     loop: 0
     sprites:
@@ -121,14 +121,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  _currentClip:
-    name: 
-    allowNextClip: 0
-    loop: 0
-    sprites: []
-    onComlpeteEvent:
-      m_PersistentCalls:
-        m_Calls: []
 --- !u!114 &9057808741675757949
 MonoBehaviour:
   m_ObjectHideFlags: 0

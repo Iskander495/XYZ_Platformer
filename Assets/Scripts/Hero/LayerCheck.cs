@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class GroundCheck : MonoBehaviour
+public class LayerCheck : MonoBehaviour
 {
     /// <summary>
     /// Признак пересечения с другим слоем
@@ -12,7 +10,7 @@ public class GroundCheck : MonoBehaviour
     /// <summary>
     /// Слой, считающийся землей
     /// </summary>
-    [SerializeField] private LayerMask _groundLayer;
+    [SerializeField] private LayerMask _layer;
 
     private Collider2D _collider;
 
@@ -23,11 +21,11 @@ public class GroundCheck : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        IsTouchingLayer = _collider.IsTouchingLayers(_groundLayer);
+        IsTouchingLayer = _collider.IsTouchingLayers(_layer);
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        IsTouchingLayer = _collider.IsTouchingLayers(_groundLayer);
+        IsTouchingLayer = _collider.IsTouchingLayers(_layer);
     }
 }

@@ -14,7 +14,7 @@ namespace Components
         [ContextMenu("Spawn")]
         public void Spawn()
         {
-            InstantiateAndAnimation("run");
+            InstantiateAndAnimation("Attack");
         }
 
         public void Jump()
@@ -32,7 +32,7 @@ namespace Components
             var newObj = Instantiate(_prefab, _target.position, Quaternion.identity);
             newObj.transform.localScale = _target.lossyScale;
 
-            var animator = newObj.GetComponent<SpriteAnimaion>();
+            var animator = newObj.GetComponent<SpriteAnimation>();
 
             animator?.SetClip(animationName);
         }
