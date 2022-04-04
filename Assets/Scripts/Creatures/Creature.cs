@@ -184,8 +184,8 @@ namespace Components.Creatures
         public virtual void TakeDamage()
         {
             IsJumping = false;
-            Animator.SetTrigger(_hitTrigger);
             Rigidbody.velocity = new Vector2(Rigidbody.velocity.x, DamageJumpSpeed);
+            Animator.SetTrigger(_hitTrigger);
         }
 
         /// <summary>

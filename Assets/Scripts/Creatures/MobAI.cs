@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 namespace Components.Creatures
@@ -31,6 +32,8 @@ namespace Components.Creatures
         /// </summary>
         [SerializeField] private float _missHeroCooldown = 0.5f;
 
+        [SerializeField] private LayerMask _layerOnDie;
+
         [SerializeField] private SpawnListComponent _particles;
         [SerializeField] private Creature _creature;
         [SerializeField] private Animator _animator;
@@ -40,6 +43,8 @@ namespace Components.Creatures
         /// </summary>
         private bool _isDead;
 
+        private int _dieLayer;
+
         private Patrol _patrol;
 
         private Coroutine _currentCoroutine;
@@ -48,6 +53,8 @@ namespace Components.Creatures
 
         private void Awake()
         {
+            _dieLayer = Mathf.RoundToInt(Mathf.Log(_layerOnDie.value, 2));
+
             _particles = GetComponent<SpawnListComponent>();
             _creature = GetComponent<Creature>();
             _animator = GetComponent<Animator>();
@@ -56,7 +63,7 @@ namespace Components.Creatures
 
         private void Start()
         {
-            StartState(Patrolling());
+            StartState(_patrol.DoPatrol());
         }
 
         /// <summary>
@@ -107,9 +114,9 @@ namespace Components.Creatures
             }
 
             _particles.Spawn("Miss");
-            //_creature.SetDirection(Vector2.zero);
             yield return new WaitForSeconds(_missHeroCooldown);
-            StartState(Patrolling());
+
+            StartState(_patrol.DoPatrol());
         }
 
         private IEnumerator Attack()
@@ -117,8 +124,6 @@ namespace Components.Creatures
             while (_canAttack.IsTouchingLayer)
             {
                 _creature.Attack();
-                _creature.OnDoAttack();
-
 
                 yield return new WaitForSeconds(_attackCooldown);
             }
@@ -131,19 +136,9 @@ namespace Components.Creatures
             // получаем вектор направления движения
             var direction = _targetAttack.transform.position - transform.position;
             direction.y = 0;
+            direction.z = 0;
 
             _creature.SetDirection(direction.normalized);
-        }
-
-        /// <summary>
-        /// Патрулирование
-        /// </summary>
-        /// <returns></returns>
-        private IEnumerator Patrolling()
-        {
-            StartState(_patrol.DoPatrol());
-
-            yield return null;
         }
 
         public void OnDie()
@@ -153,6 +148,17 @@ namespace Components.Creatures
 
             if (_currentCoroutine != null)
                 StopCoroutine(_currentCoroutine);
+
+            //GetComponent<SpriteRenderer>().sortingLayerID = _layerOnDie;
+            gameObject.layer = _dieLayer;
+        }
+
+        private void Stop()
+        {
+            if (_currentCoroutine != null)
+                StopCoroutine(_currentCoroutine);
+
+            _creature.SetDirection(Vector2.zero);
         }
 
         private void StartState(IEnumerator coroutine)
