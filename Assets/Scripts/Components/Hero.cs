@@ -92,10 +92,10 @@ namespace Components
                 IsJumping = false;
             }
 
-            if(isJumpPressing && _isOnWall)
+            /*if(isJumpPressing && _isOnWall)
             {
                 return 0f;
-            }
+            }*/
 
             return base.CalculateYVelocity();
         }
@@ -140,7 +140,7 @@ namespace Components
         /// <summary>
         /// Эффект пыли из под ног при начале движения
         /// </summary>
-        public void SpawnFootDust()
+        public override void SpawnFootDust()
         {
             Particles.Spawn("Run");
         }

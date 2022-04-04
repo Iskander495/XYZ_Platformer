@@ -63,7 +63,7 @@ MonoBehaviour:
   IsTouchingLayer: 0
   _layer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
 --- !u!1 &610251310
 GameObject:
   m_ObjectHideFlags: 0
@@ -643,6 +643,7 @@ MonoBehaviour:
   Speed: 6
   JumpSpeed: 15
   DamageJumpSpeed: 8
+  _invertScale: 0
   GroundLayer:
     serializedVersion: 2
     m_Bits: 256

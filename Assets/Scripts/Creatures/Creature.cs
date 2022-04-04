@@ -23,6 +23,10 @@ namespace Components.Creatures
         /// Импульс вверх при получении урона
         /// </summary>
         [SerializeField] protected float DamageJumpSpeed;
+        /// <summary>
+        /// Признак инверции направления
+        /// </summary>
+        [SerializeField] protected bool _invertScale;
 
         [Header("Checkers")]
         /// <summary>
@@ -162,13 +166,15 @@ namespace Components.Creatures
         /// <param name="_direction"></param>
         private void UpdateSpriteDirection(Vector2 _direction)
         {
+            var multipler = _invertScale ? -1 : 1;
+
             if (_direction.x > 0)
             {
-                transform.localScale = Vector3.one;
+                transform.localScale = new Vector3(multipler, 1, 1);
             }
             else if (_direction.x < 0)
             {
-                transform.localScale = new Vector3(-1, 1, 1);
+                transform.localScale = new Vector3(-1 * multipler, 1, 1);
             }
         }
 
@@ -198,15 +204,26 @@ namespace Components.Creatures
             return GroundCheck.IsTouchingLayer;
         }
 
+        /// <summary>
+        /// Получение атаки
+        /// </summary>
         public virtual void Attack()
         {
             Animator.SetTrigger(_attackTrigger);
             Particles.Spawn("Attack");
         }
 
+        /// <summary>
+        /// Атакуем врагов
+        /// </summary>
         public void OnDoAttack()
         {
             AttackRange.Check();
+        }
+
+        public virtual void SpawnFootDust()
+        {
+            Particles.Spawn("Run");
         }
 
         protected virtual void OnDrawGizmos()
