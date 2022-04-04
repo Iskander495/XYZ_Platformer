@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 230005769}
   - component: {fileID: 230005771}
   - component: {fileID: 230005770}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: WallCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,6 +64,82 @@ MonoBehaviour:
   _layer:
     serializedVersion: 2
     m_Bits: 0
+--- !u!1 &610251310
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 610251311}
+  - component: {fileID: 610251312}
+  - component: {fileID: 610251313}
+  m_Layer: 12
+  m_Name: InteractionCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &610251311
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610251310}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5481692013239965716}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &610251312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610251310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 317a0eaf91234814294194a92b1bae53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _radius: 0.6
+  _mask:
+    serializedVersion: 2
+    m_Bits: 512
+  _tags:
+  - Interactable
+  _onOverlap:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 610251313}
+        m_MethodName: DoInteraction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &610251313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610251310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7183af7afed7b224e9f1f8a1423e1c2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &841824096
 GameObject:
   m_ObjectHideFlags: 0
@@ -74,7 +150,7 @@ GameObject:
   m_Component:
   - component: {fileID: 841824097}
   - component: {fileID: 841824098}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: FallParticles
   m_TagString: Untagged
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
@@ -121,7 +197,7 @@ GameObject:
   - component: {fileID: 1352175373}
   - component: {fileID: 1352175374}
   - component: {fileID: 984170631269808598}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: JumpParticles
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
@@ -217,7 +293,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1508427938}
   - component: {fileID: 1508427939}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: FootStepParticles
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -264,7 +340,7 @@ GameObject:
   - component: {fileID: 1605587958}
   - component: {fileID: 1605587959}
   - component: {fileID: 2083292514}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: AttackRange
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
@@ -300,7 +376,9 @@ MonoBehaviour:
   _radius: 0.2
   _mask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 3895
+  _tags:
+  - Enemy
   _onOverlap:
     m_PersistentCalls:
       m_Calls:
@@ -338,7 +416,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2132842518}
   - component: {fileID: 2132842519}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: SwordParticles
   m_TagString: Untagged
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
@@ -385,7 +463,7 @@ GameObject:
   - component: {fileID: 5481692012323784031}
   - component: {fileID: 5481692012323784029}
   - component: {fileID: 5481692012323784030}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -437,7 +515,7 @@ MonoBehaviour:
   IsTouchingLayer: 0
   _layer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 2304
 --- !u!1 &5481692013239965718
 GameObject:
   m_ObjectHideFlags: 0
@@ -457,7 +535,7 @@ GameObject:
   - component: {fileID: 5481692013239965725}
   - component: {fileID: 2000380822}
   - component: {fileID: 32204086663186993}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Hero
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -482,6 +560,7 @@ Transform:
   - {fileID: 1605587958}
   - {fileID: 230005769}
   - {fileID: 5481692012323784031}
+  - {fileID: 610251311}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -560,20 +639,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a741b2cb57217bc49a8ec2182fbc85cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 0
-  Speed: 0
-  JumpSpeed: 0
-  DamageJumpSpeed: 0
+  Damage: 1
+  Speed: 6
+  JumpSpeed: 15
+  DamageJumpSpeed: 8
   GroundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   AttackRange: {fileID: 1605587959}
   Particles: {fileID: 0}
-  GroundCheck: {fileID: 0}
+  GroundCheck: {fileID: 5481692012323784030}
   _interactionLayerMask:
     serializedVersion: 2
     m_Bits: 512
-  _interactionCheck: {fileID: 0}
+  _interactionCheck: {fileID: 610251312}
   _wallCheck: {fileID: 230005770}
   _armed: {fileID: 9100000, guid: e57bb3281d7e9fe4ca308ab1c83feff9, type: 2}
   _unarmed: {fileID: 9100000, guid: 4464cee677c3aa7488289a85707eda5b, type: 2}
@@ -638,7 +717,7 @@ Rigidbody2D:
   m_Mass: 2
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 3
+  m_GravityScale: 4
   m_Material: {fileID: 6200000, guid: f7b0165a9e3fdb943b1062d23f6709c5, type: 2}
   m_Interpolate: 1
   m_SleepingMode: 1

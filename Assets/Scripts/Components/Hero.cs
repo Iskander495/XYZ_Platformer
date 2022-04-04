@@ -135,14 +135,6 @@ namespace Components
         public void Interact()
         {
             _interactionCheck.Check();
-
-            // нам нужно получить количество пересечений
-            //var size = Physics2D.OverlapCircleNonAlloc(transform.position, _interactionRadius, _interactionObjects, _interactionLayerMask);
-
-            //for (var i = 0; i < size; i++)
-            //{
-            //    _interactionObjects[i].GetComponent<InteractibleComponent>()?.Interact();
-            //}
         }
 
         /// <summary>

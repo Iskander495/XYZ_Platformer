@@ -419,7 +419,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2299189302216193595}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: DestructedBarrelParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}

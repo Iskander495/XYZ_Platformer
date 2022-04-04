@@ -206,16 +206,7 @@ namespace Components.Creatures
 
         public void OnDoAttack()
         {
-            //var objects = AttackRange.GetObjectsInRange(new string[] { "Enemy" });
-            //var objects = _attackRange.GetObjectsInRange();
-
             AttackRange.Check();
-
-            /*foreach (var obj in objects)
-            {
-                var healthComp = obj.GetComponent<HealthComponent>();
-                healthComp?.ModifyHealth(-Damage);
-            }*/
         }
 
         protected virtual void OnDrawGizmos()

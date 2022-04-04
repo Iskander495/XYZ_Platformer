@@ -114,6 +114,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _destinationPosition: {fileID: 0}
+  _alphaTime: 0.2
+  _moveTime: 0.3
 --- !u!114 &4178040004903871810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,12 +132,12 @@ MonoBehaviour:
   _events:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 4178040004903871811}
+        m_MethodName: Teleport
+        m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

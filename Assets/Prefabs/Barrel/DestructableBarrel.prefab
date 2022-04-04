@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 3036104359979613963}
   - component: {fileID: 809283507666025921}
   - component: {fileID: 9165562241827827116}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: DestructableBarrel
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 2
   m_LinearDrag: 20
   m_AngularDrag: 0.05
   m_GravityScale: 20
@@ -190,18 +190,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: b4ee3c4fb640eb84983b439157bfba58, type: 3}
     onComlpeteEvent:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 3036104359979613960}
-          m_MethodName: DestroyObject
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
 --- !u!114 &3036104359979613960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,7 +216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0096600b4384e3f45bc438987e49aaeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 1
+  _health: 3
   _onDamage:
     m_PersistentCalls:
       m_Calls:
@@ -259,6 +248,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 9165562241827827116}
+        m_MethodName: DropOut
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 3036104359979613960}
         m_MethodName: DestroyObject
         m_Mode: 1
@@ -270,6 +270,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _onHealthChange:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &809283507666025921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,4 +301,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _count: 0
-  _items: []
+  _items:
+  - _chance: 70
+    item: {fileID: 889273611455556885, guid: 4ef4bd5b96e66634884d3f9986366671, type: 3}
+  - _chance: 30
+    item: {fileID: 8542535105970717809, guid: a2f78a4e8f37fc44ab2e434d20572ee4, type: 3}
