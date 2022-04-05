@@ -15,6 +15,7 @@ public class PlatformPatrol : Patrol
     {
         _creature = GetComponent<Creature>();
         _direction = Vector2.left;
+        _direction.y = 0;
     }
 
     public override IEnumerator DoPatrol()

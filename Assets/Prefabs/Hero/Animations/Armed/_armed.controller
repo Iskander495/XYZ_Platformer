@@ -11,13 +11,13 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 7188232172423377932}
-    m_Position: {x: 10, y: 90, z: 0}
+    m_Position: {x: 10, y: 110, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8409507686668835287}
     m_Position: {x: 10, y: -80, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4070451531338985783}
-    m_Position: {x: 70, y: 310, z: 0}
+    m_Position: {x: 20, y: 320, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -294245886154386449}
     m_Position: {x: 350, y: -80, z: 0}
@@ -298,7 +298,7 @@ AnimatorController:
     m_Controller: {fileID: 0}
   - m_Name: verticalVelocity
     m_Type: 1
-    m_DefaultFloat: 0
+    m_DefaultFloat: 0.1
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
@@ -683,7 +683,7 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 3
     m_ConditionEvent: verticalVelocity
-    m_EventTreshold: 0
+    m_EventTreshold: 0.1
   - m_ConditionMode: 2
     m_ConditionEvent: isGround
     m_EventTreshold: 0
