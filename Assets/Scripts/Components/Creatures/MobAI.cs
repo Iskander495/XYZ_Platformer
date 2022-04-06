@@ -85,11 +85,19 @@ namespace Components.Creatures
         /// <returns></returns>
         public IEnumerator AgroToHero()
         {
+            LookAtHero();
+
             _particles.Spawn("Agro");
 
             yield return new WaitForSeconds(_alarmDelay);
 
             StartState(GoToHero());
+        }
+
+        private void LookAtHero()
+        {
+            var direction = GetDirectionToTarget();
+            _creature.UpdateSpriteDirection(direction);
         }
 
         /// <summary>
@@ -113,6 +121,7 @@ namespace Components.Creatures
                 yield return null;
             }
 
+            _creature.SetDirection(Vector2.zero);
             _particles.Spawn("Miss");
             yield return new WaitForSeconds(_missHeroCooldown);
 
@@ -134,11 +143,15 @@ namespace Components.Creatures
         private void SetDirectionToTarget()
         {
             // получаем вектор направления движения
+            var direction = GetDirectionToTarget();
+            _creature.SetDirection(direction.normalized);
+        }
+
+        private Vector2 GetDirectionToTarget()
+        {
             var direction = _targetAttack.transform.position - transform.position;
             direction.y = 0;
-            direction.z = 0;
-
-            _creature.SetDirection(direction.normalized);
+            return direction.normalized;
         }
 
         public void OnDie()
@@ -151,6 +164,8 @@ namespace Components.Creatures
 
             //GetComponent<SpriteRenderer>().sortingLayerID = _layerOnDie;
             gameObject.layer = _dieLayer;
+            gameObject.tag = "Untagged";
+            _creature.SetDirection(Vector2.zero);
         }
 
         private void Stop()

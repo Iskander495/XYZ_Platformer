@@ -43,4 +43,12 @@ public class HeroInputReader : MonoBehaviour
             _hero.Attack();
         }
     }
+
+    public void OnThrow(InputValue context)
+    {
+        if(context.isPressed)
+        {
+            _hero.Throw();
+        }
+    }
 }

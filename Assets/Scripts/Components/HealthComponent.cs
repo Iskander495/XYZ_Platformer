@@ -18,6 +18,8 @@ namespace Components
 
         public void ModifyHealth(int healthDelta)
         {
+            if (_health <= 0) return;
+
             _health += healthDelta;
             _onHealthChange?.Invoke(_health);
 

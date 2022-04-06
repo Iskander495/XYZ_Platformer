@@ -9467,6 +9467,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tag: Player
+  _layer:
+    serializedVersion: 2
+    m_Bits: 4294967295
   _events:
   - m_PersistentCalls:
       m_Calls:

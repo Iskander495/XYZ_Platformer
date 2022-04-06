@@ -42,7 +42,7 @@ namespace Components.Creatures
         /// <summary>
         /// Партиклы
         /// </summary>        
-        [SerializeField] protected SpawnListComponent Particles;
+        [SerializeField] protected SpawnListComponent _particles;
         /// <summary>
         /// Компонент проверки соприкосновения с землей
         /// </summary>
@@ -72,7 +72,7 @@ namespace Components.Creatures
 
         protected virtual void Awake()
         {
-            Particles = GetComponent<SpawnListComponent>();
+            _particles = GetComponent<SpawnListComponent>();
             Rigidbody = GetComponent<Rigidbody2D>();
             Animator = GetComponent<Animator>();
         }
@@ -145,7 +145,7 @@ namespace Components.Creatures
             {
                 // то просто прыгаем
                 yVelocity = JumpSpeed;
-                Particles.Spawn("Jump");
+                _particles.Spawn("Jump");
             }
 
             return yVelocity;
@@ -164,7 +164,7 @@ namespace Components.Creatures
         /// "Поворот" героя в сторону движения
         /// </summary>
         /// <param name="_direction"></param>
-        private void UpdateSpriteDirection(Vector2 _direction)
+        public void UpdateSpriteDirection(Vector2 _direction)
         {
             var multipler = _invertScale ? -1 : 1;
 
@@ -210,7 +210,7 @@ namespace Components.Creatures
         public virtual void Attack()
         {
             Animator.SetTrigger(_attackTrigger);
-            Particles.Spawn("Attack");
+            _particles.Spawn("Attack");
         }
 
         /// <summary>
@@ -221,9 +221,12 @@ namespace Components.Creatures
             AttackRange.Check();
         }
 
+        /// <summary>
+        /// Эффект пыли из под ног при начале движения
+        /// </summary>
         public virtual void SpawnFootDust()
         {
-            Particles.Spawn("Run");
+            _particles.Spawn("Run");
         }
 
         protected virtual void OnDrawGizmos()

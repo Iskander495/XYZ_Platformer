@@ -9,6 +9,8 @@ namespace Components
     {
         [SerializeField] private Transform _target;
         [SerializeField] private GameObject _prefab;
+        //[SerializeField] private bool _invertXScale;
+
         [SerializeField] private string _animationName;
 
         [ContextMenu("Spawn")]
@@ -30,7 +32,11 @@ namespace Components
         private void InstantiateAndAnimation(string animationName)
         {
             var newObj = Instantiate(_prefab, _target.position, Quaternion.identity);
-            newObj.transform.localScale = _target.lossyScale;
+
+            var scale = _target.lossyScale;
+            //scale.x = _invertXScale ? 1 : -1;
+
+            newObj.transform.localScale = scale;
 
             var animator = newObj.GetComponent<SpriteAnimation>();
 

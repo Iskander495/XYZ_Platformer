@@ -352,7 +352,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   AttackRange: {fileID: 3352105708496809965}
-  Particles: {fileID: 8497060872079854788}
+  _particles: {fileID: 0}
   GroundCheck: {fileID: 2221275131965994758}
 --- !u!114 &1768606145017606354
 MonoBehaviour:
@@ -418,8 +418,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1903775075718347943}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.29, y: -0.05, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.037, y: -0.039, z: 0}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 358472926557778528}
   m_RootOrder: 0
@@ -436,7 +436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfebaa385bfc28f4994f755cc0bf6b78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _target: {fileID: 358472926557778528}
+  _target: {fileID: 6441208291569006836}
   _prefab: {fileID: 6470127647252356327, guid: 0ac35a3b5efd8214aa455cbe21af2e65, type: 3}
   _animationName: Run
 --- !u!1 &1909811356645731672
@@ -683,6 +683,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tag: Player
+  _layer:
+    serializedVersion: 2
+    m_Bits: 4294967295
   _events:
   - m_PersistentCalls:
       m_Calls:

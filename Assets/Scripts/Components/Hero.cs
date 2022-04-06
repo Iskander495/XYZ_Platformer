@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Utils;
 
 namespace Components
 {
@@ -15,6 +16,12 @@ namespace Components
         /// На пересечение с каким слоем будет производиться проверка
         /// </summary>
         [SerializeField] private LayerMask _interactionLayerMask;
+
+
+        /// <summary>
+        /// Кулдаун для броска меча
+        /// </summary>
+        [SerializeField] private Cooldown _throwCooldown;
 
         /// <summary>
         /// признак, что мы соприкасаемся со стенами
@@ -53,6 +60,8 @@ namespace Components
 
         private GameSession _sessionOnStartLevel;
         private GameSession _session;
+
+        protected static readonly int _throwTrigger = Animator.StringToHash("isThrow");
 
         protected override void Awake()
         {
@@ -105,7 +114,7 @@ namespace Components
             if (!IsOnGround &&  _allowDoubleJump)
             {
                 // анимация прыжка
-                Particles.Spawn("Jump");
+                _particles.Spawn("Jump");
                 
                 // сбрасываем флаг, чтоб не было тройных и пр. прыжков
                 _allowDoubleJump = false;
@@ -137,14 +146,6 @@ namespace Components
             _interactionCheck.Check();
         }
 
-        /// <summary>
-        /// Эффект пыли из под ног при начале движения
-        /// </summary>
-        public override void SpawnFootDust()
-        {
-            Particles.Spawn("Run");
-        }
-
         private void OnCollisionEnter2D(Collision2D collision)
         {
             // проверяем пересечение с землей
@@ -155,7 +156,7 @@ namespace Components
                 if (contact.relativeVelocity.y >= 12f)
                 {
                     // проигрываем анимацию приземления
-                      Particles.Spawn("SlamDown");
+                      _particles.Spawn("SlamDown");
                 }
             }
         }
@@ -190,6 +191,20 @@ namespace Components
         public void OnHealthChanged(int currentHealth)
         {
             _session.Data.Hp = currentHealth;
+        }
+
+        public void OnDoThrow()
+        {
+            _particles.Spawn("Throw");
+        }
+
+        public void Throw()
+        {
+            if (_throwCooldown.IsReady)
+            {
+                Animator.SetTrigger(_throwTrigger);
+                _throwCooldown.Reset();
+            }
         }
 
         protected override void OnDrawGizmos()

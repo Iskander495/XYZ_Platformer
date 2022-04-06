@@ -103,21 +103,20 @@ namespace Components
 
             enabled = _isPlaying = false;
 
-            throw new System.Exception($"SpriteAnimationItem {name} not found");
+            //throw new System.Exception($"SpriteAnimationItem {name} not found");
         }
 
         public void StartAnimation()
         {
+            _nextFrameTime = Time.time;
             enabled = _isPlaying = true;
-
-            _nextFrameTime = Time.time + _secondsPerFrame;
             _currentFrame = 0;
 
         }
 
         public void OnEnable()
         {
-            _nextFrameTime = Time.time + _secondsPerFrame;
+            _nextFrameTime = Time.time;
         }
 
         public void SetClip(int index)

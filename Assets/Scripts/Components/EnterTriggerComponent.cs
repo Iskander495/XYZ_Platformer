@@ -12,18 +12,21 @@ namespace Components
         /// </summary>
         [SerializeField] private string _tag;
 
+        [SerializeField] private LayerMask _layer = ~0;
+
         [SerializeField] private EnterEvent[] _events;
 
         [SerializeField] private EnterEvent[] _onOutEvents;
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.gameObject.CompareTag(_tag))
+            if (!other.gameObject.IsInLayer(_layer)) return;
+
+            if (!string.IsNullOrEmpty(_tag) && !other.gameObject.CompareTag(_tag)) return;
+
+            foreach (EnterEvent _event in _events)
             {
-                foreach (EnterEvent _event in _events)
-                {
-                    _event.Invoke(other.gameObject);
-                }
+                _event.Invoke(other.gameObject);
             }
         }
 
