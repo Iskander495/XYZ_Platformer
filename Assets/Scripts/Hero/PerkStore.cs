@@ -6,13 +6,15 @@ using UnityEngine;
 
 public class PerkStore : MonoBehaviour
 {
-    private List<Perk> _perks => _session.Data.Perks;
+    private List<Perk> _perks;
 
     private GameSession _session;
 
     private void Start()
     {
         _session = FindObjectOfType<GameSession>();
+
+        _perks = _session.GetValue<List<Perk>>("Perks");
     }
 
     public void AddPerk(Perk perk)

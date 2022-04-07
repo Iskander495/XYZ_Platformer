@@ -76,8 +76,10 @@ namespace Components
             _session.Load(SceneManager.GetActiveScene().buildIndex);
 
             var health = GetComponent<HealthComponent>();
-            if (_session.Data.Hp > 0)
-                health.SetHealth(_session.Data.Hp);
+
+            var sessionHP = _session.GetValue<int>("Hp");
+            if (sessionHP > 0)
+                health.SetHealth(sessionHP);
 
             UpdateHeroWeapon();
         }
@@ -163,47 +165,47 @@ namespace Components
 
         public override void Attack()
         {
-            if (_perkStore.PresentPerk(Perk.Sword))
+            if(_session.GetValue<int>("Swords") > 0)
             {
                 base.Attack();
             }
         }
 
-        public void ArmHero(bool isArmed)
+        public void UpdateHeroWeapon()
         {
-            if (isArmed)
-            {
-                _perkStore.AddPerk(Perk.Sword);
-            }
-            else
-            {
-                _perkStore.RemovePerk(Perk.Sword);
-            }
+            var count = _session.GetValue<int>("Swords");
 
-            UpdateHeroWeapon();
-        }
-
-        private void UpdateHeroWeapon()
-        {
-            Animator.runtimeAnimatorController = _perkStore.PresentPerk(Perk.Sword) ? _armed : _unarmed;
+            Animator.runtimeAnimatorController = count > 0 ? _armed : _unarmed;
         }
 
         public void OnHealthChanged(int currentHealth)
         {
-            _session.Data.Hp = currentHealth;
+            //_session.Data.Hp = currentHealth;
+            _session.SetValue<int>("Hp", currentHealth);
         }
 
+        /// <summary>
+        /// Бросок меча (вызывается в аниматоре)
+        /// </summary>
         public void OnDoThrow()
         {
             _particles.Spawn("Throw");
         }
 
+        /// <summary>
+        /// Анимация броска меча
+        /// </summary>
         public void Throw()
         {
+            var count = _session.GetValue<int>("Swords");
+            if (count <= 1) return;
+
             if (_throwCooldown.IsReady)
             {
                 Animator.SetTrigger(_throwTrigger);
                 _throwCooldown.Reset();
+
+                _session.SetValue<int>("Swords", count - 1);
             }
         }
 

@@ -18,20 +18,34 @@ namespace Components
 
         public void AddCoins()
         {
-            _session.Data.Coins += _score;
+            //_session.Data.Coins += _score;
+
+            var old = _session.GetValue<int>("Coins");
+            _session.SetValue<int>("Coins", old + _score);
         }
 
         public int Count()
         {
-            return _session.Data.Coins;
+            //return _session.Data.Coins;
+
+            return _session.GetValue<int>("Coins");
         }
 
         public void DecreaseCoins(int count)
         {
+            /*
             if (_session.Data.Coins < count)
                 _session.Data.Coins = 0;
             else
                 _session.Data.Coins -= count;
+            */
+
+            var old = _session.GetValue<int>("Coins");
+
+            if(old < count)
+                _session.SetValue<int>("Coins", 0);
+            else
+                _session.SetValue<int>("Coins", old - count);
         }
     }
 }

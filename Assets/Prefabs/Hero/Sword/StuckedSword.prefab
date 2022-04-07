@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: -3676973972351668154}
   - component: {fileID: 468561209328557645}
   - component: {fileID: 6900163592757422907}
+  - component: {fileID: 5869826107365968229}
+  - component: {fileID: 11807727588208899}
   m_Layer: 0
   m_Name: StuckedSword
   m_TagString: Untagged
@@ -217,7 +219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timers:
-  - Delay: 1
+  - Delay: 30
     OnTimesUp:
       m_PersistentCalls:
         m_Calls:
@@ -232,3 +234,58 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &5869826107365968229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2460435021801762324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 692486f0984eb3348b190983b5687059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _count: 1
+--- !u!114 &11807727588208899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2460435021801762324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af0ba9f9567ca4f49adc01cfe93f6d60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tag: Player
+  _layer:
+    serializedVersion: 2
+    m_Bits: 4096
+  _events:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5869826107365968229}
+        m_MethodName: AddSwords
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2460435021801762326}
+        m_MethodName: DestroyObject
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onOutEvents: []
