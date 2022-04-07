@@ -36,6 +36,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "SuperThrow",
+                    "type": "Button",
+                    "id": "c51cb0e2-fdfc-4d86-b491-94561a720b4d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -175,10 +183,21 @@
                     "name": "",
                     "id": "164b7045-af3c-42d3-8c30-363485e45cfa",
                     "path": "<Keyboard>/shift",
-                    "interactions": "",
+                    "interactions": "Press(pressPoint=1,behavior=2)",
                     "processors": "",
                     "groups": "",
                     "action": "Throw",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d591a58c-b2bc-4c09-a923-f5f9c73c7d2c",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "Hold(duration=1,pressPoint=1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SuperThrow",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

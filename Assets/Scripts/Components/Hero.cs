@@ -195,10 +195,10 @@ namespace Components
         /// <summary>
         /// Анимация броска меча
         /// </summary>
-        public void Throw()
+        public IEnumerator Throw()
         {
             var count = _session.GetValue<int>("Swords");
-            if (count <= 1) return;
+            if (count <= 1) yield break;
 
             if (_throwCooldown.IsReady)
             {
@@ -207,6 +207,26 @@ namespace Components
 
                 _session.SetValue<int>("Swords", count - 1);
             }
+
+            yield return null;
+        }
+
+        public void SuperThrow()
+        {
+            StartCoroutine(SuperThrowCoroutine());
+        }
+
+        public IEnumerator SuperThrowCoroutine()
+        {
+            var i = 0;
+            while(i < 3)
+            {
+                i++;
+                yield return Throw();
+                yield return new WaitForSeconds(_throwCooldown.value);
+            }
+
+            yield return null;
         }
 
         protected override void OnDrawGizmos()

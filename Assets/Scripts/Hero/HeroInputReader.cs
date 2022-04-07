@@ -46,9 +46,19 @@ public class HeroInputReader : MonoBehaviour
 
     public void OnThrow(InputValue context)
     {
-        if(context.isPressed)
+        if(!context.isPressed)
         {
-            _hero.Throw();
+            //_hero.Throw();
+            StartCoroutine(_hero.Throw());
+        }
+    }
+
+    public void OnSuperThrow(InputValue context)
+    {
+        //if (!context.isPressed)
+        {
+            _hero.SuperThrow();
+            //Debug.Log("SuperThrow");
         }
     }
 }

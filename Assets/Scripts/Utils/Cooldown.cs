@@ -8,13 +8,13 @@ namespace Utils
     [Serializable]
     public class Cooldown
     {
-        [SerializeField] private float _value;
+        [SerializeField] public float value;
 
         private float _timesUp;
 
         public void Reset()
         {
-            _timesUp = Time.time + _value;
+            _timesUp = Time.time + value;
         }
 
         public bool IsReady => _timesUp <= Time.time;
