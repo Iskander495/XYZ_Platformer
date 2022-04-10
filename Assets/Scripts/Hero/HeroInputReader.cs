@@ -3,29 +3,57 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.InputSystem.InputAction;
 
 public class HeroInputReader : MonoBehaviour
 {
     [SerializeField] private Hero _hero;
 
-    public void OnMovement(InputAction.CallbackContext context)
+    // **************** Invoke Unity Events  **************** //
+    public void OnMovementEvent(CallbackContext context)
     {
         var vector = context.ReadValue<Vector2>();
         _hero.SetDirection(vector);
     }
 
-    public void OnVector2Movement(InputValue context)
-    {
-        var vector = context.Get<Vector2>();
-        _hero.SetDirection(vector);
-    }
-
-    public void OnInteract(InputAction.CallbackContext context)
+    public void OnInteractEvent(CallbackContext context)
     {
         if(context.canceled)
         {
             _hero.Interact();
         }
+    }
+
+    public void OnAttackEvent(CallbackContext context)
+    {
+        if (context.canceled)
+        {
+            _hero.Attack();
+        }
+    }
+
+    public void OnThrowEvent(CallbackContext context)
+    {
+        if (context.canceled && context.duration <= 1f)
+        {
+            StartCoroutine(_hero.Throw());
+        }
+    }
+
+    public void OnSuperThrowEvent(CallbackContext context)
+    {
+        if (context.canceled && context.duration > 1f)
+        {
+            _hero.SuperThrow();
+        }
+    }
+
+
+    // ************** Broadcast/Send Messages  ************** //
+    public void OnVector2Movement(InputValue context)
+    {
+        var vector = context.Get<Vector2>();
+        _hero.SetDirection(vector);
     }
 
     public void OnInteract(InputValue contex)

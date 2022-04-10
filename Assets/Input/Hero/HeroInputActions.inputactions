@@ -7,9 +7,9 @@
             "actions": [
                 {
                     "name": "Vector2Movement",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "32321524-7aa0-4d62-8124-d880fcd7ae63",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 },
@@ -183,7 +183,7 @@
                     "name": "",
                     "id": "164b7045-af3c-42d3-8c30-363485e45cfa",
                     "path": "<Keyboard>/shift",
-                    "interactions": "Press(pressPoint=1,behavior=2)",
+                    "interactions": "Press(behavior=2)",
                     "processors": "",
                     "groups": "",
                     "action": "Throw",
