@@ -16,19 +16,17 @@ namespace Components {
         [SerializeField] private GameObject _prefab;
 
         /// <summary>
-        /// Размер ускорения по вертикали
+        /// Угол разброса префабов
         /// </summary>
-        [SerializeField] [Range(0, 20)] private float _yVelocity;
+        [SerializeField] private float _sectorAngle = 60;
 
-        /// <summary>
-        /// Минимальное ускорение по горизонтали
-        /// </summary>
-        [SerializeField] [Range(0, -10)] private float _xVelocityMin;
+        [SerializeField] private float _sectorRotation;
 
-        /// <summary>
-        /// Максимальное ускорение по горизонтали
-        /// </summary>
-        [SerializeField] [Range(0, 10)] private float _xVelocityMax;
+        [SerializeField] private float _waitTime = 0.1f;
+        [SerializeField] private float _speed = 6;
+        [SerializeField] private float _itemPerBurst = 2;
+        [SerializeField] private float _dropCount = 5;
+
 
         public void DropOut(GameObject other)
         {
@@ -46,15 +44,32 @@ namespace Components {
             for (int i = 0; i < count; i++)
             {
                 var newObj = Instantiate(_prefab, target.position, Quaternion.identity);
-                //newObj.transform.localScale = gameObject.transform.lossyScale;
 
                 var rb = newObj.GetComponent<Rigidbody2D>();
-                rb.velocity = new Vector2(UnityEngine.Random.Range(_xVelocityMin, _xVelocityMax), _yVelocity);
+
+                var randomAngle = Random.Range(0, _sectorAngle);
+                var forceVector = AngleToVectorInSector(randomAngle);
 
                 coinsComponent.DecreaseCoins(1);
 
                 yield return null;
             }
+        }
+
+        private Vector2 AngleToVectorInSector(float angle)
+        {
+            var angleMiddleDelta = (180 - _sectorRotation - _sectorAngle) / 2;
+            return GetUnitOnCircle(angle + angleMiddleDelta);
+        }
+
+        private Vector3 GetUnitOnCircle(float angleDegrees)
+        {
+            var angleRadians = angleDegrees * Mathf.PI / 180.0f;
+
+            var x = Mathf.Cos(angleRadians);
+            var y = Mathf.Sin(angleRadians);
+
+            return new Vector3(x, y, 0);
         }
     }
 }

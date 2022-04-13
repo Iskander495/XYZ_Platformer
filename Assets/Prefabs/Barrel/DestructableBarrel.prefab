@@ -16,7 +16,8 @@ GameObject:
   - component: {fileID: 3036104359979613960}
   - component: {fileID: 3036104359979613963}
   - component: {fileID: 809283507666025921}
-  - component: {fileID: 9165562241827827116}
+  - component: {fileID: 694581270}
+  - component: {fileID: 694581269}
   m_Layer: 11
   m_Name: DestructableBarrel
   m_TagString: Enemy
@@ -248,8 +249,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 9165562241827827116}
-        m_MethodName: DropOut
+      - m_Target: {fileID: 694581270}
+        m_MethodName: CalculateDrop
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -288,7 +289,7 @@ MonoBehaviour:
   _target: {fileID: 3036104359979614198}
   _prefab: {fileID: 5539125510585719477, guid: 617471ad9baae07489a4cc3b6c85caab, type: 3}
   _animationName: 
---- !u!114 &9165562241827827116
+--- !u!114 &694581270
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -297,12 +298,45 @@ MonoBehaviour:
   m_GameObject: {fileID: 3036104359979614194}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fa892eb36eeb754eb3fb77e3ba56b4a, type: 3}
+  m_Script: {fileID: 11500000, guid: c0b622f843ca67448aed1f0b7dff42cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _count: 0
-  _items:
-  - _chance: 70
-    item: {fileID: 889273611455556885, guid: 4ef4bd5b96e66634884d3f9986366671, type: 3}
-  - _chance: 30
-    item: {fileID: 8542535105970717809, guid: a2f78a4e8f37fc44ab2e434d20572ee4, type: 3}
+  _count: 10
+  _drop:
+  - DropObject: {fileID: 889273611455556885, guid: 9ee35e3d4c5e1cc42aa702a58f52e0a6,
+      type: 3}
+    Propability: 80
+  - DropObject: {fileID: 9036972015073771734, guid: 321e95e5146dc37418ffd1746650291c,
+      type: 3}
+    Propability: 20
+  _onDropCalculated:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 694581269}
+        m_MethodName: StartDrop
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &694581269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3036104359979614194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2534dabb33634164bb7c75c4b4188b95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sectorAngle: 60
+  _sectorRotation: 0
+  _waitTime: 0.1
+  _speed: 6
+  _itemPerBurst: 2

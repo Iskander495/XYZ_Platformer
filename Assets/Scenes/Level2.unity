@@ -9879,11 +9879,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9165562241827827116, guid: 88ae5a9ddd5151a48aeca667c8a80fdd,
-        type: 3}
-      propertyPath: _count
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88ae5a9ddd5151a48aeca667c8a80fdd, type: 3}
 --- !u!1 &705551899
@@ -11598,7 +11593,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1430490629}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.2781346, y: 1.8992053, z: -10}
+  m_LocalPosition: {x: -3.3642142, y: 1.8933309, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2124792277}
@@ -12109,7 +12104,8 @@ PrefabInstance:
       propertyPath: _count
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9165562241827827116, guid: 88ae5a9ddd5151a48aeca667c8a80fdd, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 88ae5a9ddd5151a48aeca667c8a80fdd, type: 3}
 --- !u!4 &1544046484 stripped
 Transform:
@@ -18095,12 +18091,12 @@ PrefabInstance:
     - target: {fileID: 8141014016576554228, guid: 2f9cc0b826b258a41840bf6a644687d0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.19
+      value: 2.75
       objectReference: {fileID: 0}
     - target: {fileID: 8141014016576554228, guid: 2f9cc0b826b258a41840bf6a644687d0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.33
+      value: 0.33
       objectReference: {fileID: 0}
     - target: {fileID: 8141014016576554228, guid: 2f9cc0b826b258a41840bf6a644687d0,
         type: 3}
@@ -18713,6 +18709,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SharkyPointPatrol
+      objectReference: {fileID: 0}
+    - target: {fileID: 1903582009071543527, guid: 7fe415460de5b5c42b2357e6c0223297,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5906784956502106031, guid: 7fe415460de5b5c42b2357e6c0223297,
         type: 3}
