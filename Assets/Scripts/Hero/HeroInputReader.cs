@@ -12,8 +12,11 @@ public class HeroInputReader : MonoBehaviour
     // **************** Invoke Unity Events  **************** //
     public void OnMovementEvent(CallbackContext context)
     {
-        var vector = context.ReadValue<Vector2>();
-        _hero.SetDirection(vector);
+        //if (context.performed)
+        {
+            var vector = context.ReadValue<Vector2>();
+            _hero.SetDirection(vector);
+        }
     }
 
     public void OnInteractEvent(CallbackContext context)

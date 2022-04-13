@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 889273611455556875}
   - component: {fileID: 3655179983686333584}
   - component: {fileID: 3659115786007135877}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: SilverCoinParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1922660263
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: -2322180950842035098, guid: 2083dc11cc005904aba32ff934f75904,
     type: 3}

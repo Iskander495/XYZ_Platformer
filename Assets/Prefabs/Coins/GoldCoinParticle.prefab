@@ -117,6 +117,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GoldCoinParticle
       objectReference: {fileID: 0}
+    - target: {fileID: 889273611455556885, guid: 9ee35e3d4c5e1cc42aa702a58f52e0a6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 3655179983686333584, guid: 9ee35e3d4c5e1cc42aa702a58f52e0a6,
         type: 3}
       propertyPath: _score

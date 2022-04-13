@@ -178,9 +178,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dropCoinsCount: 5
   _prefab: {fileID: 1567072718890829969, guid: e37b3b774db24df40b9998b18511c9ac, type: 3}
-  _yVelocity: 12.1
-  _xVelocityMin: -3
-  _xVelocityMax: 3
+  _sectorAngle: 60
+  _speed: 3
 --- !u!114 &3634761771715296472
 MonoBehaviour:
   m_ObjectHideFlags: 0

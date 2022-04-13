@@ -185,7 +185,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _target: {fileID: 5481692013239965716}
   _prefab: {fileID: 2460435021801762324, guid: 0cd25beea2ffb1d48a2c42ca284e5e1e, type: 3}
-  _animationName: SlamDown
 --- !u!1 &1352175372
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,7 +231,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _target: {fileID: 5481692013239965716}
   _prefab: {fileID: 9057808741675758211, guid: 987c49c99a9d95e4fa3dbb212961bdc4, type: 3}
-  _animationName: Jump
 --- !u!212 &984170631269808598
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -328,7 +326,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _target: {fileID: 1508427938}
   _prefab: {fileID: 6470127647252356327, guid: 0ac35a3b5efd8214aa455cbe21af2e65, type: 3}
-  _animationName: Run
 --- !u!1 &1605587957
 GameObject:
   m_ObjectHideFlags: 0
@@ -451,7 +448,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _target: {fileID: 2132842518}
   _prefab: {fileID: 7766066679742104712, guid: a2984402511750f4ca0420c7e10ee369, type: 3}
-  _animationName: Attack
 --- !u!1 &5481692012323784024
 GameObject:
   m_ObjectHideFlags: 0
@@ -674,7 +670,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: 12302a28c89b858408698da667431e5a,
     type: 3}
-  m_NotificationBehavior: 1
+  m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -689,7 +685,7 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5481692013239965722}
-        m_MethodName: OnMovement
+        m_MethodName: OnMovementEvent
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -702,19 +698,63 @@ MonoBehaviour:
     m_ActionId: 32321524-7aa0-4d62-8124-d880fcd7ae63
     m_ActionName: HeroActionMap/HorizontalMovement[/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5481692013239965722}
+        m_MethodName: OnInteractEvent
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 5643e1e9-1ab6-4b73-8d4a-a5cb09d00306
     m_ActionName: HeroActionMap/Interact[/Keyboard/e]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5481692013239965722}
+        m_MethodName: OnAttackEvent
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: ffae96fc-7775-469e-9ae9-e31672124aa2
     m_ActionName: HeroActionMap/Attack[/Keyboard/x]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5481692013239965722}
+        m_MethodName: OnThrowEvent
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 46ba1bcc-7b52-4a30-bd66-585b410b39cc
     m_ActionName: HeroActionMap/Throw[/Keyboard/shift]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5481692013239965722}
+        m_MethodName: OnSuperThrowEvent
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: c51cb0e2-fdfc-4d86-b491-94561a720b4d
     m_ActionName: HeroActionMap/SuperThrow[/Keyboard/shift]
   m_NeverAutoSwitchControlSchemes: 0
@@ -927,4 +967,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _target: {fileID: 73749489406646297}
   _prefab: {fileID: 2460435021801762324, guid: 0c874f320db84fe4b9ef32bb7c1d4ee6, type: 3}
-  _animationName: Throw

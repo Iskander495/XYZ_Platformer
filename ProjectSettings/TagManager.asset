@@ -20,7 +20,7 @@ TagManager:
   - Trash
   - Enemy
   - Hero
-  - 
+  - Drop
   - 
   - 
   - 
@@ -54,6 +54,9 @@ TagManager:
     locked: 0
   - name: Level
     uniqueID: 3438831173
+    locked: 0
+  - name: Drop
+    uniqueID: 442926545
     locked: 0
   - name: Player
     uniqueID: 2806728685

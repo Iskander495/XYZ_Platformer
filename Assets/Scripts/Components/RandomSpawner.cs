@@ -6,11 +6,10 @@ using UnityEngine;
 public class RandomSpawner : MonoBehaviour
 {
     [SerializeField] private float _sectorAngle = 60;
-    [SerializeField] private float _sectorRotation;
+    [SerializeField] private float _sectorRotation = 1;
 
     [SerializeField] private float _waitTime = 0.1f;
     [SerializeField] private float _speed = 6;
-    [SerializeField] private float _itemPerBurst = 2;
 
     private Coroutine _routine;
 
@@ -31,11 +30,7 @@ public class RandomSpawner : MonoBehaviour
     {
         for(var i = 0; i < items.Length; i++)
         {
-            for(var j = 0; j < _itemPerBurst && i < items.Length; j++)
-            {
-                Spawn(items[i]);
-                i++;
-            }
+            Spawn(items[i]);
 
             yield return new WaitForSeconds(_waitTime);
         }
