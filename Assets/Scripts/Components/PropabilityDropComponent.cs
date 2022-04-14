@@ -20,6 +20,11 @@ public class PropabilityDropComponent : MonoBehaviour
         }
     }
 
+    public void SetCount(int count)
+    {
+        _count = count;
+    }
+
     public void CalculateDrop()
     {
         var itemsToDrop = new GameObject[_count];

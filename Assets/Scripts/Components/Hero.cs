@@ -50,6 +50,8 @@ namespace Components
         /// Компонент проверки соприкосновения со стенами
         /// </summary>
         [SerializeField] private LayerCheck _wallCheck;
+        [SerializeField] private PropabilityDropComponent _hitDrop;
+
 
         private PerkStore _perkStore;
 
@@ -102,11 +104,6 @@ namespace Components
                 _allowDoubleJump = true;
                 IsJumping = false;
             }
-
-            /*if(isJumpPressing && _isOnWall)
-            {
-                return 0f;
-            }*/
 
             return base.CalculateYVelocity();
         }
@@ -227,6 +224,28 @@ namespace Components
             }
 
             yield return null;
+        }
+
+        public override void TakeDamage()
+        {
+            base.TakeDamage();
+            var count = _session.GetValue<int>("Coins");
+
+            if (count > 0)
+            {
+                SpawnCoins();
+            }
+        }
+
+        private void SpawnCoins()
+        {
+            var count = _session.GetValue<int>("Coins");
+            var numCoinsToDrop = Mathf.Min(count, 5);
+
+            _session.SetValue<int>("Coins", count - numCoinsToDrop);
+
+            _hitDrop.SetCount(numCoinsToDrop);
+            _hitDrop.CalculateDrop();
         }
 
         protected override void OnDrawGizmos()

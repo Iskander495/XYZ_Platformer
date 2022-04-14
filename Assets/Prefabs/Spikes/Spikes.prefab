@@ -13,8 +13,6 @@ GameObject:
   - component: {fileID: 7928972624878410345}
   - component: {fileID: 7928972624878410344}
   - component: {fileID: 7928972624878410356}
-  - component: {fileID: 1906181310}
-  - component: {fileID: 3634761771715296472}
   m_Layer: 8
   m_Name: Spikes
   m_TagString: Untagged
@@ -139,17 +137,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1906181310}
-        m_MethodName: DropOut
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   _onOutEvents: []
 --- !u!114 &7928972624878410356
 MonoBehaviour:
@@ -164,32 +151,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hpDelta: -1
---- !u!114 &1906181310
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7928972624878410351}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b7e6baf119e5b04db571e68fdaa5e19, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _dropCoinsCount: 5
-  _prefab: {fileID: 1567072718890829969, guid: e37b3b774db24df40b9998b18511c9ac, type: 3}
-  _sectorAngle: 60
-  _speed: 3
---- !u!114 &3634761771715296472
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7928972624878410351}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e12f79f6874bba42a0aca52ff850d9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _score: 0

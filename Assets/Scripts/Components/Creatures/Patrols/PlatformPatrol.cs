@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class PlatformPatrol : Patrol
 {
-    [SerializeField] private LayerCheck _layerCheck;
+    [SerializeField] private LayerCheck _groundCheck;
+    [SerializeField] private LayerCheck _obstacleCheck;
 
     private Creature _creature;
     private Vector2 _direction;
@@ -22,11 +23,16 @@ public class PlatformPatrol : Patrol
     {
         while(enabled)
         {
-            _creature.SetDirection(_direction);
-            yield return null;
-
-            if (!_layerCheck.IsTouchingLayer)
+            if(_groundCheck.IsTouchingLayer && !_obstacleCheck.IsTouchingLayer)
+            {
+                _creature.SetDirection(_direction);
+            } else
+            {
                 _direction = _direction * -1;
+                _creature.SetDirection(_direction);
+            }
+
+            yield return null;
         }
     }
 }
