@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3352105708496809965}
   - component: {fileID: 5750260909240698606}
   - component: {fileID: 3137706253222223917}
-  - component: {fileID: 3387099741121309308}
+  - component: {fileID: 6678817129661820719}
   m_Layer: 11
   m_Name: AttackRange
   m_TagString: Untagged
@@ -95,7 +95,7 @@ CircleCollider2D:
   m_Offset: {x: 0.07, y: 0}
   serializedVersion: 2
   m_Radius: 0.1
---- !u!114 &3387099741121309308
+--- !u!114 &6678817129661820719
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -104,7 +104,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1362998403666066857}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb08f107e185bee4d801fdc3f622d172, type: 3}
+  m_Script: {fileID: 11500000, guid: 68e8471315d9d9e4db1193beb0bf5944, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   IsTouchingLayer: 0
@@ -353,7 +353,7 @@ MonoBehaviour:
     m_Bits: 256
   AttackRange: {fileID: 3352105708496809965}
   _particles: {fileID: 0}
-  GroundCheck: {fileID: 2221275131965994758}
+  GroundCheck: {fileID: 7861055784269804991}
 --- !u!114 &1768606145017606354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -366,8 +366,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74bf00e88344c1840a234a09964c55a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _vision: {fileID: 9036136503759393405}
-  _canAttack: {fileID: 3387099741121309308}
+  _vision: {fileID: 663009363763219909}
+  _canAttack: {fileID: 6678817129661820719}
   _alarmDelay: 1
   _attackCooldown: 1
   _missHeroCooldown: 0.5
@@ -538,7 +538,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3180415397784558726}
   - component: {fileID: 4718426953702692602}
-  - component: {fileID: 2221275131965994758}
+  - component: {fileID: 7861055784269804991}
   m_Layer: 11
   m_Name: GroundCheck
   m_TagString: Untagged
@@ -554,7 +554,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2979672862843758048}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.049, y: -0.012, z: 0}
+  m_LocalPosition: {x: 0.034, y: -0.115, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 358472926557778528}
@@ -576,7 +576,7 @@ CircleCollider2D:
   m_Offset: {x: -0.03, y: -0.2}
   serializedVersion: 2
   m_Radius: 0.26
---- !u!114 &2221275131965994758
+--- !u!114 &7861055784269804991
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -585,13 +585,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2979672862843758048}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb08f107e185bee4d801fdc3f622d172, type: 3}
+  m_Script: {fileID: 11500000, guid: 68e8471315d9d9e4db1193beb0bf5944, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   IsTouchingLayer: 0
   _layer:
     serializedVersion: 2
-    m_Bits: 2304
+    m_Bits: 256
 --- !u!1 &3250719635620513558
 GameObject:
   m_ObjectHideFlags: 0
@@ -602,8 +602,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1959846406368625739}
   - component: {fileID: 808742032346867729}
-  - component: {fileID: 9036136503759393405}
   - component: {fileID: 1309341844078781388}
+  - component: {fileID: 663009363763219909}
   m_Layer: 11
   m_Name: Vision
   m_TagString: Untagged
@@ -651,22 +651,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 6.7632113, y: 4.082592}
   m_EdgeRadius: 0
---- !u!114 &9036136503759393405
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3250719635620513558}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb08f107e185bee4d801fdc3f622d172, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsTouchingLayer: 0
-  _layer:
-    serializedVersion: 2
-    m_Bits: 4096
 --- !u!114 &1309341844078781388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -698,6 +682,22 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _onOutEvents: []
+--- !u!114 &663009363763219909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3250719635620513558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68e8471315d9d9e4db1193beb0bf5944, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsTouchingLayer: 0
+  _layer:
+    serializedVersion: 2
+    m_Bits: 4352
 --- !u!1 &6328486652147994050
 GameObject:
   m_ObjectHideFlags: 0

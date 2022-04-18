@@ -1,8 +1,11 @@
 ﻿using Components;
+using Components.Collectables;
 using Model;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 
 public class PerkStore : MonoBehaviour
 {

@@ -1,14 +1,17 @@
 ﻿using UnityEngine;
 
-public class LayerCheck : MonoBehaviour
+namespace Components.Collision
 {
-    /// <summary>
-    /// Признак пересечения с другим слоем
-    /// </summary>
-    public bool IsTouchingLayer;
+    public class LayerCheck : MonoBehaviour
+    {
+        /// <summary>
+        /// Признак пересечения с другим слоем
+        /// </summary>
+        public bool IsTouchingLayer;
 
-    /// <summary>
-    /// Слой, считающийся землей
-    /// </summary>
-    [SerializeField] protected LayerMask _layer;
+        /// <summary>
+        /// Слой, считающийся землей
+        /// </summary>
+        [SerializeField] protected LayerMask _layer;
+    }
 }

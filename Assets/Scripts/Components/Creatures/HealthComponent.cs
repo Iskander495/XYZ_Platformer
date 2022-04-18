@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Components
+namespace Components.Creatures
 {
     public class HealthComponent : MonoBehaviour
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Components
+namespace Components.Creatures
 {
     public class ModifyHealthComponent : MonoBehaviour
     {

@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 230005769}
-  - component: {fileID: 230005771}
-  - component: {fileID: 230005770}
-  m_Layer: 12
+  - component: {fileID: 3874026614132718430}
+  - component: {fileID: 3973362005738736488}
+  m_Layer: 14
   m_Name: WallCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,14 +26,30 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 230005768}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.282, y: -0.011, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5481692013239965716}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!70 &230005771
-CapsuleCollider2D:
+--- !u!114 &3874026614132718430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 230005768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68e8471315d9d9e4db1193beb0bf5944, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsTouchingLayer: 0
+  _layer:
+    serializedVersion: 2
+    m_Bits: 33024
+--- !u!58 &3973362005738736488
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -45,25 +61,9 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.03}
-  m_Size: {x: 0.86788034, y: 0.437532}
-  m_Direction: 1
---- !u!114 &230005770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 230005768}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb08f107e185bee4d801fdc3f622d172, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsTouchingLayer: 0
-  _layer:
-    serializedVersion: 2
-    m_Bits: 256
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.23
 --- !u!1 &610251310
 GameObject:
   m_ObjectHideFlags: 0
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 610251311}
   - component: {fileID: 610251312}
   - component: {fileID: 610251313}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: InteractionCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -337,7 +337,7 @@ GameObject:
   - component: {fileID: 1605587958}
   - component: {fileID: 1605587959}
   - component: {fileID: 2083292514}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: AttackRange
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
@@ -539,7 +539,7 @@ GameObject:
   - component: {fileID: 5481692012323784031}
   - component: {fileID: 5481692012323784029}
   - component: {fileID: 7555914505247559222}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -734,7 +734,8 @@ MonoBehaviour:
   _throwCooldown:
     value: 0.3
   _interactionCheck: {fileID: 610251312}
-  _wallCheck: {fileID: 230005770}
+  _defaultGravityScale: 4
+  _wallCheck: {fileID: 3874026614132718430}
   _hitDrop: {fileID: 2592621873535293267}
   _armed: {fileID: 9100000, guid: e57bb3281d7e9fe4ca308ab1c83feff9, type: 2}
   _unarmed: {fileID: 9100000, guid: 4464cee677c3aa7488289a85707eda5b, type: 2}
@@ -891,7 +892,7 @@ Animator:
   m_GameObject: {fileID: 5481692013239965718}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e57bb3281d7e9fe4ca308ab1c83feff9, type: 2}
+  m_Controller: {fileID: 9100000, guid: 4464cee677c3aa7488289a85707eda5b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

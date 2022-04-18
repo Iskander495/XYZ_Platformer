@@ -2,21 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LineCheck : LayerCheck
+namespace Components.Collision
 {
-    [SerializeField] private Transform _target;
 
-    private readonly RaycastHit2D[] _result = new RaycastHit2D[1];
-
-    private void Update()
+    public class LineCheck : LayerCheck
     {
-        IsTouchingLayer = Physics2D.LinecastNonAlloc(transform.position, _target.position, _result, _layer) > 0;
-    }
+        [SerializeField] private Transform _target;
+
+        private readonly RaycastHit2D[] _result = new RaycastHit2D[1];
+
+        private void Update()
+        {
+            IsTouchingLayer = Physics2D.LinecastNonAlloc(transform.position, _target.position, _result, _layer) > 0;
+        }
 
 #if UNITY_EDITOR
-    private void OnDrawGizmosSelected()
-    {
-        UnityEditor.Handles.DrawLine(transform.position, _target.position);
-    }
+        private void OnDrawGizmosSelected()
+        {
+            UnityEditor.Handles.DrawLine(transform.position, _target.position);
+        }
 #endif
+    }
 }

@@ -22,7 +22,7 @@ TagManager:
   - Hero
   - Drop
   - Checkers
-  - 
+  - Wall
   - 
   - 
   - 
@@ -58,6 +58,9 @@ TagManager:
   - name: Drop
     uniqueID: 442926545
     locked: 0
+  - name: Trash
+    uniqueID: 3316346221
+    locked: 0
   - name: Player
     uniqueID: 2806728685
     locked: 0
@@ -69,4 +72,7 @@ TagManager:
     locked: 0
   - name: UI
     uniqueID: 730485543
+    locked: 0
+  - name: Creatures
+    uniqueID: 3371846015
     locked: 0

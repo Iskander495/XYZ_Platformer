@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Components
+namespace Components.Collision
 {
     public class EnterTriggerComponent : MonoBehaviour
     {

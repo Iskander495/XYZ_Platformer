@@ -1,4 +1,5 @@
 ﻿using Components;
+using Components.Collectables;
 using System;
 using System.Collections;
 using System.Collections.Generic;
