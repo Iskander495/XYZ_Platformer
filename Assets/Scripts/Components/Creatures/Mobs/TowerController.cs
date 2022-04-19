@@ -30,12 +30,18 @@ namespace Components.Creatures
             _mobs.Remove(item);
             if(index < _current)
             {
-                index--;
+                _current--;
             }
         }
 
         private void Update()
         {
+            if (_mobs.Count == 0)
+            {
+                enabled = false;
+                Destroy(gameObject, 1f);
+            }
+
             if(_mobs.Count == 0)
             {
                 enabled = false;

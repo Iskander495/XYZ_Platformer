@@ -4,31 +4,85 @@ using UnityEngine;
 
 namespace Components.Collectables.Move
 {
-    [RequireComponent(typeof(Rigidbody2D))]
     public class CircleMovingComponent : MonoBehaviour
     {
-        [SerializeField] private float _radius;
+        [SerializeField] private float _radius = 1f;
+        [SerializeField] private float _speed = 1f;
 
-        private Rigidbody2D _rigidbody;
-        private Vector2 _position;
+        private Rigidbody2D[] _bodies;
+        private Vector2[] _positions;
+
+        private float _time;
 
         private void Awake()
         {
-            _rigidbody = GetComponent<Rigidbody2D>();
-            _position = transform.position;
+            UpdateContent();
+        }
+
+        private void UpdateContent()
+        {
+            _bodies = GetComponentsInChildren<Rigidbody2D>();
+            _positions = new Vector2[_bodies.Length];
         }
 
         private void Update()
         {
-            var term = Time.time;
+            CalculatePositions();
 
-            var x = Mathf.Sin(term) * _radius / 100;
-            var y = Mathf.Cos(term) * _radius / 100;
+            var isAllDead = true;
 
-            _position.x += x;
-            _position.y += y;
+            for(var i = 0; i < _bodies.Length; i++)
+            {
+                if (_bodies[i])
+                {
+                    _bodies[i].MovePosition(_positions[i]);
+                    isAllDead = false;
+                }
+            }
 
-            _rigidbody.MovePosition(_position);
+            if(isAllDead)
+            {
+                enabled = false;
+                Destroy(gameObject, 1f);
+            }
+
+            _time += Time.deltaTime;
         }
+
+        private void CalculatePositions()
+        {
+            // полный круг, деленный на количество элементов. Шаг расстановки элементов
+            var step = 2 * Mathf.PI / _bodies.Length;
+
+            Vector2 containerPosition = transform.position;
+
+            for (var i = 0; i < _bodies.Length; i++)
+            {
+                var angle = step * i;
+                var pos = new Vector2(
+                    Mathf.Cos(angle + _time * _speed) * _radius,
+                    Mathf.Sin(angle + _time * _speed) * _radius
+                );
+
+                _positions[i] = containerPosition + pos;
+            }
+        }
+
+#if UNITY_EDITOR
+        private void OnValidate()
+        {
+            UpdateContent();
+            CalculatePositions();
+            for (var i = 0; i < _bodies.Length; i++)
+            {
+                _bodies[i].transform.position = _positions[i];
+            }
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            UnityEditor.Handles.DrawWireDisc(transform.position, Vector3.forward, _radius);
+        }
+#endif
     }
 }

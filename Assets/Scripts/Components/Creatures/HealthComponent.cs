@@ -50,6 +50,11 @@ namespace Components.Creatures
         {
             _immortable = immortable;
         }
+
+        private void OnDestroy()
+        {
+            _onDie.RemoveAllListeners();
+        }
     }
 
     [Serializable]

@@ -68,11 +68,11 @@ namespace Components.Collectables
             /// </summary>
             [Range(0f, 100f)] public float Propability;
         }
+    }
 
-        [Serializable]
-        public class DropEvent : UnityEvent<GameObject[]>
-        {
+    [Serializable]
+    public class DropEvent : UnityEvent<GameObject[]>
+    {
 
-        }
     }
 }

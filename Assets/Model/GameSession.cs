@@ -30,10 +30,9 @@ namespace Model
                     .GetValue(_data, null);
         }
 
+        // UI Labels
         private GameObject _swordCount;
-
         private GameObject _coinsCount;
-
         private GameObject _hpCount;
 
         public void Awake()
@@ -44,7 +43,8 @@ namespace Model
             if (IsSessionExit())
             {
                 DestroyImmediate(gameObject);
-            } else // это первая сессия, сохраняем ее
+            } 
+            else // это первая сессия, сохраняем ее
             {
                 DontDestroyOnLoad(this);
             }
@@ -64,6 +64,7 @@ namespace Model
 
             foreach(var sess in sessions)
             {
+                // если не равен текущему объекту, другие сессии существуют
                 if (sess != this)
                     return true;
             }

@@ -67,12 +67,12 @@ TagManager:
   - name: Grass
     uniqueID: 3254222111
     locked: 0
-  - name: Coins
-    uniqueID: 2372307033
-    locked: 0
   - name: UI
     uniqueID: 730485543
     locked: 0
   - name: Creatures
     uniqueID: 3371846015
+    locked: 0
+  - name: Coins
+    uniqueID: 2372307033
     locked: 0

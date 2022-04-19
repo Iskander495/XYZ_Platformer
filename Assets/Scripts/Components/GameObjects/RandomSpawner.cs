@@ -22,6 +22,18 @@ namespace Components.GameObjects
             _routine = StartCoroutine(StartSpawn(items));
         }
 
+        /// <summary>
+        /// Мнговенное выбрасывание
+        /// </summary>
+        /// <param name="items"></param>
+        public void DropImmediate(GameObject[] items)
+        {
+            foreach(var item in items)
+            {
+                Spawn(item);
+            }
+        }
+
         private void TryStopRoutine()
         {
             if (_routine != null)
