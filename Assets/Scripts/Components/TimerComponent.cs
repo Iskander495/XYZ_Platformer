@@ -10,6 +10,17 @@ namespace Components
     {
         [SerializeField] private TimerData[] _timers;
 
+        private void Awake()
+        {
+            for(int i = 0; i < _timers.Length; i++)
+            {
+                if(_timers[i].AutoStart)
+                {
+                    SetTimer(i);
+                }
+            }
+        }
+
         public void SetTimer(int timerIndex)
         {
             var timer = _timers[timerIndex];
@@ -28,6 +39,8 @@ namespace Components
     [Serializable]
     public class TimerData
     {
+        public bool AutoStart = false;
+
         public float Delay;
 
         public UnityEvent OnTimesUp;

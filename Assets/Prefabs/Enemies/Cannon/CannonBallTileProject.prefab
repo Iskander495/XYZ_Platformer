@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4857044584821051719}
   - component: {fileID: 909400396800915104}
   - component: {fileID: 5727812114943838055}
+  - component: {fileID: 3295813541604613198}
   m_Layer: 0
   m_Name: CannonBallTileProject
   m_TagString: Untagged
@@ -140,7 +141,7 @@ MonoBehaviour:
   _tag: 
   _layer:
     serializedVersion: 2
-    m_Bits: 39168
+    m_Bits: 38912
   _events:
   - m_PersistentCalls:
       m_Calls:
@@ -287,3 +288,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objectToDestroy: {fileID: 2849667746129222119}
+--- !u!114 &3295813541604613198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2849667746129222119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a19207ec69081b4d83b10f78f6d6cfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _timers:
+  - AutoStart: 1
+    Delay: 3
+    OnTimesUp:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4857044584821051719}
+          m_MethodName: SetClip
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: hit
+            m_BoolArgument: 0
+          m_CallState: 2
