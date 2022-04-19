@@ -9,16 +9,18 @@ namespace Components.Creatures
 {
     public class HealthComponent : MonoBehaviour
     {
+        [SerializeField] private bool _immortable = false;
+
         [SerializeField] private int _health;
         [SerializeField] private UnityEvent _onDamage;
         [SerializeField] private UnityEvent _onHealth;
-        [SerializeField] private UnityEvent _onDie;
+        [SerializeField] public UnityEvent _onDie;
 
         [SerializeField] private HealthChangeEvent _onHealthChange;
 
         public void ModifyHealth(int healthDelta)
         {
-            if (_health <= 0) return;
+            if (_health <= 0 || _immortable) return;
 
             _health += healthDelta;
             _onHealthChange?.Invoke(_health);
@@ -42,6 +44,11 @@ namespace Components.Creatures
         public void SetHealth(int health)
         {
             _health = health;
+        }
+
+        public void SetImmortable(bool immortable)
+        {
+            _immortable = immortable;
         }
     }
 

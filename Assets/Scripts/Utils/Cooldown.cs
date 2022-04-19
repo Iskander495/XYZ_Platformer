@@ -17,6 +17,12 @@ namespace Utils
             _timesUp = Time.time + value;
         }
 
+        public void ShiftBack() 
+        {
+            _timesUp = Time.time - value;
+        }
+
+
         public bool IsReady => _timesUp <= Time.time;
     }
 }

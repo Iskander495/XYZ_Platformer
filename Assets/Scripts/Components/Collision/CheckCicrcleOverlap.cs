@@ -43,10 +43,10 @@ namespace Components.Collision
 
             Handles.DrawSolidDisc(transform.position, Vector3.forward, _radius);
         }
+    }
 
-        [Serializable]
-        public class OnOverlapEvent : UnityEvent<GameObject>
-        {
-        }
+    [Serializable]
+    public class OnOverlapEvent : UnityEvent<GameObject>
+    {
     }
 }

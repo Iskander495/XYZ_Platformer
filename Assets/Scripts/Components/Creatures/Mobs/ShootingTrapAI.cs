@@ -5,12 +5,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using Utils;
 
-namespace Components.Creatures {
+namespace Components.Creatures 
+{
     public class ShootingTrapAI : MonoBehaviour
     {
         [SerializeField] private LayerCheck _vision;
 
         [Header("Melee")]
+        [SerializeField] private bool _enableMelee = true;
         [SerializeField] private CheckCicrcleOverlap _meleeAttack;
         [SerializeField] private LayerCheck _meleeCanAttack;
         [SerializeField] private Cooldown _meleeCooldown;
@@ -22,22 +24,22 @@ namespace Components.Creatures {
         private static readonly int Melee = Animator.StringToHash("melee");
         private static readonly int Range = Animator.StringToHash("range");
 
-        private Animator _animator;
+        protected Animator _animator;
 
-        private void Awake()
+        protected virtual void Awake()
         {
             _animator = GetComponent<Animator>();
         }
 
-        private void Update()
+        protected virtual void Update()
         {
             if(_vision.IsTouchingLayer)
             {
-                if(_meleeCanAttack.IsTouchingLayer)
+                if(_enableMelee && _meleeCanAttack.IsTouchingLayer)
                 {
                     if(_meleeCooldown.IsReady)
                     {
-                        // атакуем зубами
+                        // атака ближнего боя
                         MeleeAttack();
                         return;
                     }
@@ -59,8 +61,8 @@ namespace Components.Creatures {
 
         private void RangeAttack()
         {
-            _rangeCooldown.Reset();
-            _animator.SetTrigger(Range);
+                _rangeCooldown.Reset();
+                _animator.SetTrigger(Range);
         }
 
         public void OnMeleeAttack()

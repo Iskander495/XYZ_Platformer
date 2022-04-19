@@ -420,6 +420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _vision: {fileID: 2534217486808481943}
+  _enableMelee: 1
   _meleeAttack: {fileID: 2534217486409406766}
   _meleeCanAttack: {fileID: 2534217486409406739}
   _meleeCooldown:
