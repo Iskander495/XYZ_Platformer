@@ -22,6 +22,9 @@ namespace Model.Data
             var itemDef = DefsFacade.I.Items.Get(id);
             if (itemDef.IsVoid) return;
 
+            var isFull = _inventory.Count >= DefsFacade.I.Player.InventorySize;
+            if (isFull) return;
+
             if (itemDef.IsStackable)
             {
                 var item = GetItem(id);
@@ -31,10 +34,10 @@ namespace Model.Data
                     _inventory.Add(item);
                 }
                 item.Value += value;
-            } else
+            } 
+            else
             {
-                var item = new InventoryItemData(id);
-                item.Value = value;
+                var item = new InventoryItemData(id) { Value = value };
                 _inventory.Add(item);
             }
 
@@ -46,13 +49,25 @@ namespace Model.Data
             var itemDef = DefsFacade.I.Items.Get(id);
             if (itemDef.IsVoid) return;
 
-            var item = GetItem(id);
-            if (item == null) return;
+            if(itemDef.IsStackable)
+            {
+                var item = GetItem(id);
+                if (item == null) return;
 
-            item.Value -= value;
+                item.Value -= value;
 
-            if (item.Value <= 0)
-                _inventory.Remove(item);
+                if (item.Value <= 0)
+                    _inventory.Remove(item);
+            } 
+            else
+            {
+                for(int i = 0; i < value; i++)
+                {
+                    var item = GetItem(id);
+                    if (item == null) return;
+                    _inventory.Remove(item);
+                }
+            }
 
             OnChanged?.Invoke(id, value);
         }
