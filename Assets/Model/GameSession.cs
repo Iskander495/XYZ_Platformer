@@ -1,33 +1,29 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using Model.Data;
+using System;
 using System.IO;
-using System.Reflection;
-using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Model
 {
     [Serializable]
     public class GameSession : MonoBehaviour
     {
-        [SerializeField] private PlayerData _data;
+        [SerializeField] public PlayerData Data;
 
         public void SetValue<T>(string propname, object value)
         {
-            _data.GetType()
+            Data.GetType()
                     .GetProperty(propname)?
-                    .SetValue(_data, (T)value);
+                    .SetValue(Data, (T)value);
 
             UpdateUI();
         }
 
         public T GetValue<T>(string propname)
         {
-            return (T)_data.GetType()
+            return (T)Data.GetType()
                     .GetProperty(propname)?
-                    .GetValue(_data, null);
+                    .GetValue(Data, null);
         }
 
         // UI Labels
@@ -74,7 +70,7 @@ namespace Model
 
         public void Save(int scene)
         {
-            string json = JsonUtility.ToJson(this._data);
+            string json = JsonUtility.ToJson(this.Data);
             File.WriteAllText($"session_{scene}.json", json);
         }
 
@@ -87,7 +83,7 @@ namespace Model
                 var json = File.ReadAllText($"session_{scene}.json");
                 var pd = JsonUtility.FromJson<PlayerData>(json);
 
-                this._data = pd;
+                this.Data = pd;
             }
 
             UpdateUI();
@@ -97,11 +93,9 @@ namespace Model
 
         private void UpdateUI()
         {
-            _swordCount.GetComponent<UnityEngine.UI.Text>().text = _data.Swords.ToString();
-
-            _coinsCount.GetComponent<UnityEngine.UI.Text>().text = _data.Coins.ToString();
-
-            _hpCount.GetComponent<UnityEngine.UI.Text>().text = _data.Hp.ToString();
+            //_swordCount.GetComponent<UnityEngine.UI.Text>().text = _data.Swords.ToString();
+            //_coinsCount.GetComponent<UnityEngine.UI.Text>().text = _data.Coins.ToString();
+            //_hpCount.GetComponent<UnityEngine.UI.Text>().text = _data.Hp.ToString();
         }
     }
 }

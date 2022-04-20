@@ -1,4 +1,5 @@
 ﻿using Components.Collectables;
+using Model;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,19 +24,21 @@ namespace Components.Collectables
         [SerializeField] private float _sectorAngle = 60;
         [SerializeField] private float _speed = 6;
 
+        private GameSession _session;
+        private int CoinsCount => _session.Data.Inventory.Count("Coins");
+
+        private void Awake()
+        {
+            _session = FindObjectOfType<GameSession>();
+        }
 
         public void DropOut(GameObject other)
         {
-            var coinsComponent = gameObject.GetComponent<AddCoinsComponent>();
-
-            var dropCount = _dropCoinsCount;
-            if (_dropCoinsCount > coinsComponent.Count())
-                dropCount = coinsComponent.Count();
-
-            StartCoroutine(Drop(coinsComponent, dropCount, other.transform));
+            var dropCount = Mathf.Min(_dropCoinsCount, CoinsCount);
+            StartCoroutine(Drop(dropCount, other.transform));
         }
 
-        private IEnumerator Drop(AddCoinsComponent coinsComponent, int count, Transform target)
+        private IEnumerator Drop(int count, Transform target)
         {
             for (int i = 0; i < _dropCoinsCount; i++)
             {
@@ -48,7 +51,7 @@ namespace Components.Collectables
 
                 rigidBody.AddForce(forceVector * _speed, ForceMode2D.Impulse);
 
-                coinsComponent.DecreaseCoins(1);
+                _session.Data.Inventory.Remove("Coins", 1);
 
                 yield return null;
             }

@@ -51,6 +51,14 @@ public class HeroInputReader : MonoBehaviour
         }
     }
 
+    public void OnUsePotion(CallbackContext context)
+    {
+        if (context.canceled)
+        {
+            _hero.UsePotion();
+        }
+    }
+
 
     // ************** Broadcast/Send Messages  ************** //
     public void OnVector2Movement(InputValue context)

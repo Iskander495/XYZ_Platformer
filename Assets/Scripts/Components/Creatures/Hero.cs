@@ -2,6 +2,7 @@
 using Components.Collision;
 using Components.Creatures;
 using Model;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Animations;
@@ -56,9 +57,6 @@ namespace Components
         [SerializeField] private LayerCheck _wallCheck;
         [SerializeField] private PropabilityDropComponent _hitDrop;
 
-
-        private PerkStore _perkStore;
-
         [Space]
         [Header("Animation")]
         [SerializeField] private AnimatorController _armed;
@@ -67,28 +65,44 @@ namespace Components
         private GameSession _sessionOnStartLevel;
         private GameSession _session;
 
+        private HealthComponent _health;
+
         protected static readonly int _throwTrigger = Animator.StringToHash("isThrow");
         protected static readonly int _wallKey = Animator.StringToHash("isOnWall");
+
+        private int SwordsCount => _session.Data.Inventory.Count("Sword");
+        private int CoinsCount => _session.Data.Inventory.Count("Coin");
 
         protected override void Awake()
         {
             base.Awake();
-
-            _perkStore = GetComponent<PerkStore>();
         }
 
         private void Start()
         {
             _session = FindObjectOfType<GameSession>();
+            _session.Data.Inventory.OnChanged += OnInventoryChanged;
             _session.Load(SceneManager.GetActiveScene().buildIndex);
 
-            var health = GetComponent<HealthComponent>();
+            _health = GetComponent<HealthComponent>();
 
-            var sessionHP = _session.GetValue<int>("Hp");
+            var sessionHP = _session.Data.HP;
             if (sessionHP > 0)
-                health.SetHealth(sessionHP);
+                _health.SetHealth(sessionHP);
 
             UpdateHeroWeapon();
+        }
+
+        private void OnDestroy()
+        {
+            _session.Data.Inventory.OnChanged -= OnInventoryChanged;
+        }
+
+
+        private void OnInventoryChanged(string id, int value)
+        {
+            if(id == "Sword")
+                UpdateHeroWeapon();
         }
 
         protected override void Update()
@@ -185,23 +199,19 @@ namespace Components
 
         public override void Attack()
         {
-            if(_session.GetValue<int>("Swords") > 0)
-            {
-                base.Attack();
-            }
+            if (SwordsCount <= 0) return;
+
+            base.Attack();
         }
 
-        public void UpdateHeroWeapon()
+        private void UpdateHeroWeapon()
         {
-            var count = _session.GetValue<int>("Swords");
-
-            Animator.runtimeAnimatorController = count > 0 ? _armed : _unarmed;
+            Animator.runtimeAnimatorController = SwordsCount > 0 ? _armed : _unarmed;
         }
 
         public void OnHealthChanged(int currentHealth)
         {
-            //_session.Data.Hp = currentHealth;
-            _session.SetValue<int>("Hp", currentHealth);
+            _session.Data.HP = currentHealth;
         }
 
         /// <summary>
@@ -217,15 +227,14 @@ namespace Components
         /// </summary>
         public IEnumerator Throw()
         {
-            var count = _session.GetValue<int>("Swords");
-            if (count <= 1) yield break;
+            if (SwordsCount <= 1) yield break;
 
             if (_throwCooldown.IsReady)
             {
                 Animator.SetTrigger(_throwTrigger);
                 _throwCooldown.Reset();
 
-                _session.SetValue<int>("Swords", count - 1);
+                _session.Data.Inventory.Remove("Sword", 1);
             }
 
             yield return null;
@@ -252,9 +261,7 @@ namespace Components
         public override void TakeDamage()
         {
             base.TakeDamage();
-            var count = _session.GetValue<int>("Coins");
-
-            if (count > 0)
+            if (CoinsCount > 0)
             {
                 SpawnCoins();
             }
@@ -262,13 +269,28 @@ namespace Components
 
         private void SpawnCoins()
         {
-            var count = _session.GetValue<int>("Coins");
-            var numCoinsToDrop = Mathf.Min(count, 5);
-
-            _session.SetValue<int>("Coins", count - numCoinsToDrop);
+            var numCoinsToDrop = Mathf.Min(CoinsCount, 5);
+            _session.Data.Inventory.Remove("Coin", numCoinsToDrop);
 
             _hitDrop.SetCount(numCoinsToDrop);
             _hitDrop.CalculateDrop();
+        }
+
+        public void AddInInventory(string id, int value)
+        {
+            _session.Data.Inventory.Add(id, value);
+        }
+
+        public void UsePotion ()
+        {
+            var id = _session.Data.Inventory.IsPresent("HealthPotion");
+            if(id != null)
+            {
+                var item = _session.Data.Inventory.GetItem((Guid)id);
+                _health.ModifyHealth(item.Value);
+
+                _session.Data.Inventory.Remove(item.guid, item.Value);
+            }
         }
 
         protected override void OnDrawGizmos()

@@ -16,8 +16,8 @@ GameObject:
   - component: {fileID: -3676973972351668154}
   - component: {fileID: 468561209328557645}
   - component: {fileID: 6900163592757422907}
-  - component: {fileID: 5869826107365968229}
   - component: {fileID: 11807727588208899}
+  - component: {fileID: 7265179446134450922}
   m_Layer: 0
   m_Name: StuckedSword
   m_TagString: Untagged
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1488238611
-  m_SortingLayer: 5
+  m_SortingLayer: 7
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: dac3cb9d6d4b3204d83a56beeca11582, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -219,7 +219,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timers:
-  - Delay: 30
+  - AutoStart: 0
+    Delay: 30
     OnTimesUp:
       m_PersistentCalls:
         m_Calls:
@@ -234,19 +235,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!114 &5869826107365968229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2460435021801762324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 692486f0984eb3348b190983b5687059, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _count: 1
 --- !u!114 &11807727588208899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,7 +254,7 @@ MonoBehaviour:
   _events:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5869826107365968229}
+      - m_Target: {fileID: 0}
         m_MethodName: AddSwords
         m_Mode: 1
         m_Arguments:
@@ -289,3 +277,17 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _onOutEvents: []
+--- !u!114 &7265179446134450922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2460435021801762324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4f4007829c892f4594d95b853c6df8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: Sword
+  _count: 1

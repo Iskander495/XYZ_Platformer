@@ -609,7 +609,6 @@ GameObject:
   - component: {fileID: 5481692013239965720}
   - component: {fileID: 5481692013239965726}
   - component: {fileID: 5481692013239965725}
-  - component: {fileID: 2000380822}
   - component: {fileID: 32204086663186993}
   m_Layer: 12
   m_Name: Hero
@@ -840,6 +839,21 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: c51cb0e2-fdfc-4d86-b491-94561a720b4d
     m_ActionName: HeroActionMap/SuperThrow[/Keyboard/shift]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5481692013239965722}
+        m_MethodName: OnUsePotion
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b4cd2866-729c-4422-8fd3-55e46a01d753
+    m_ActionName: HeroActionMap/UsePotion[/Keyboard/q]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: HeroActionMap
@@ -864,7 +878,7 @@ Rigidbody2D:
   m_Material: {fileID: 6200000, guid: f7b0165a9e3fdb943b1062d23f6709c5, type: 2}
   m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &5481692013239965720
 CapsuleCollider2D:
@@ -971,18 +985,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &2000380822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5481692013239965718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 488b3752d67b0a24397229438084ebf6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &32204086663186993
 MonoBehaviour:
   m_ObjectHideFlags: 0

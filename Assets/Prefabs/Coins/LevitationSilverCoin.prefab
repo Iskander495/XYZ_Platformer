@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 3742116425212522954}
   - component: {fileID: 3742116425212522955}
   - component: {fileID: 3742116425212522952}
-  - component: {fileID: 936802018668865619}
   - component: {fileID: 4591981312371460243}
   - component: {fileID: 4591981312958373060}
   - component: {fileID: 1200594931897216849}
+  - component: {fileID: 1453292628246212246}
   m_Layer: 0
   m_Name: LevitationSilverCoin
   m_TagString: Untagged
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1922660263
-  m_SortingLayer: 9
+  m_SortingLayer: 11
   m_SortingOrder: 0
   m_Sprite: {fileID: -2322180950842035098, guid: 2083dc11cc005904aba32ff934f75904,
     type: 3}
@@ -124,9 +124,9 @@ MonoBehaviour:
   _events:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 936802018668865619}
-        m_MethodName: AddCoins
-        m_Mode: 1
+      - m_Target: {fileID: 1453292628246212246}
+        m_MethodName: Add
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -173,19 +173,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objectToDestroy: {fileID: 3742116425212522966}
---- !u!114 &936802018668865619
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3742116425212522966}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e12f79f6874bba42a0aca52ff850d9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _score: 1
 --- !u!114 &4591981312371460243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,3 +255,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1453292628246212246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3742116425212522966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4f4007829c892f4594d95b853c6df8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: Coin
+  _count: 1

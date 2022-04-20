@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 8542535105970717805}
   - component: {fileID: 8542535105970717804}
   - component: {fileID: 8542535105970717807}
-  - component: {fileID: 5216211926293569012}
   - component: {fileID: 822322355052707145}
+  - component: {fileID: 8731699680770210553}
   m_Layer: 0
   m_Name: GoldCoin
   m_TagString: Untagged
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1922660263
-  m_SortingLayer: 7
+  m_SortingLayer: 11
   m_SortingOrder: 0
   m_Sprite: {fileID: 6582046967323461550, guid: 2083dc11cc005904aba32ff934f75904,
     type: 3}
@@ -116,12 +116,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tag: Player
+  _layer:
+    serializedVersion: 2
+    m_Bits: 4294967295
   _events:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5216211926293569012}
-        m_MethodName: AddCoins
-        m_Mode: 1
+      - m_Target: {fileID: 8731699680770210553}
+        m_MethodName: Add
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -168,19 +171,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objectToDestroy: {fileID: 8542535105970717809}
---- !u!114 &5216211926293569012
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8542535105970717809}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e12f79f6874bba42a0aca52ff850d9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _score: 10
 --- !u!114 &822322355052707145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,3 +217,17 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &8731699680770210553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8542535105970717809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4f4007829c892f4594d95b853c6df8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: Coin
+  _count: 10

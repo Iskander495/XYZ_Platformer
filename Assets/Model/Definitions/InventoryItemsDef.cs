@@ -15,7 +15,9 @@ namespace Model.Definitions
             foreach(var itemDef in _items)
             {
                 if (itemDef.Id == id)
+                {
                     return itemDef;
+                }
             }
 
             return default;
@@ -34,7 +36,6 @@ namespace Model.Definitions
 
         public string Id => _id;
         public bool IsStackable => _isStackable;
-
         public bool IsVoid => string.IsNullOrEmpty(_id);
     }
 }

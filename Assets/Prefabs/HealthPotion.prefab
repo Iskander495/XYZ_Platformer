@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1050640690}
   - component: {fileID: 1050640689}
   - component: {fileID: 1050640692}
+  - component: {fileID: 1087706882695841632}
   m_Layer: 0
   m_Name: HealthPotion
   m_TagString: Untagged
@@ -202,6 +203,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tag: Player
+  _layer:
+    serializedVersion: 2
+    m_Bits: 4294967295
   _events:
   - m_PersistentCalls:
       m_Calls:
@@ -216,8 +220,8 @@ MonoBehaviour:
           m_StringArgument: taked
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1050640689}
-        m_MethodName: ApplyHealthDelta
+      - m_Target: {fileID: 1087706882695841632}
+        m_MethodName: Add
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -227,3 +231,29 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1050640690}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onOutEvents: []
+--- !u!114 &1087706882695841632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7954136328852243404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4f4007829c892f4594d95b853c6df8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: HealthPotion
+  _count: 3
