@@ -214,12 +214,12 @@ namespace Components.Creatures
         }
 
         /// <summary>
-        /// Получение атаки
+        /// Атака
         /// </summary>
         public virtual void Attack()
         {
-            Animator.SetTrigger(_attackTrigger);
             Sounds.Play("Melee");
+            Animator.SetTrigger(_attackTrigger);
             _particles.Spawn("Attack");
         }
 
@@ -237,6 +237,11 @@ namespace Components.Creatures
         public virtual void SpawnFootDust()
         {
             _particles.Spawn("Run");
+        }
+
+        public virtual void OnDie()
+        {
+            Sounds.Play("Die");
         }
 
         protected virtual void OnDrawGizmos()

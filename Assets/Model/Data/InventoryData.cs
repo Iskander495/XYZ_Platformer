@@ -11,6 +11,8 @@ namespace Model.Data
     {
         [SerializeField] private List<InventoryItemData> _inventory = new List<InventoryItemData>();
 
+        public List<InventoryItemData> Inventory => _inventory;
+
         public delegate void OnInventoryChanged(string id, int value);
 
         public OnInventoryChanged OnChanged;
@@ -124,7 +126,7 @@ namespace Model.Data
             return null;
         }
 
-        private InventoryItemData GetItem(string id)
+        public InventoryItemData GetItem(string id)
         {
             foreach(var itemData in _inventory)
             {

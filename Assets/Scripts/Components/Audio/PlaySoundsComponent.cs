@@ -10,9 +10,10 @@ namespace Components.Audio
         [SerializeField] private AudioSource _source;
         [SerializeField] private AudioData[] _sounds;
 
-
         public void Play(string id)
         {
+            if (!enabled) return;
+
             foreach(var sound in _sounds)
             {
                 if (!sound.Id.Equals(id)) continue;

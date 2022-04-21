@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2681948835109715551}
   - component: {fileID: 6614842585274499065}
   - component: {fileID: 4797383571185351155}
-  m_Layer: 11
+  m_Layer: 16
   m_Name: PearlSinusoidaProjectTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ MonoBehaviour:
   _tag: 
   _layer:
     serializedVersion: 2
-    m_Bits: 39424
+    m_Bits: 39680
   _events:
   - m_PersistentCalls:
       m_Calls:

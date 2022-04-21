@@ -96,6 +96,9 @@ namespace Components.Creatures
             StartState(GoToHero());
         }
 
+        /// <summary>
+        /// Разворот в сторону противника
+        /// </summary>
         private void LookAtHero()
         {
             var direction = GetDirectionToTarget();

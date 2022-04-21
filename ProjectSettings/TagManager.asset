@@ -23,7 +23,7 @@ TagManager:
   - Drop
   - Checkers
   - Wall
-  - 
+  - ProjectTile
   - 
   - 
   - 
@@ -75,4 +75,7 @@ TagManager:
     locked: 0
   - name: Coins
     uniqueID: 2372307033
+    locked: 0
+  - name: ProjectTile
+    uniqueID: 2057686987
     locked: 0

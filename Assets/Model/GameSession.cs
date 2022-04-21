@@ -1,4 +1,5 @@
 ﻿using Model.Data;
+using Model.Definitions;
 using System;
 using System.IO;
 using UnityEngine;
@@ -83,7 +84,22 @@ namespace Model
                 var json = File.ReadAllText($"session_{scene}.json");
                 var pd = JsonUtility.FromJson<PlayerData>(json);
 
-                this.Data = pd;
+                //this.Data = pd;
+
+                foreach(var item in pd.Inventory.Inventory)
+                {
+                    Data.Inventory.Add(item.Id, item.Value);
+                }
+
+                Data.HP = pd.HP;
+
+                /*
+                foreach (var defItem in DefsFacade.I.Items.ItemsForEditor) {
+                    var item = Data.Inventory.GetItem(defItem.Id);
+                    if(item != null)
+                        Data.Inventory.OnChanged?.Invoke(item.Id, item.Value);
+                }
+                */
             }
 
             UpdateUI();

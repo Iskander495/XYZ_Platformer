@@ -3,6 +3,7 @@ using Components.GameObjects;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Utils;
 
 namespace Components.Creatures 
@@ -20,6 +21,9 @@ namespace Components.Creatures
         [Header("Range")]
         [SerializeField] private SpawnComponent _rangeAttack;
         [SerializeField] private Cooldown _rangeCooldown;
+
+        [SerializeField] private UnityEvent _onMeleeAttack;
+        [SerializeField] private UnityEvent _onRangeAttack;
 
         private static readonly int Melee = Animator.StringToHash("melee");
         private static readonly int Range = Animator.StringToHash("range");
@@ -57,12 +61,14 @@ namespace Components.Creatures
         {
             _meleeCooldown.Reset();
             _animator.SetTrigger(Melee);
+            _onMeleeAttack?.Invoke();
         }
 
         private void RangeAttack()
         {
-                _rangeCooldown.Reset();
-                _animator.SetTrigger(Range);
+            _rangeCooldown.Reset();
+            _animator.SetTrigger(Range);
+            _onRangeAttack?.Invoke();
         }
 
         public void OnMeleeAttack()
