@@ -6169,7 +6169,7 @@ Transform:
   - {fileID: 623629558}
   - {fileID: 1590036527}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &519420033
 MonoBehaviour:
@@ -10334,11 +10334,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chest
       objectReference: {fileID: 0}
-    - target: {fileID: 2630926975347480615, guid: a1b79bc8a804f6243a70fe9ecfb7ee52,
-        type: 3}
-      propertyPath: _target
-      value: 
-      objectReference: {fileID: 2000380821}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1b79bc8a804f6243a70fe9ecfb7ee52, type: 3}
 --- !u!4 &2075318030 stripped
@@ -10462,7 +10457,7 @@ PrefabInstance:
     - target: {fileID: 3076712832212394096, guid: 2d34afdab711215478e0183868fdae27,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3076712832212394096, guid: 2d34afdab711215478e0183868fdae27,
         type: 3}
@@ -10817,7 +10812,7 @@ PrefabInstance:
     - target: {fileID: 5481692013239965716, guid: 75376d5e0e37b4b41af657448a698c86,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5481692013239965716, guid: 75376d5e0e37b4b41af657448a698c86,
         type: 3}
@@ -11120,7 +11115,7 @@ PrefabInstance:
     - target: {fileID: 8811308789576246138, guid: 57de97104502298408c0ac7ab48a14b3,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8811308789576246138, guid: 57de97104502298408c0ac7ab48a14b3,
         type: 3}

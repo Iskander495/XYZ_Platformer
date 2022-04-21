@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 2630926975347480610}
   - component: {fileID: 2630926975347480609}
   - component: {fileID: 2630926975347480608}
-  - component: {fileID: 2630926975347480615}
   - component: {fileID: 5846927938823709086}
   - component: {fileID: 5439685558665879095}
+  - component: {fileID: 3759865650749612775}
   m_Layer: 0
   m_Name: Chest
   m_TagString: Untagged
@@ -121,20 +121,6 @@ MonoBehaviour:
     onComlpeteEvent:
       m_PersistentCalls:
         m_Calls: []
---- !u!114 &2630926975347480615
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2630926975347480614}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7431fd931337e82438438c2423c3be46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _perk: 0
-  _target: {fileID: 0}
 --- !u!114 &5846927938823709086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,6 +134,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tag: Player
+  _layer:
+    serializedVersion: 2
+    m_Bits: 4294967295
   _events:
   - m_PersistentCalls:
       m_Calls:
@@ -162,9 +151,9 @@ MonoBehaviour:
           m_StringArgument: open
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2630926975347480615}
-        m_MethodName: GivePerk
-        m_Mode: 1
+      - m_Target: {fileID: 3759865650749612775}
+        m_MethodName: Add
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -173,6 +162,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _onOutEvents: []
 --- !u!61 &5439685558665879095
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -199,3 +189,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.9391365, y: 0.7606001}
   m_EdgeRadius: 0
+--- !u!114 &3759865650749612775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2630926975347480614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4f4007829c892f4594d95b853c6df8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: Sword
+  _count: 1

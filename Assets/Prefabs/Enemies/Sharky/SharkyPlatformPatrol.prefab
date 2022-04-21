@@ -451,6 +451,7 @@ GameObject:
   - component: {fileID: 1661300556181427421}
   - component: {fileID: 1661300556181427423}
   - component: {fileID: 1661300556181427415}
+  - component: {fileID: 5222092355868219144}
   m_Layer: 11
   m_Name: SharkyPlatformPatrol
   m_TagString: Enemy
@@ -518,7 +519,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1488238611
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 41b4a39c16f82ea4d8830535b76c9324, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -599,6 +600,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0096600b4384e3f45bc438987e49aaeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _immortable: 0
   _health: 1
   _onDamage:
     m_PersistentCalls:
@@ -715,6 +717,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _groundCheck: {fileID: 1666549698354431829}
   _obstacleCheck: {fileID: 444987130279808806}
+--- !u!114 &5222092355868219144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1661300556181427360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5374cdf718f6b204499483e38448ad2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _source: {fileID: 0}
+  _sounds: []
 --- !u!1 &1661300556344442663
 GameObject:
   m_ObjectHideFlags: 0

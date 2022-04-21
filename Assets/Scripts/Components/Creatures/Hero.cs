@@ -136,12 +136,9 @@ namespace Components
         {
             if (!IsOnGround &&  _allowDoubleJump && !_isOnWall)
             {
-                // анимация прыжка
-                _particles.Spawn("Jump");
-                
                 // сбрасываем флаг, чтоб не было тройных и пр. прыжков
                 _allowDoubleJump = false;
-                
+                DoJumpVfx();
                 // "совершаем" двойной прыжок
                 return JumpSpeed;
             }
@@ -194,6 +191,12 @@ namespace Components
                     // проигрываем анимацию приземления
                       _particles.Spawn("SlamDown");
                 }
+
+                // при очень большой - ойкаем
+                if(contact.relativeVelocity.y >= 18f)
+                {
+                    Sounds.Play("SlamDown");
+                }
             }
         }
 
@@ -232,6 +235,7 @@ namespace Components
             if (_throwCooldown.IsReady)
             {
                 Animator.SetTrigger(_throwTrigger);
+                Sounds.Play("Range");
                 _throwCooldown.Reset();
 
                 _session.Data.Inventory.Remove("Sword", 1);

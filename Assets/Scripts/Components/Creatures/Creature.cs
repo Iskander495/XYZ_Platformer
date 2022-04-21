@@ -1,7 +1,6 @@
-﻿using Components.Collision;
+﻿using Components.Audio;
+using Components.Collision;
 using Components.GameObjects;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Components.Creatures
@@ -65,6 +64,7 @@ namespace Components.Creatures
         protected bool IsJumping;
         protected Rigidbody2D Rigidbody;
         protected Animator Animator;
+        protected PlaySoundsComponent Sounds;
 
         protected static readonly int _isGround = Animator.StringToHash("isGround");
         protected static readonly int _isRunning = Animator.StringToHash("isRunning");
@@ -77,6 +77,7 @@ namespace Components.Creatures
             _particles = GetComponent<SpawnListComponent>();
             Rigidbody = GetComponent<Rigidbody2D>();
             Animator = GetComponent<Animator>();
+            Sounds = GetComponent<PlaySoundsComponent>();
         }
 
         protected virtual void Update()
@@ -147,10 +148,16 @@ namespace Components.Creatures
             {
                 // то просто прыгаем
                 yVelocity = JumpSpeed;
-                _particles.Spawn("Jump");
+                DoJumpVfx();
             }
 
             return yVelocity;
+        }
+
+        protected virtual void DoJumpVfx()
+        {
+            _particles.Spawn("Jump");
+            Sounds.Play("Jump");
         }
 
         /// <summary>
@@ -212,6 +219,7 @@ namespace Components.Creatures
         public virtual void Attack()
         {
             Animator.SetTrigger(_attackTrigger);
+            Sounds.Play("Melee");
             _particles.Spawn("Attack");
         }
 
