@@ -4,21 +4,24 @@ using UnityEngine;
 
 namespace Model.Definitions.Editor
 {
-    //[CustomPropertyDrawer(typeof(InventoryIdAttribute))]
+    [CustomPropertyDrawer(typeof(InventoryIdAttribute))]
     public class InventoryIdAttributeDrawer : PropertyDrawer
     {
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             var defs = DefsFacade.I.Items.ItemsForEditor;
             var ids = new List<string>();
-            foreach(var def in defs)
+
+            foreach (var itemDefs in defs)
             {
-                ids.Add(def.Id);
+                ids.Add(itemDefs.Id);
             }
 
-            var index = Mathf.Max(ids.IndexOf(property.stringValue), 0);
-            EditorGUI.Popup(position, property.displayName, index, ids.ToArray());
+            var index = ids.IndexOf(property.stringValue);
+
+            index = Mathf.Max(EditorGUI.Popup(position, property.displayName, index, ids.ToArray()), 0);
             property.stringValue = ids[index];
         }
     }
+
 }

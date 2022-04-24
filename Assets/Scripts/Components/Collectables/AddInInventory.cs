@@ -1,19 +1,21 @@
 ﻿using Components;
+using Model.Data;
 using Model.Definitions;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AddInInventory : MonoBehaviour
+namespace Components.Collectables
 {
-    [InventoryId] [SerializeField] private string _id;
-    [SerializeField] private int _count;
-
-    public void Add(GameObject go)
+    public class AddInInventory : MonoBehaviour
     {
-        var hero = go.GetComponent<Hero>();
+        [InventoryId] [SerializeField] private string _id;
+        [SerializeField] private int _count;
 
-        if (hero != null)
-            hero.AddInInventory(_id, _count);
+        public void Add(GameObject go)
+        {
+            var hero = go.GetInterface<ICanAddInInventory>();
+            hero?.AddInInventory(_id, _count);
+        }
     }
 }

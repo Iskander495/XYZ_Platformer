@@ -2,6 +2,7 @@
 using Components.Collision;
 using Components.Creatures;
 using Model;
+using Model.Data;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ using Utils;
 
 namespace Components
 {
-    public class Hero : Creature
+    public class Hero : Creature , ICanAddInInventory
     {
         [Header("Properties")]
         /// <summary>
