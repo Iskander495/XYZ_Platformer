@@ -1,13 +1,11 @@
 ﻿using Components.Collision;
 using Components.GameObjects;
 using System.Collections;
-using System.Collections.Generic;
-using System.Reflection;
 using UnityEngine;
 
-namespace Components.Creatures
+namespace Components.Creatures.Mobs
 {
-    public class MobAI : MonoBehaviour
+    public class MobAI : BaseAI
     {
         /// <summary>
         /// Зона поиска
@@ -17,10 +15,6 @@ namespace Components.Creatures
         /// Зона атаки
         /// </summary>
         [SerializeField] private LayerCheck _canAttack;
-        /// <summary>
-        /// Цель атаки
-        /// </summary>
-        private GameObject _targetAttack;
         /// <summary>
         /// Время задержки до атаки
         /// </summary>
@@ -37,29 +31,17 @@ namespace Components.Creatures
         [SerializeField] private LayerMask _layerOnDie;
 
         [SerializeField] private SpawnListComponent _particles;
-        [SerializeField] private Creature _creature;
-        [SerializeField] private Animator _animator;
-
-        /// <summary>
-        /// Признак смерти
-        /// </summary>
-        private bool _isDead;
-
-        private int _dieLayer;
 
         private Patrol _patrol;
 
-        private Coroutine _currentCoroutine;
 
-        private static readonly int _isDeadKey = Animator.StringToHash("isDead");
-
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+
             _dieLayer = Mathf.RoundToInt(Mathf.Log(_layerOnDie.value, 2));
 
             _particles = GetComponent<SpawnListComponent>();
-            _creature = GetComponent<Creature>();
-            _animator = GetComponent<Animator>();
             _patrol = GetComponent<Patrol>();
         }
 
@@ -143,54 +125,6 @@ namespace Components.Creatures
             }
 
             StartState(GoToHero());
-        }
-
-        private void SetDirectionToTarget()
-        {
-            // получаем вектор направления движения
-            var direction = GetDirectionToTarget();
-            _creature.SetDirection(direction.normalized);
-        }
-
-        private Vector2 GetDirectionToTarget()
-        {
-            var direction = _targetAttack.transform.position - transform.position;
-            direction.y = 0;
-            return direction.normalized;
-        }
-
-        public void OnDie()
-        {
-            _isDead = true;
-            _animator.SetBool(_isDeadKey, true);
-
-            if (_currentCoroutine != null)
-                StopCoroutine(_currentCoroutine);
-
-            //GetComponent<SpriteRenderer>().sortingLayerID = _layerOnDie;
-            gameObject.layer = _dieLayer;
-            gameObject.tag = "Untagged";
-            _creature.SetDirection(Vector2.zero);
-        }
-
-        private void Stop()
-        {
-            if (_currentCoroutine != null)
-                StopCoroutine(_currentCoroutine);
-
-            _creature.SetDirection(Vector2.zero);
-        }
-
-        private void StartState(IEnumerator coroutine)
-        {
-            _creature.SetDirection(Vector2.zero);
-
-            if(_currentCoroutine != null)
-                StopCoroutine(_currentCoroutine);
-
-            if (!enabled) return;
-
-            _currentCoroutine = StartCoroutine(coroutine);
         }
     }
 }
