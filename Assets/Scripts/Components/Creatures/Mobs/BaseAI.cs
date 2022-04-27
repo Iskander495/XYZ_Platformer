@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Components.Collision;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +10,10 @@ namespace Components.Creatures.Mobs
         [SerializeField] protected Creature _creature;
         [SerializeField] protected Animator _animator;
         /// <summary>
+        /// Зона ближней атаки
+        /// </summary>
+        [SerializeField] protected LayerCheck _meleeAttackZone;
+        /// <summary>
         /// Цель атаки
         /// </summary>
         protected GameObject _targetAttack;
@@ -18,6 +23,7 @@ namespace Components.Creatures.Mobs
         protected bool _isDead;
 
         protected int _dieLayer;
+        protected bool _canMeleeAttack => _meleeAttackZone.IsTouchingLayer;
 
         protected static readonly int _isDeadKey = Animator.StringToHash("isDead");
 

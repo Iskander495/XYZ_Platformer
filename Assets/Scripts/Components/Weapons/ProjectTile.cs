@@ -6,7 +6,6 @@ namespace Components.Weapons
 {
     public class ProjectTile : BaseProjectTile
     {
-
         protected override void Start()
         {
             base.Start();

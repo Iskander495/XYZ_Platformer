@@ -104,6 +104,9 @@ namespace Components
         {
             if(id == "Sword")
                 UpdateHeroWeapon();
+
+            if(id == "HP")
+                _health.SetHealth(_session.Data.HP);
         }
 
         protected override void Update()

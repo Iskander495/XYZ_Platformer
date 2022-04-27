@@ -12,10 +12,6 @@ namespace Components.Creatures.Mobs
         /// </summary>
         [SerializeField] private LayerCheck _vision;
         /// <summary>
-        /// Зона атаки
-        /// </summary>
-        [SerializeField] private LayerCheck _canAttack;
-        /// <summary>
         /// Время задержки до атаки
         /// </summary>
         [SerializeField] private float _alarmDelay = 0.5f;
@@ -96,7 +92,7 @@ namespace Components.Creatures.Mobs
             while (_vision.IsTouchingLayer)
             {
                 // если цель в зоне поражения - атакуем
-                if (_canAttack.IsTouchingLayer)
+                if (_canMeleeAttack)
                 {
                     StartState(Attack());
                 }
@@ -117,7 +113,7 @@ namespace Components.Creatures.Mobs
 
         private IEnumerator Attack()
         {
-            while (_canAttack.IsTouchingLayer)
+            while (_canMeleeAttack)
             {
                 _creature.Attack();
 
