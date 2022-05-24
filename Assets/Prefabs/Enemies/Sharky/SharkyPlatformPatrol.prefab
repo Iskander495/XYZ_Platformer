@@ -693,8 +693,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74bf00e88344c1840a234a09964c55a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _creature: {fileID: 1661300556181427421}
+  _animator: {fileID: 1661300556181427422}
+  _meleeAttackZone: {fileID: 2145005324235754077}
   _vision: {fileID: 8008366104558656196}
-  _canAttack: {fileID: 2145005324235754077}
   _alarmDelay: 1
   _attackCooldown: 1
   _missHeroCooldown: 0.5
@@ -702,8 +704,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   _particles: {fileID: 1661300556181427420}
-  _creature: {fileID: 1661300556181427421}
-  _animator: {fileID: 1661300556181427422}
 --- !u!114 &1661300556181427415
 MonoBehaviour:
   m_ObjectHideFlags: 0

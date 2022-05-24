@@ -1,4 +1,5 @@
-﻿using Components.GameObjects;
+﻿using Components.Collision;
+using Components.GameObjects;
 using Model.Data;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,9 +7,10 @@ using UnityEngine;
 
 namespace Components.Creatures.Mobs
 {
-    public class NonAi : BaseAI
+    public class PinkStarAi : BaseAI
     {
         [SerializeField] private BaseAttack _rangeAttack;
+        [SerializeField] private LayerCheck _obstacleCheck;
 
         private Rigidbody2D _rigidbody;
 
@@ -28,14 +30,22 @@ namespace Components.Creatures.Mobs
             while (enabled)
             {
                 var randomDirection = Random.Range(-1, 2);
-                var direction = new Vector2(randomDirection, 0);
-                _creature.SetDirection(direction);
+                var direction = transform.position;
 
                 var action = Random.Range(1, 4);
 
                 if (_canMeleeAttack)
                 {
                     action = 1;
+                }
+                else if (_obstacleCheck.IsTouchingLayer)
+                {
+                    _creature.SetDirection(direction.normalized * -1);
+                }
+                else
+                {
+                    direction = new Vector2(randomDirection, 0);
+                    _creature.SetDirection(direction);
                 }
 
                 switch (action)

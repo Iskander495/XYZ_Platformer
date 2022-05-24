@@ -19,9 +19,9 @@ GameObject:
   - component: {fileID: 5727812114943838055}
   - component: {fileID: 3295813541604613198}
   - component: {fileID: 7642909081835914423}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: CannonBallTileProject
-  m_TagString: Untagged
+  m_TagString: TileProject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

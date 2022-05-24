@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4178040004903871808}
   - component: {fileID: 4178040004903871811}
   - component: {fileID: 4178040004903871810}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Teleport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,7 +155,7 @@ GameObject:
   - component: {fileID: 2788276434127353744}
   - component: {fileID: 1643603385755728229}
   - component: {fileID: 2167508917158449605}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
