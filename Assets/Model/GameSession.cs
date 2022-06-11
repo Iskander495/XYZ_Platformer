@@ -45,6 +45,8 @@ namespace Model
             {
                 DontDestroyOnLoad(this);
             }
+
+            Data.Inventory.OnChanged += OnInventoryChanged;
         }
 
         private void LoadUIComponents()
@@ -107,11 +109,17 @@ namespace Model
             //this.Data.Perks = gs.Data.Perks;
         }
 
+        private void OnInventoryChanged(string id, int value)
+        {
+            UpdateUI();
+        }
+
+
         private void UpdateUI()
         {
-            //_swordCount.GetComponent<UnityEngine.UI.Text>().text = _data.Swords.ToString();
-            //_coinsCount.GetComponent<UnityEngine.UI.Text>().text = _data.Coins.ToString();
-            //_hpCount.GetComponent<UnityEngine.UI.Text>().text = _data.Hp.ToString();
+            _swordCount.GetComponent<UnityEngine.UI.Text>().text = Data.Inventory.Count("Sword").ToString();
+            _coinsCount.GetComponent<UnityEngine.UI.Text>().text = Data.Inventory.Count("Coin").ToString();
+            _hpCount.GetComponent<UnityEngine.UI.Text>().text = Data.Inventory.Count("HealthPotion").ToString();
         }
     }
 }
