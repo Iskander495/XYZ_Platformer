@@ -1,7 +1,7 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using Utils;
 
 namespace Components.GameObjects
 {
@@ -52,12 +52,11 @@ namespace Components.GameObjects
 
         private void Spawn(GameObject item)
         {
-            var instance = Instantiate(item, transform.position, Quaternion.identity);
+            var instance = SpawnUtils.Spawn(item, transform.position);
             var rigidBody = instance.GetComponent<Rigidbody2D>();
 
             var randomAngle = Random.Range(0, _sectorAngle);
             var forceVector = AngleToVectorInSector(randomAngle);
-
             rigidBody.AddForce(forceVector * _speed, ForceMode2D.Impulse);
         }
 

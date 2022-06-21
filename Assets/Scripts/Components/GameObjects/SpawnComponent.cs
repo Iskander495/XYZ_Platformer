@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using Utils;
 
 namespace Components.GameObjects
 {
@@ -13,7 +11,7 @@ namespace Components.GameObjects
         [ContextMenu("Spawn")]
         public void Spawn()
         {
-            var newObj = Instantiate(_prefab, _target.position, Quaternion.identity);
+            var newObj = SpawnUtils.Spawn(_prefab, _target.position);
             newObj.transform.localScale = _target.lossyScale;
             newObj.SetActive(true);
         }

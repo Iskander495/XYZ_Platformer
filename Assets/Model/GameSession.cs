@@ -3,6 +3,7 @@ using Model.Definitions;
 using System;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Model
 {
@@ -34,6 +35,7 @@ namespace Model
 
         public void Awake()
         {
+            LoadHud();
             LoadUIComponents();
 
             // если сессия уже существует в сцене (приехала из предыдущей сцены), эта сессия вторая, её нужно уничтожить
@@ -55,6 +57,11 @@ namespace Model
             _swordCount = GameObject.Find("SwordCount");
             _coinsCount = GameObject.Find("CoinsCount");
             _hpCount = GameObject.Find("HPCount");
+        }
+
+        private void LoadHud()
+        {
+            SceneManager.LoadScene("Hud", LoadSceneMode.Additive);
         }
 
         private bool IsSessionExit()

@@ -1,8 +1,5 @@
-﻿using Components;
-using Components.Collectables;
+﻿using Model.Data.Properties;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Model.Data
@@ -14,7 +11,7 @@ namespace Model.Data
 
         public InventoryData Inventory => _inventory;
 
-        public int HP;
+        public IntProperty HP = new IntProperty();
         
         public PlayerData Clone()
         {

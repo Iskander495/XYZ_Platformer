@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: PlayerDef
   m_EditorClassIdentifier: 
   _inventorySize: 5
+  _maxHealth: 10

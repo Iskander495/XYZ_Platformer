@@ -1,9 +1,8 @@
 ﻿using Components.UI;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Utils;
 
 public class MainMenuWindow : AnimatedWindow
 {
@@ -11,9 +10,7 @@ public class MainMenuWindow : AnimatedWindow
 
     public void OnShowSettings()
     {
-        var window = Resources.Load<GameObject>("UI/SettingsWindow");
-        var canvas = FindObjectOfType<Canvas>();
-        Instantiate(window, canvas.transform);
+        WindowUtils.CreateWindow("UI/SettingsWindow");
     }
 
     public void OnStartGame()

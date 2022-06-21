@@ -16,7 +16,9 @@ namespace Components.Creatures
         [SerializeField] private UnityEvent _onHealth;
         [SerializeField] public UnityEvent _onDie;
 
-        [SerializeField] private HealthChangeEvent _onHealthChange;
+        [SerializeField] public HealthChangeEvent _onHealthChange;
+
+        public int Health => _health;
 
         public void ModifyHealth(int healthDelta)
         {

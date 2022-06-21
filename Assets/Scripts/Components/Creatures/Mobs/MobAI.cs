@@ -28,6 +28,8 @@ namespace Components.Creatures.Mobs
 
         [SerializeField] private SpawnListComponent _particles;
 
+        [SerializeField] private float _horizontalTrashold = 0.2f;
+
         private Patrol _patrol;
 
 
@@ -98,7 +100,11 @@ namespace Components.Creatures.Mobs
                 }
                 else // иначе движемся к ней
                 {
-                    SetDirectionToTarget();
+                    var horizontalDelta = Mathf.Abs(_targetAttack.transform.position.x - transform.position.x);
+                    if (horizontalDelta <= _horizontalTrashold)
+                        _creature.SetDirection(Vector2.zero);
+                    else
+                        SetDirectionToTarget();
                 }
 
                 yield return null;

@@ -87,7 +87,7 @@ namespace Components
 
             _health = GetComponent<HealthComponent>();
 
-            var sessionHP = _session.Data.HP;
+            var sessionHP = _session.Data.HP.Value;
             if (sessionHP > 0)
                 _health.SetHealth(sessionHP);
 
@@ -106,7 +106,7 @@ namespace Components
                 UpdateHeroWeapon();
 
             if(id == "HP")
-                _health.SetHealth(_session.Data.HP);
+                _health.SetHealth(_session.Data.HP.Value);
         }
 
         protected override void Update()
@@ -218,7 +218,7 @@ namespace Components
 
         public void OnHealthChanged(int currentHealth)
         {
-            _session.Data.HP = currentHealth;
+            _session.Data.HP.Value = currentHealth;
         }
 
         /// <summary>

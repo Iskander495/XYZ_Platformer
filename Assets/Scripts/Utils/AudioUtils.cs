@@ -8,7 +8,7 @@ namespace Utils
     {
         public static string SfxSourceTag = "SfxAudioSource";
 
-        public static AudioSource FindAudioSource()
+        public static AudioSource FindSfxSource()
         {
             return GameObject.FindWithTag(SfxSourceTag)?.GetComponent<AudioSource>();
         }

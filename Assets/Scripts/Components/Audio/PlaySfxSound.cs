@@ -13,7 +13,7 @@ public class PlaySfxSound : MonoBehaviour
     public void Play()
     {
         if (_source == null)
-            _source = AudioUtils.FindAudioSource();
+            _source = AudioUtils.FindSfxSource();
 
         _source.PlayOneShot(_clip);
     }
