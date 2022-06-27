@@ -759,6 +759,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 1
   Speed: 6
+  Boost: 1
+  _boostCooldown:
+    value: 5
   JumpSpeed: 15
   DamageJumpSpeed: 8
   _invertScale: 0
@@ -777,6 +780,7 @@ MonoBehaviour:
   _defaultGravityScale: 4
   _wallCheck: {fileID: 3874026614132718430}
   _hitDrop: {fileID: 2592621873535293267}
+  _throwSpawner: {fileID: 5890619927499713634}
   _armed: {fileID: 9100000, guid: e57bb3281d7e9fe4ca308ab1c83feff9, type: 2}
   _unarmed: {fileID: 9100000, guid: 4464cee677c3aa7488289a85707eda5b, type: 2}
 --- !u!114 &5481692013239965721
@@ -883,7 +887,7 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5481692013239965722}
-        m_MethodName: OnUsePotion
+        m_MethodName: OnNextItem
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1094,7 +1098,7 @@ GameObject:
   - component: {fileID: 73749489406646297}
   - component: {fileID: 5890619927499713634}
   m_Layer: 0
-  m_Name: ThrowSwordSpawnPosition
+  m_Name: ThrowSpawnPosition
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0

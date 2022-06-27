@@ -59,7 +59,6 @@ AnimatorStateMachine:
   m_AnyStateTransitions:
   - {fileID: 6735503559618520149}
   - {fileID: 8452788785476417583}
-  - {fileID: -5851075551918554691}
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []

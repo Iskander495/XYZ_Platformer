@@ -1,8 +1,10 @@
 ﻿using Components.Collectables;
 using Components.Collision;
 using Components.Creatures;
+using Components.GameObjects;
 using Model;
 using Model.Data;
+using Model.Definitions;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,7 +22,6 @@ namespace Components
         /// На пересечение с каким слоем будет производиться проверка
         /// </summary>
         [SerializeField] private LayerMask _interactionLayerMask;
-
 
         /// <summary>
         /// Кулдаун для броска меча
@@ -57,6 +58,7 @@ namespace Components
         /// </summary>
         [SerializeField] private LayerCheck _wallCheck;
         [SerializeField] private PropabilityDropComponent _hitDrop;
+        [SerializeField] private SpawnComponent _throwSpawner;
 
         [Space]
         [Header("Animation")]
@@ -71,8 +73,23 @@ namespace Components
         protected static readonly int _throwTrigger = Animator.StringToHash("isThrow");
         protected static readonly int _wallKey = Animator.StringToHash("isOnWall");
 
-        private int SwordsCount => _session.Data.Inventory.Count("Sword");
+        private const string SwordId = "Sword";
+        private int SwordsCount => _session.Data.Inventory.Count(SwordId);
         private int CoinsCount => _session.Data.Inventory.Count("Coin");
+
+        private string SelectedTrowItemId => _session.QuickInventory.SelectedItem.Id;
+
+        private bool CanThrow
+        {
+            get
+            {
+                if (SelectedTrowItemId == SwordId)
+                    return SwordsCount > 1;
+
+                var def = DefsFacade.I.Items.Get(SelectedTrowItemId);
+                return def.HasTag(ItemTag.Throwable);
+            }
+        }
 
         protected override void Awake()
         {
@@ -99,10 +116,9 @@ namespace Components
             _session.Data.Inventory.OnChanged -= OnInventoryChanged;
         }
 
-
         private void OnInventoryChanged(string id, int value)
         {
-            if(id == "Sword")
+            if(id == SwordId)
                 UpdateHeroWeapon();
 
             if(id == "HP")
@@ -226,7 +242,15 @@ namespace Components
         /// </summary>
         public void OnDoThrow()
         {
-            _particles.Spawn("Throw");
+            //_particles.Spawn("Throw");
+            
+            var throwableId = _session.QuickInventory.SelectedItem.Id;
+            var throwableDef = DefsFacade.I.ThrowableItems.Get(throwableId);
+
+            _throwSpawner.SetPrefab(throwableDef.Projectile);
+            _throwSpawner.Spawn();
+
+            _session.Data.Inventory.Remove(throwableId, 1);
         }
 
         /// <summary>
@@ -234,15 +258,15 @@ namespace Components
         /// </summary>
         public IEnumerator Throw()
         {
-            if (SwordsCount <= 1) yield break;
+            //if (SwordsCount <= 1) yield break;
 
-            if (_throwCooldown.IsReady)
+            if (_throwCooldown.IsReady && CanThrow)
             {
                 Animator.SetTrigger(_throwTrigger);
                 Sounds.Play("Range");
                 _throwCooldown.Reset();
 
-                _session.Data.Inventory.Remove("Sword", 1);
+                //_session.Data.Inventory.Remove("Sword", 1);
             }
 
             yield return null;
@@ -289,16 +313,21 @@ namespace Components
             _session.Data.Inventory.Add(id, value);
         }
 
-        public void UsePotion ()
-        {
-            var id = _session.Data.Inventory.IsPresent("HealthPotion");
-            if(id != null)
-            {
-                var item = _session.Data.Inventory.GetItem((Guid)id);
-                _health.ModifyHealth(item.Value);
+        //public void UsePotion ()
+        //{
+        //    var id = _session.Data.Inventory.IsPresent("HealthPotion");
+        //    if(id != null)
+        //    {
+        //        var item = _session.Data.Inventory.GetItem((Guid)id);
+        //        _health.ModifyHealth(item.Value);
 
-                _session.Data.Inventory.Remove(item.guid, item.Value);
-            }
+        //        _session.Data.Inventory.Remove(item.guid, item.Value);
+        //    }
+        //}
+
+        public void NextItem()
+        {
+            _session.QuickInventory.SetNextItem();
         }
 
         protected override void OnDrawGizmos()

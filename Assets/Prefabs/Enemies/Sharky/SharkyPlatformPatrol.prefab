@@ -673,6 +673,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 1
   Speed: 2
+  Boost: 0
+  _boostCooldown:
+    value: 5
   JumpSpeed: 5
   DamageJumpSpeed: 1
   _invertScale: 1
@@ -705,6 +708,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   _particles: {fileID: 1661300556181427420}
+  _horizontalTrashold: 0.2
 --- !u!114 &1661300556181427415
 MonoBehaviour:
   m_ObjectHideFlags: 0

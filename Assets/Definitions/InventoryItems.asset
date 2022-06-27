@@ -14,10 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _items:
   - _id: Coin
-    _isStackable: 1
+    _icon: {fileID: -2322180950842035098, guid: 2083dc11cc005904aba32ff934f75904,
+      type: 3}
+    _tags: 00000000
   - _id: Sword
-    _isStackable: 1
+    _icon: {fileID: 21300000, guid: 357025879809aae45a6b34ee709bb7cd, type: 3}
+    _tags: 010000000000000002000000
   - _id: Key
-    _isStackable: 0
+    _icon: {fileID: 21300000, guid: 3d7691837cd723f46a0fbc1eac39224a, type: 3}
+    _tags: 
   - _id: HealthPotion
-    _isStackable: 0
+    _icon: {fileID: -3065595510956808684, guid: 1d26b4cede560484bb2599dd0d8fd3b3,
+      type: 3}
+    _tags: 
+  - _id: PearlProjectTile
+    _icon: {fileID: 21300000, guid: f87099474cf69d04598581a1d9774ab0, type: 3}
+    _tags: 010000000000000002000000
+  - _id: BoostPotion
+    _icon: {fileID: -8438763151253471919, guid: 1d26b4cede560484bb2599dd0d8fd3b3,
+      type: 3}
+    _tags: 

@@ -46,7 +46,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "UsePotion",
+                    "name": "NextItem",
                     "type": "Button",
                     "id": "b4cd2866-729c-4422-8fd3-55e46a01d753",
                     "expectedControlType": "Button",
@@ -216,7 +216,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "UsePotion",
+                    "action": "NextItem",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

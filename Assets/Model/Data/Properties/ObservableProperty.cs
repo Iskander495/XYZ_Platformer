@@ -17,6 +17,14 @@ namespace Model.Data.Properties {
             return new ActionDisposable(() => OnChanged -= call);
         }
 
+        public IDisposable SubscribeAndInvoke(OnPropertyChanged call)
+        {
+            OnChanged += call;
+            var dispose = new ActionDisposable(() => OnChanged -= call);
+            call(_value, _value);
+            return dispose;
+        }
+
         public virtual TPropertyType Value
         {
             get => _value;
@@ -26,8 +34,8 @@ namespace Model.Data.Properties {
                 if (isEquals) return;
 
                 var oldValue = _value;
-                InvokeChangedEvent(_value, oldValue);
                 _value = value;
+                InvokeChangedEvent(_value, oldValue);
             }
         }
 

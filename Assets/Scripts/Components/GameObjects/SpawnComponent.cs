@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Utils;
 
 namespace Components.GameObjects
@@ -14,6 +15,11 @@ namespace Components.GameObjects
             var newObj = SpawnUtils.Spawn(_prefab, _target.position);
             newObj.transform.localScale = _target.lossyScale;
             newObj.SetActive(true);
+        }
+
+        internal void SetPrefab(GameObject prefab)
+        {
+            _prefab = prefab;
         }
     }
 }

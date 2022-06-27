@@ -2,6 +2,7 @@
 using Components.Collision;
 using Components.GameObjects;
 using UnityEngine;
+using Utils;
 
 namespace Components.Creatures
 {
@@ -16,6 +17,13 @@ namespace Components.Creatures
         /// Скорость передвижения
         /// </summary>
         [SerializeField] protected float Speed;
+
+        [SerializeField] protected float Boost = 1f;
+        /// <summary>
+        /// Кулдаун для броска меча
+        /// </summary>
+        [SerializeField] private Cooldown _boostCooldown;
+
         /// <summary>
         /// Скорость (импульс) прыжка
         /// </summary>
@@ -87,7 +95,7 @@ namespace Components.Creatures
 
         private void FixedUpdate()
         {
-            var xVelocity = Direction.x * Speed;
+            var xVelocity = Direction.x * Speed * GetBoost();
             var yVelocity = CalculateYVelocity();
 
             Rigidbody.velocity = new Vector2(xVelocity, yVelocity);
@@ -98,6 +106,26 @@ namespace Components.Creatures
             Animator.SetBool(_isGround, IsOnGround);
 
             UpdateSpriteDirection(Direction);
+        }
+
+        internal void ApplyBoost(float boostValue)
+        {
+            if (_boostCooldown != null)
+            {
+                Boost = boostValue;
+                _boostCooldown.Reset();
+            }
+        }
+
+        protected float GetBoost()
+        {
+            if (_boostCooldown != null && _boostCooldown.IsReady)
+            {
+                Boost = 1;
+                _boostCooldown.Reset();
+            }
+
+            return Boost;
         }
 
         /// <summary>
