@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using Components.UI.Hud.Dialogs;
+using Model;
 using Model.Data;
 using Model.Definitions;
 using System;
@@ -8,7 +9,7 @@ using Utils.Disposables;
 
 namespace Components.UI.Hud.QuickInventory
 {
-    public class InventoryItemWidget : MonoBehaviour
+    public class InventoryItemWidget : MonoBehaviour, IItemRenderer<InventoryItemData>
     {
         [SerializeField] private Image _icon;
         [SerializeField] private GameObject _selection;
@@ -23,7 +24,8 @@ namespace Components.UI.Hud.QuickInventory
         private void Start()
         {
             _session = FindObjectOfType<GameSession>();
-            _session.QuickInventory.SelectedIndex.SubscribeAndInvoke(OnIndexChanged);
+            var index = _session.QuickInventory.SelectedIndex;
+            _trash.Retain(index.SubscribeAndInvoke(OnIndexChanged));
         }
 
         private void OnIndexChanged(int newValue, int _)
@@ -37,6 +39,11 @@ namespace Components.UI.Hud.QuickInventory
             var def = DefsFacade.I.Items.Get(item.Id);
             _icon.sprite = def.Icon;
             _value.text = def.HasTag(ItemTag.Stackable) ? item.Value.ToString() : string.Empty;
+        }
+
+        private void OnDestroy()
+        {
+            _trash.Dispose();
         }
     }
 }

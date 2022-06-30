@@ -34,3 +34,6 @@ MonoBehaviour:
     _icon: {fileID: -8438763151253471919, guid: 1d26b4cede560484bb2599dd0d8fd3b3,
       type: 3}
     _tags: 
+  - _id: Diamond
+    _icon: {fileID: 5489425550423852611, guid: 358b40a2e86cb024282198c25ea4a115, type: 3}
+    _tags: 

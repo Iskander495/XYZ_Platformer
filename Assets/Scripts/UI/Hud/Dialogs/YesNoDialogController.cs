@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Components.Dialogs
+namespace Components.UI.Hud.Dialogs
 {
     public class YesNoDialogController : MonoBehaviour
     {

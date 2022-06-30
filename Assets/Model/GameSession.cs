@@ -1,9 +1,9 @@
 ﻿using Model.Data;
-using Model.Definitions;
 using System;
 using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Utils.Disposables;
 
 namespace Model
 {
@@ -13,6 +13,8 @@ namespace Model
         [SerializeField] private PlayerData _data;
         public PlayerData Data => _data;
         private PlayerData _save;
+
+        private readonly CompositeDisposable _trash = new CompositeDisposable();
         public QuickInventoryModel QuickInventory { get; private set; }
 
         public void Awake()
@@ -37,7 +39,8 @@ namespace Model
 
         private void InitModels()
         {
-            QuickInventory = new QuickInventoryModel(Data);
+            QuickInventory = new QuickInventoryModel(_data);
+            _trash.Retain(QuickInventory);
         }
 
         private void LoadHud()
@@ -84,6 +87,11 @@ namespace Model
         private void OnInventoryChanged(string id, int value)
         {
             
+        }
+
+        private void OnDestroy()
+        {
+            _trash.Dispose();
         }
     }
 }

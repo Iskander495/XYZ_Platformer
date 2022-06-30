@@ -1,1 +1,1 @@
-{"_inventory":{"_inventory":[{"Id":"Coin","Value":85},{"Id":"Sword","Value":6},{"Id":"HealthPotion","Value":3}]},"HP":3}
+{"_inventory":{"_inventory":[{"Id":"Coin","Value":10},{"Id":"Sword","Value":10},{"Id":"Key","Value":1},{"Id":"HealthPotion","Value":1},{"Id":"PearlProjectTile","Value":30},{"Id":"BoostPotion","Value":30}]},"HP":{"_value":5}}

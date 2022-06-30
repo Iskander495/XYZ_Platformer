@@ -713,7 +713,7 @@ PrefabInstance:
     - target: {fileID: 5481692013239965716, guid: 75376d5e0e37b4b41af657448a698c86,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.72
+      value: 28.4
       objectReference: {fileID: 0}
     - target: {fileID: 5481692013239965716, guid: 75376d5e0e37b4b41af657448a698c86,
         type: 3}
@@ -772,12 +772,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75376d5e0e37b4b41af657448a698c86, type: 3}
---- !u!1 &267060588 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5481692013239965718, guid: 75376d5e0e37b4b41af657448a698c86,
-    type: 3}
-  m_PrefabInstance: {fileID: 267060587}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &267060590 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5481692013239965716, guid: 75376d5e0e37b4b41af657448a698c86,
@@ -10433,7 +10427,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 829244693}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.9799998, y: 1.87, z: -10}
+  m_LocalPosition: {x: 31.14, y: 1.87, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 211629464}
@@ -12122,7 +12116,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1430490629}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.9260156, y: 1.901945, z: -10}
+  m_LocalPosition: {x: 31.14, y: 1.87, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1728276058}
@@ -17665,13 +17659,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3abb664b821b2646bb8296c23967234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Data:
+  _data:
     _inventory:
-      _inventory:
-      - Id: Coin
-        Value: 0
-      - Id: Sword
-        Value: 0
+      _inventory: []
     HP:
       _value: 0
 --- !u!4 &1728089043
@@ -18957,11 +18947,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1615544933}
     m_Modifications:
-    - target: {fileID: 3775797873678245568, guid: 68507745339e8c84e88684fa0de8fe70,
-        type: 3}
-      propertyPath: _target
-      value: 
-      objectReference: {fileID: 267060588}
     - target: {fileID: 3775797873678245592, guid: 68507745339e8c84e88684fa0de8fe70,
         type: 3}
       propertyPath: m_Name
