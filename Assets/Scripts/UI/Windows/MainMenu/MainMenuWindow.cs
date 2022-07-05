@@ -13,6 +13,11 @@ public class MainMenuWindow : AnimatedWindow
         WindowUtils.CreateWindow("UI/SettingsWindow");
     }
 
+    public void OnShowLanguage()
+    {
+        WindowUtils.CreateWindow("UI/LocalizationWindow");
+    }
+
     public void OnStartGame()
     {
         _closeAction = () => { SceneManager.LoadScene("Level1"); };
